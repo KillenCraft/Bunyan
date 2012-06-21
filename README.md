@@ -1,4 +1,0 @@
-Bunyan
-======
-
-Minecraft Bunyan mod
