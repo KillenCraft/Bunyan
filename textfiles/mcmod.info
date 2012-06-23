@@ -1,0 +1,18 @@
+[
+{
+  "modid" : "mod_Bunyan",
+  "name" : "Bunyan",
+  "version" : "0.1 pre",
+  "url" : "",
+  "credits" : "Some textures by bonemouse.",
+  "authors": [
+    "ScottKillen"
+  ],
+  "description": "Bunyan adds woodsman elements to Minecraft.",
+  "logoFile" : "/bunyan/logo.png",
+  "updateUrl" : "",
+  "parent" : "",
+  "screenshots": [
+  ]
+}
+]
