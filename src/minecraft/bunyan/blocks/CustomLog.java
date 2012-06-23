@@ -8,9 +8,11 @@
 
 package bunyan.blocks;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.src.BlockLog;
+import net.minecraft.src.ItemStack;
 import net.minecraft.src.forge.ITextureProvider;
 
 public class CustomLog extends BlockLog implements ITextureProvider {
@@ -19,7 +21,7 @@ public class CustomLog extends BlockLog implements ITextureProvider {
 	public static final int		metaRedwood	= 0;
 	public static final int		metaFir		= 1;
 	public static final int		metaAcacia	= 2;
-
+	
 	// attributes
 	private static final float	HARDNESS	= 2.0F;
 
@@ -28,6 +30,13 @@ public class CustomLog extends BlockLog implements ITextureProvider {
 		blockIndexInTexture = 0;
 		setStepSound(soundWoodFootstep);
 		setRequiresSelfNotify();
+	}
+
+	@Override
+	public void addCreativeItems(ArrayList itemList) {
+		itemList.add(new ItemStack(blockID, 1, metaRedwood));
+		itemList.add(new ItemStack(blockID, 1, metaFir));
+		itemList.add(new ItemStack(blockID, 1, metaAcacia));
 	}
 
 	@Override
