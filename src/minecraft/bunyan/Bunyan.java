@@ -18,7 +18,7 @@ public enum Bunyan {
 	INSTANCE; // This enforces this object's singularity
 
 	private static final String	NAME	= "Bunyan";
-	private static final String	VERSION	= "0.2";
+	private static final String	VERSION	= "0.2 pre";
 
 	public static boolean clientSideRequired() {
 		// Because this mod define custom blocks, the client side mod is

@@ -17,7 +17,7 @@ import bunyan.Proxy;
 public enum Config {
 	INSTANCE;
 
-	private static final String	CONFIG_BUNYAN_MAIN_CFG	= "/config/bunyan/main.cfg";
+	private static final String	CONFIG_BUNYAN_MAIN_CFG	= "/config/extrabiomes/bunyan.cfg";
 	public static Configuration	config;
 
 	public static int getOrCreateBlockIdProperty(String key,

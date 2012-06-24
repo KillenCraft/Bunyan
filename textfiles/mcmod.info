@@ -2,16 +2,16 @@
 {
   "modid" : "mod_Bunyan",
   "name" : "Bunyan",
-  "version" : "0.1 pre",
+  "version" : "0.2 pre",
   "url" : "",
-  "credits" : "Some textures by bonemouse.",
+  "credits" : "Textures by bonemouse.",
   "authors": [
     "ScottKillen"
   ],
-  "description": "Bunyan adds woodsman elements to Minecraft.",
+  "description": "Bunyan adds custom wood to ExtraBiomes XL.",
   "logoFile" : "/bunyan/logo.png",
   "updateUrl" : "",
-  "parent" : "",
+  "parent" : "ExtraBiomes XL",
   "screenshots": [
   ]
 }
