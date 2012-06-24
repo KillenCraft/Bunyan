@@ -17,6 +17,7 @@ import bunyan.Proxy;
 public enum Config {
 	INSTANCE;
 
+	private static final String	CONFIG_BUNYAN_MAIN_CFG	= "/config/bunyan/main.cfg";
 	public static Configuration	config;
 
 	public static int getOrCreateBlockIdProperty(String key,
@@ -49,7 +50,7 @@ public enum Config {
 	public static void onLoad() {
 
 		config = new Configuration(new File(Proxy.getMinecraftDir(),
-				"/config/bunyan/main.cfg"));
+				CONFIG_BUNYAN_MAIN_CFG));
 		config.load();
 
 		ConfigureBlocks.initialize();

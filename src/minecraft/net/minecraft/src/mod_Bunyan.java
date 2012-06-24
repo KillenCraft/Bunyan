@@ -11,6 +11,11 @@ package net.minecraft.src;
 import net.minecraft.src.forge.NetworkMod;
 import bunyan.Bunyan;
 
+/**
+ * This class appears only to communicate with the mod loader.
+ * Everything is delegated to {@link Bunyan.Bunyan}
+ * 
+ */
 public class mod_Bunyan extends NetworkMod {
 
 	@Override

@@ -26,6 +26,20 @@ public class WideLog extends BlockLog implements ITextureProvider {
 	// attributes
 	private static final float	HARDNESS	= 2.0F;
 
+	public static int metadataWithDirection(int metadata, int direction)
+	{
+		direction -= 2;
+		return metadata | direction << 2;
+	}
+
+	public static void setDirection(World world, int x, int y, int z,
+			byte direction)
+	{
+		final int metadata = world.getBlockMetadata(x, y, z);
+		world.setBlockMetadataWithNotify(x, y, z,
+				metadataWithDirection(metadata, direction));
+	}
+
 	public WideLog(int id) {
 		super(id);
 		blockIndexInTexture = 0;
@@ -177,15 +191,6 @@ public class WideLog extends BlockLog implements ITextureProvider {
 			} else
 				setSmartDirection(world, x, y, z);
 		}
-	}
-
-	public void setDirection(World world, int x, int y, int z,
-			byte direction)
-	{
-		final int metadata = world.getBlockMetadata(x, y, z);
-		direction -= 2;
-		world.setBlockMetadataWithNotify(x, y, z, metadata
-				| direction << 2);
 	}
 
 	private void setSmartDirection(World world, int x, int y, int z) {

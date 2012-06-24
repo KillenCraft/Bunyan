@@ -10,6 +10,7 @@ package bunyan.config;
 
 import net.minecraft.src.ItemStack;
 import bunyan.Proxy;
+import bunyan.blocks.CustomSapling;
 import bunyan.blocks.BunyanBlock;
 import bunyan.blocks.CustomLog;
 import bunyan.blocks.WideLog;
@@ -28,6 +29,11 @@ public class ConfigureBlocks {
 				CustomLog.metaRedwood), "Quarter Huge Redwood Log");
 		Proxy.addName(new ItemStack(BunyanBlock.widewood, 1,
 				CustomLog.metaFir), "Quarter Huge Fir Log");
+
+		Proxy.addName(new ItemStack(BunyanBlock.sapling, 1,
+				CustomSapling.metaRedwood), "Redwood Sapling");
+		Proxy.addName(new ItemStack(BunyanBlock.sapling, 1,
+				CustomSapling.metaFir), "Fir Sapling");
 	}
 
 	public static void initialize() {
@@ -41,9 +47,16 @@ public class ConfigureBlocks {
 		BunyanBlock.widewood = new WideLog(widewoodID)
 				.setBlockName("tile.bunyan.widewood");
 
+		final int saplingID = Config.getOrCreateBlockIdProperty(
+				"sapling.id", 162);
+		BunyanBlock.sapling = new CustomSapling(saplingID)
+				.setBlockName("tile.bunyan.sapling");
+
 		Proxy.registerBlock(BunyanBlock.wood,
 				bunyan.items.MultiItemBlock.class);
 		Proxy.registerBlock(BunyanBlock.widewood,
+				bunyan.items.MultiItemBlock.class);
+		Proxy.registerBlock(BunyanBlock.sapling,
 				bunyan.items.MultiItemBlock.class);
 	}
 

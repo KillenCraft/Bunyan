@@ -12,12 +12,22 @@ import net.minecraft.src.Block;
 import net.minecraft.src.ItemBlock;
 import net.minecraft.src.ItemStack;
 
+/**
+ * This handles all of the mundane tasks of having multiple blocks
+ * stuffed into a single blockID. It delegates everything it can to the
+ * Block.
+ */
 public class MultiItemBlock extends ItemBlock {
 
 	public MultiItemBlock(int id) {
 		super(id);
-		setMaxDamage(0);
-		setHasSubtypes(true);
+		setMaxDamage(0); // Damage values are used to distinguish block
+							// types, so tell the game not to use damage
+							// values for this type of item.
+
+		setHasSubtypes(true); // Let the game know that there are
+								// several blocks/items stuffed onto one
+								// blockID
 	}
 
 	Block getBlock() {
@@ -36,8 +46,8 @@ public class MultiItemBlock extends ItemBlock {
 
 	@Override
 	public String getItemNameIS(ItemStack itemstack) {
-		return Block.blocksList[getBlockID()].getBlockName()
-				+ "." + itemstack.getItemDamage();
+		return Block.blocksList[getBlockID()].getBlockName() + "."
+				+ itemstack.getItemDamage();
 	}
 
 	@Override
