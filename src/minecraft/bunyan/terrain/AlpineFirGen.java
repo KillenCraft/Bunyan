@@ -10,21 +10,12 @@ package bunyan.terrain;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
-import extrabiomes.api.ITreeFactory.TreeType;
-import extrabiomes.api.TerrainGenManager;
+import bunyan.trees.GenFirTree;
 
 public class AlpineFirGen extends TreeDecoration {
 
 	public AlpineFirGen() {
-		super(7, TerrainGenManager.treeFactory.makeTreeGenerator(false,
-				TreeType.FIR));
-	}
-
-	@Override
-	public int getYToTry(World world, int x, int z) {
-		final int y = super.getYToTry(world, x, z);
-		return world.getBlockId(x, y, z) == Block.snow.blockID ? y - 1
-				: y;
+		super(7, new GenFirTree(false));
 	}
 
 }

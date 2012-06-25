@@ -103,6 +103,7 @@ public abstract class TreeGenerator extends WorldGenerator {
 							yToCheck, zToCheck);
 
 					if (Block.blocksList[idToCheck] != null
+							&& idToCheck != Block.snow.blockID
 							&& !Block.blocksList[idToCheck]
 									.isLeaves(world, xToCheck,
 											yToCheck, zToCheck))
@@ -125,6 +126,7 @@ public abstract class TreeGenerator extends WorldGenerator {
 		final int id = world.getBlockId(x, y, z);
 
 		if (Block.blocksList[id] == null
+				|| id == Block.snow.blockID
 				|| Block.blocksList[id].isLeaves(world, x, y, z))
 			setBlockAndMetadata(world, x, y, z, blockWood, metaWood);
 	}

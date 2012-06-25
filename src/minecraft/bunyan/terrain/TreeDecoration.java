@@ -42,16 +42,6 @@ public class TreeDecoration implements IBiomeDecoration {
 	}
 
 	protected int getYToTry(World world, int x, int z) {
-		int y = world.getHeightValue(x, z);
-		final int id = world.getBlockId(x, y, z);
-		if (id == Block.plantYellow.blockID
-				|| id == Block.plantRed.blockID
-				|| id == Block.tallGrass.blockID
-				|| id == Block.deadBush.blockID
-				|| id == Block.mushroomBrown.blockID
-				|| id == Block.mushroomRed.blockID
-				|| id == Block.reed.blockID) y -= 1;
-		return y;
+		return world.getHeightValue(x, z);
 	}
-
 }

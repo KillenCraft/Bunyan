@@ -43,4 +43,5 @@ public class GenFirTree extends TreeGenStraightNoBranches {
 	protected int getRandomMaxLeafRadius(Random random) {
 		return 2 + random.nextInt(6);
 	}
+
 }

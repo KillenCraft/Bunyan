@@ -55,7 +55,7 @@ public enum ExtrabiomesPlugin implements IPlugin {
 		return true;
 	}
 
-	private void replaceExtrabiomesTrees() {
+	private static void replaceExtrabiomesTrees() {
 		TerrainGenManager.enableAcaciaGen = false; // disable
 													// Extrabiomes
 													// normal acacia
