@@ -13,6 +13,8 @@ import java.util.Random;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.BlockFlower;
+import net.minecraft.src.Entity;
+import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
@@ -62,7 +64,6 @@ public class CustomSapling extends BlockFlower implements
 		final float var3 = 0.4F;
 		setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3,
 				var3 * 2.0F, 0.5F + var3);
-		setHardness(0F);
 		setStepSound(soundGrassFootstep);
 		setRequiresSelfNotify();
 
@@ -113,6 +114,37 @@ public class CustomSapling extends BlockFlower implements
 	{
 		return super.getBlockTextureFromSide(side)
 				+ unmarkedMetadata(metadata);
+	}
+
+	@Override
+	public float getExplosionResistance(Entity entity) {
+		return Block.sapling.getExplosionResistance(entity);
+	}
+
+	@Override
+	public int getFireSpreadSpeed(World world, int x, int y, int z,
+			int metadata, int face)
+	{
+		return Block.sapling.getFireSpreadSpeed(world, x, y, z,
+				metadata, face);
+	}
+
+	@Override
+	public int getFlammability(IBlockAccess world, int x, int y, int z,
+			int metadata, int face)
+	{
+		return Block.sapling.getFlammability(world, x, y, z, metadata,
+				face);
+	}
+
+	@Override
+	public float getHardness() {
+		return Block.sapling.getHardness();
+	}
+
+	@Override
+	public float getHardness(int meta) {
+		return Block.sapling.getHardness(meta);
 	}
 
 	@Override

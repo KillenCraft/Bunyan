@@ -13,6 +13,7 @@ import net.minecraft.src.Block;
 public enum BunyanBlock {
 	INSTANCE;
 
+	public static Block	plank;
 	public static Block	sapling;
 	public static Block	widewood;
 	public static Block	wood;
