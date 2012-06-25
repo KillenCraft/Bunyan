@@ -8,10 +8,10 @@
   "authors": [
     "ScottKillen"
   ],
-  "description": "Bunyan adds custom wood to ExtraBiomes XL.",
+  "description": "Bunyan adds custom content to ExtraBiomes XL.",
   "logoFile" : "/bunyan/logo.png",
   "updateUrl" : "",
-  "parent" : "ExtraBiomes XL",
+  "parent" : "",
   "screenshots": [
   ]
 }
