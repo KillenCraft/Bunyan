@@ -65,6 +65,8 @@ public class CustomSapling extends BlockFlower implements
 		setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3,
 				var3 * 2.0F, 0.5F + var3);
 		setStepSound(soundGrassFootstep);
+		setHardness(Block.sapling.getHardness());
+		setResistance(Block.sapling.getExplosionResistance(null) * 5.0F);
 		setRequiresSelfNotify();
 
 		TerrainGenManager.treesCanGrowOnIDs.add(Integer

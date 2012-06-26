@@ -10,6 +10,7 @@ package bunyan.trees;
 
 import java.util.Random;
 
+import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import bunyan.blocks.WideLog;
 
@@ -65,21 +66,28 @@ public abstract class TreeGenStraightNoBranchesWide extends
 
 	@Override
 	protected void setWoodBlock(World world, int x, int y, int z) {
-		super.setWoodBlock(world, x, y, z);
-		setMetadata(world, x, y, z,
-				WideLog.metadataWithDirection(metaWood, 3));
+		final int id = world.getBlockId(x, y, z);
 
-		super.setWoodBlock(world, x - 1, y, z);
-		setMetadata(world, x - 1, y, z,
-				WideLog.metadataWithDirection(metaWood, 4));
+		if (Block.blocksList[id] == null || id == Block.snow.blockID
+				|| Block.blocksList[id].isLeaves(world, x, y, z))
+		{
+			setBlockAndMetadata(world, x, y, z, blockWood, metaWood);
+			setMetadata(world, x, y, z,
+					WideLog.metadataWithDirection(metaWood, 3));
 
-		super.setWoodBlock(world, x, y, z - 1);
-		setMetadata(world, x, y, z - 1,
-				WideLog.metadataWithDirection(metaWood, 2));
+			setBlockAndMetadata(world, x - 1, y, z, blockWood, metaWood);
+			setMetadata(world, x - 1, y, z,
+					WideLog.metadataWithDirection(metaWood, 4));
 
-		super.setWoodBlock(world, x - 1, y, z - 1);
-		setMetadata(world, x - 1, y, z - 1,
-				WideLog.metadataWithDirection(metaWood, 5));
+			setBlockAndMetadata(world, x, y, z - 1, blockWood, metaWood);
+			setMetadata(world, x, y, z - 1,
+					WideLog.metadataWithDirection(metaWood, 2));
+
+			setBlockAndMetadata(world, x - 1, y, z - 1, blockWood,
+					metaWood);
+			setMetadata(world, x - 1, y, z - 1,
+					WideLog.metadataWithDirection(metaWood, 5));
+		}
 	}
 
 }

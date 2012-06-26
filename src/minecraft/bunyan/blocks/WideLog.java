@@ -13,6 +13,8 @@ import java.util.Random;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.BlockLog;
+import net.minecraft.src.Entity;
+import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import net.minecraft.src.forge.ITextureProvider;
@@ -22,9 +24,6 @@ public class WideLog extends BlockLog implements ITextureProvider {
 	// metadata values
 	public static final int		metaRedwood	= 0;
 	public static final int		metaFir		= 1;
-
-	// attributes
-	private static final float	HARDNESS	= 2.0F;
 
 	public static int metadataWithDirection(int metadata, int direction)
 	{
@@ -44,6 +43,8 @@ public class WideLog extends BlockLog implements ITextureProvider {
 		super(id);
 		blockIndexInTexture = 0;
 		setStepSound(soundWoodFootstep);
+		setHardness(Block.wood.getHardness());
+		setResistance(Block.wood.getExplosionResistance(null) * 5.0F);
 		setRequiresSelfNotify();
 	}
 
@@ -51,6 +52,33 @@ public class WideLog extends BlockLog implements ITextureProvider {
 	public void addCreativeItems(ArrayList itemList) {
 		itemList.add(new ItemStack(blockID, 1, metaRedwood));
 		itemList.add(new ItemStack(blockID, 1, metaFir));
+	}
+
+	@Override
+	public float getExplosionResistance(Entity entity) {
+		return Block.wood.getExplosionResistance(entity);
+	}
+
+	@Override
+	public int getFireSpreadSpeed(World world, int x, int y, int z,
+			int metadata, int face) {
+		return Block.wood.getFireSpreadSpeed(world, x, y, z, metadata, face);
+	}
+
+	@Override
+	public int getFlammability(IBlockAccess world, int x, int y, int z,
+			int metadata, int face) {
+		return Block.wood.getFlammability(world, x, y, z, metadata, face);
+	}
+
+	@Override
+	public float getHardness() {
+		return Block.wood.getHardness();
+	}
+
+	@Override
+	public float getHardness(int meta) {
+		return Block.wood.getHardness(meta);
 	}
 
 	@Override
@@ -132,16 +160,6 @@ public class WideLog extends BlockLog implements ITextureProvider {
 		}
 
 		return (row + 3) * 16 + column + metadata * 2;
-	}
-
-	@Override
-	public float getHardness() {
-		return getHardness(0);
-	}
-
-	@Override
-	public float getHardness(int meta) {
-		return HARDNESS;
 	}
 
 	@Override

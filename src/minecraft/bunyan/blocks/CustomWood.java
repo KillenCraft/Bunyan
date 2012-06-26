@@ -20,6 +20,8 @@ public class CustomWood extends Block {
 	public CustomWood(int id) {
 		super(id, Material.wood);
 		setStepSound(soundWoodFootstep);
+		setHardness(Block.planks.getHardness());
+		setResistance(Block.planks.getExplosionResistance(null) * 5.0F);
 		setRequiresSelfNotify();
 	}
 

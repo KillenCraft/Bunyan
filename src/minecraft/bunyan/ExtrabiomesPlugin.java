@@ -9,6 +9,7 @@
 package bunyan;
 
 import bunyan.blocks.BunyanBlock;
+import bunyan.blocks.CustomLeaves;
 import bunyan.blocks.CustomLog;
 import bunyan.terrain.AlpineFirGen;
 import bunyan.terrain.RedwoodForestRedwoodGen;
@@ -34,7 +35,18 @@ public enum ExtrabiomesPlugin implements IPlugin {
 		TerrainGenManager.metaFirWood = CustomLog.metaFir;
 
 		TerrainGenManager.blockAcaciaWood = BunyanBlock.wood;
-		TerrainGenManager.metaAcaciaLeaves = CustomLog.metaAcacia;
+		TerrainGenManager.metaAcaciaWood = CustomLog.metaAcacia;
+	}
+
+	private static void useBunyanLeavesInExtrabiomes() {
+
+		// Uses the ExtraBiomes XL API to set block to use in terrain
+		// generation
+		TerrainGenManager.blockRedwoodLeaves = BunyanBlock.leaves;
+		TerrainGenManager.metaRedwoodLeaves = CustomLeaves.metaRedwood;
+
+		TerrainGenManager.blockFirLeaves = BunyanBlock.leaves;
+		TerrainGenManager.metaFirLeaves = CustomLeaves.metaFir;
 	}
 
 	@Override
@@ -46,6 +58,7 @@ public enum ExtrabiomesPlugin implements IPlugin {
 	public void inject() {
 
 		useBunyanWoodInExtrabiomes();
+		useBunyanLeavesInExtrabiomes();
 		replaceExtrabiomesTrees();
 
 	}
