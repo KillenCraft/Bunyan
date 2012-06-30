@@ -16,14 +16,14 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>common</name>
+			<name>bunyan_client</name>
 			<type>2</type>
-			<locationURI>MCP_LOC/../buyan/src/common</locationURI>
+			<locationURI>MCP_LOC/bunyan/src/minecraft</locationURI>
 		</link>
 		<link>
-			<name>iterrain_client</name>
+			<name>common</name>
 			<type>2</type>
-			<locationURI>MCP_LOC/../bunyan/src/minecraft</locationURI>
+			<locationURI>MCP_LOC/bunyan/src/common</locationURI>
 		</link>
 		<link>
 			<name>jars</name>
@@ -33,7 +33,7 @@
 		<link>
 			<name>src</name>
 			<type>2</type>
-			<locationURI>MCP_LOC/../src/minecraft</locationURI>
+			<locationURI>MCP_LOC/src/minecraft</locationURI>
 		</link>
 	</linkedResources>
 	<filteredResources>

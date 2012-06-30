@@ -14,7 +14,6 @@ import net.minecraft.src.Block;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.forge.IBonemealHandler;
 import net.minecraft.src.forge.MinecraftForge;
-import net.minecraft.src.forge.MinecraftForgeClient;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.FMLRegistry;
 
@@ -62,18 +61,6 @@ public enum Proxy {
 	}
 
 	/**
-	 * Preload a texture. Textures must be preloaded before the first
-	 * use, or they will cause visual anomalies.
-	 * 
-	 * @param filename
-	 *            The path of the texture file to load, relative to
-	 *            {@link #getMinecraftDir()}
-	 */
-	public static void preloadTexture(String filename) {
-		MinecraftForgeClient.preloadTexture(filename);
-	}
-
-	/**
 	 * Registers a new block with the game. Used for blocks that are
 	 * <em>not</em> multifaceted.
 	 * 
@@ -106,6 +93,10 @@ public enum Proxy {
 	public static void registerBonemealHandler(IBonemealHandler handler)
 	{
 		MinecraftForge.registerBonemealHandler(handler);
+	}
+
+	public static void preloadTexture(String string) {
+		// NOOP on server
 	}
 
 }
