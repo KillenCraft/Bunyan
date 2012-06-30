@@ -1,9 +1,10 @@
-#Sat Jun 30 09:10:55 EDT 2012
-IMPORT_FILES_AND_FOLDERS_MODE=prompt
-IMPORT_FILES_AND_FOLDERS_VIRTUAL_FOLDER_MODE=prompt
+#Sat Jun 30 10:49:12 EDT 2012
 SAVE_ALL_BEFORE_BUILD=true
-eclipse.preferences.version=1
-tipsAndTricks=true
-platformState=1331609234497
-quickStart=false
 PROBLEMS_FILTERS_MIGRATE=true
+quickStart=false
+tipsAndTricks=true
+eclipse.preferences.version=1
+IMPORT_FILES_AND_FOLDERS_MODE=prompt
+platformState=1331609234497
+IMPORT_FILES_AND_FOLDERS_VIRTUAL_FOLDER_MODE=prompt
+EXIT_PROMPT_ON_CLOSE_LAST_WINDOW=false

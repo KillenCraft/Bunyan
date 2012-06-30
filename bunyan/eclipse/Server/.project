@@ -21,6 +21,11 @@
 			<locationURI>MCP_LOC/bunyan/src/minecraft_server</locationURI>
 		</link>
 		<link>
+			<name>common</name>
+			<type>2</type>
+			<locationURI>MCP_LOC/bunyan/src/common</locationURI>
+		</link>
+		<link>
 			<name>jars</name>
 			<type>2</type>
 			<locationURI>MCP_LOC/jars</locationURI>
