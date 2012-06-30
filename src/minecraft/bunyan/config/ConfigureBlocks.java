@@ -56,25 +56,25 @@ public class ConfigureBlocks {
 	public static void initialize() {
 		final int woodID = Config.getOrCreateBlockIdProperty("wood.id", 160);
 		BunyanBlock.wood = new CustomLog(woodID)
-				.setBlockName("tile.bunyan.wood");
+				.setBlockName("bunyan.wood");
 
 		final int widewoodID = Config.getOrCreateBlockIdProperty("widewood.id",
 				161);
 		BunyanBlock.widewood = new WideLog(widewoodID)
-				.setBlockName("tile.bunyan.widewood");
+				.setBlockName("bunyan.widewood");
 
 		final int saplingID = Config.getOrCreateBlockIdProperty("sapling.id",
 				162);
 		BunyanBlock.sapling = new CustomSapling(saplingID)
-				.setBlockName("tile.bunyan.sapling");
+				.setBlockName("bunyan.sapling");
 
 		final int plankID = Config.getOrCreateBlockIdProperty("plank.id", 163);
 		BunyanBlock.plank = new CustomWood(plankID)
-				.setBlockName("tile.bunyan.plank");
+				.setBlockName("bunyan.plank");
 
 		final int leafID = Config.getOrCreateBlockIdProperty("leaf.id", 164);
 		BunyanBlock.leaves = new CustomLeaves(leafID)
-				.setBlockName("tile.bunyan.leaves");
+				.setBlockName("bunyan.leaves");
 
 		Proxy.registerBlock(BunyanBlock.wood, bunyan.items.MultiItemBlock.class);
 		Proxy.registerBlock(BunyanBlock.widewood,

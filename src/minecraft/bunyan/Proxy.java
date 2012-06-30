@@ -12,6 +12,7 @@ import java.io.File;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;
+import net.minecraft.src.ItemStack;
 import net.minecraft.src.forge.IBonemealHandler;
 import net.minecraft.src.forge.MinecraftForge;
 import net.minecraft.src.forge.MinecraftForgeClient;
@@ -42,6 +43,16 @@ public enum Proxy {
 		if (instance != null)
 			FMLCommonHandler.instance().addNameForObject(instance,
 					"en_US", name);
+	}
+
+	public static void addRecipe(ItemStack output, Object[] inputs) {
+		FMLRegistry.addRecipe(output, inputs);
+	}
+
+	public static void addShapelessRecipe(ItemStack output,
+			Object[] inputs)
+	{
+		FMLRegistry.addShapelessRecipe(output, inputs);
 	}
 
 	/**

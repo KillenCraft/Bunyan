@@ -12,6 +12,7 @@ import java.util.Random;
 
 import net.minecraft.src.World;
 import bunyan.blocks.BunyanBlock;
+import bunyan.blocks.CustomLeaves;
 import bunyan.blocks.WideLog;
 import extrabiomes.api.TerrainGenManager;
 
@@ -19,8 +20,8 @@ public class GenFirTreeHuge extends TreeGenStraightNoBranchesWide {
 
 	public GenFirTreeHuge(boolean doNotify) {
 		super(doNotify);
-		blockLeaf = TerrainGenManager.blockFirLeaves.blockID;
-		metaLeaf = TerrainGenManager.metaFirLeaves;
+		blockLeaf = BunyanBlock.leaves.blockID;
+		metaLeaf = CustomLeaves.metaFir;
 		blockWood = BunyanBlock.widewood.blockID;
 		metaWood = WideLog.metaFir;
 	}

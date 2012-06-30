@@ -11,6 +11,7 @@ package bunyan.trees;
 import java.util.Random;
 
 import bunyan.blocks.BunyanBlock;
+import bunyan.blocks.CustomLeaves;
 import bunyan.blocks.CustomLog;
 import extrabiomes.api.TerrainGenManager;
 
@@ -18,8 +19,8 @@ public class GenRedwood extends TreeGenStraightNoBranchesWide {
 
 	public GenRedwood(boolean doNotify) {
 		super(doNotify);
-		blockLeaf = TerrainGenManager.blockRedwoodLeaves.blockID;
-		metaLeaf = TerrainGenManager.metaRedwoodLeaves;
+		blockLeaf = BunyanBlock.leaves.blockID;
+		metaLeaf = CustomLeaves.metaRedwood;
 		blockWood = BunyanBlock.widewood.blockID;
 		metaWood = CustomLog.metaRedwood;
 	}

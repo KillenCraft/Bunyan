@@ -46,7 +46,7 @@ public class MultiItemBlock extends ItemBlock {
 
 	@Override
 	public String getItemNameIS(ItemStack itemstack) {
-		return Block.blocksList[getBlockID()].getBlockName() + "."
+		return "tile." + Block.blocksList[getBlockID()].getBlockName() + "."
 				+ itemstack.getItemDamage();
 	}
 

@@ -11,6 +11,7 @@ package bunyan.trees;
 import java.util.Random;
 
 import bunyan.blocks.BunyanBlock;
+import bunyan.blocks.CustomLeaves;
 import bunyan.blocks.CustomLog;
 import extrabiomes.api.TerrainGenManager;
 
@@ -18,8 +19,8 @@ public class GenFirTree extends TreeGenStraightNoBranches {
 
 	public GenFirTree(boolean doNotify) {
 		super(doNotify);
-		blockLeaf = TerrainGenManager.blockFirLeaves.blockID;
-		metaLeaf = TerrainGenManager.metaFirLeaves;
+		blockLeaf = BunyanBlock.leaves.blockID;
+		metaLeaf = CustomLeaves.metaFir;
 		blockWood = BunyanBlock.wood.blockID;
 		metaWood = CustomLog.metaFir;
 	}
