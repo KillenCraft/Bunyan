@@ -31,7 +31,7 @@
 			<locationURI>MCP_LOC/jars</locationURI>
 		</link>
 		<link>
-			<name>src</name>
+			<name>minecraft_server</name>
 			<type>2</type>
 			<locationURI>MCP_LOC/src/minecraft_server</locationURI>
 		</link>

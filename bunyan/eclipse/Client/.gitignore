@@ -1,2 +1,10 @@
 
 /bin
+/config
+/mods
+/resources
+/saves
+/stats
+/texturepacks
+/*.log
+/options.txt
