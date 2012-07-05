@@ -12,7 +12,6 @@ import java.io.File;
 
 import net.minecraft.src.forge.Configuration;
 import net.minecraft.src.forge.Property;
-import bunyan.Crafting;
 import bunyan.Proxy;
 
 public enum Config {
@@ -55,13 +54,12 @@ public enum Config {
 		config.load();
 
 		ConfigureBlocks.initialize();
-		
+		ConfigureRecipes.initialize();
 		config.save();
 	}
 
 	public static void onModsLoaded() {
 		ConfigureBlocks.addNames();
-		Crafting.initialize();
 	}
 
 }

@@ -9,44 +9,51 @@
 package bunyan;
 
 import bunyan.blocks.BunyanBlock;
-import bunyan.blocks.CustomLeaves;
 import bunyan.blocks.CustomLog;
-import bunyan.terrain.AlpineFirGen;
-import bunyan.terrain.RedwoodForestRedwoodGen;
-import bunyan.terrain.RedwoodLushFirRedwoodGen;
-import bunyan.terrain.SavannaAcaciaGen;
-import bunyan.terrain.TemperateRainforestFirGen;
-import extrabiomes.api.BiomeDecorationsManager;
-import extrabiomes.api.BiomeManager;
+import bunyan.blocks.WideLog;
+import bunyan.trees.GenFirTree;
+import bunyan.trees.GenFirTreeHuge;
+import bunyan.trees.GenRedwood;
 import extrabiomes.api.IPlugin;
+import extrabiomes.api.ITreeFactory.TreeType;
 import extrabiomes.api.TerrainGenManager;
 
 public enum ExtrabiomesPlugin implements IPlugin {
 	INSTANCE;
 
+	private static boolean	isActive	= false;
+
+	public static boolean isActive() {
+		return isActive;
+	}
+
+	private static void replaceExtrabiomesTrees() {
+		TerrainGenManager.treeFactory.registerTreeGen(TreeType.FIR,
+				new GenFirTree(false), false);
+		TerrainGenManager.treeFactory.registerTreeGen(TreeType.FIR,
+				new GenFirTree(true), true);
+		TerrainGenManager.treeFactory.registerTreeGen(
+				TreeType.FIR_HUGE, new GenFirTreeHuge(false), false);
+		TerrainGenManager.treeFactory.registerTreeGen(
+				TreeType.FIR_HUGE, new GenFirTreeHuge(true), true);
+		TerrainGenManager.treeFactory.registerTreeGen(TreeType.REDWOOD,
+				new GenRedwood(false), false);
+		TerrainGenManager.treeFactory.registerTreeGen(TreeType.REDWOOD,
+				new GenRedwood(true), true);
+	}
+
 	private static void useBunyanWoodInExtrabiomes() {
 
 		// Uses the ExtraBiomes XL API to set block to use in terrain
 		// generation
-		TerrainGenManager.blockRedwoodWood = BunyanBlock.wood;
-		TerrainGenManager.metaRedwoodWood = CustomLog.metaRedwood;
+		TerrainGenManager.blockRedwoodWood = BunyanBlock.widewood;
+		TerrainGenManager.metaRedwoodWood = WideLog.metaRedwood;
 
 		TerrainGenManager.blockFirWood = BunyanBlock.wood;
 		TerrainGenManager.metaFirWood = CustomLog.metaFir;
 
 		TerrainGenManager.blockAcaciaWood = BunyanBlock.wood;
 		TerrainGenManager.metaAcaciaWood = CustomLog.metaAcacia;
-	}
-
-	private static void useBunyanLeavesInExtrabiomes() {
-
-		// Uses the ExtraBiomes XL API to set block to use in terrain
-		// generation
-		TerrainGenManager.blockRedwoodLeaves = BunyanBlock.leaves;
-		TerrainGenManager.metaRedwoodLeaves = CustomLeaves.metaRedwood;
-
-		TerrainGenManager.blockFirLeaves = BunyanBlock.leaves;
-		TerrainGenManager.metaFirLeaves = CustomLeaves.metaFir;
 	}
 
 	@Override
@@ -57,8 +64,8 @@ public enum ExtrabiomesPlugin implements IPlugin {
 	@Override
 	public void inject() {
 
+		isActive = true;
 		useBunyanWoodInExtrabiomes();
-		useBunyanLeavesInExtrabiomes();
 		replaceExtrabiomesTrees();
 
 	}
@@ -66,35 +73,6 @@ public enum ExtrabiomesPlugin implements IPlugin {
 	@Override
 	public boolean isEnabled() {
 		return true;
-	}
-
-	private static void replaceExtrabiomesTrees() {
-		TerrainGenManager.enableAcaciaGen = false; // disable
-													// Extrabiomes
-													// normal acacia
-													// generation
-		BiomeDecorationsManager.biomeDecorations.get(
-				BiomeManager.savanna).add(new SavannaAcaciaGen());
-
-		TerrainGenManager.enableFirGen = false; // disable Extrabiomes
-												// normal fir generation
-		BiomeDecorationsManager.biomeDecorations.get(
-				BiomeManager.alpine).add(new AlpineFirGen());
-		BiomeDecorationsManager.biomeDecorations.get(
-				BiomeManager.temperaterainforest).add(
-				new TemperateRainforestFirGen());
-
-		TerrainGenManager.enableRedwoodGen = false; // disable
-													// Extrabiomes
-													// normal redwood
-													// generation
-		BiomeDecorationsManager.biomeDecorations.get(
-				BiomeManager.redwoodforest).add(
-				new RedwoodForestRedwoodGen());
-
-		BiomeDecorationsManager.biomeDecorations.get(
-				BiomeManager.redwoodlush).add(
-				new RedwoodLushFirRedwoodGen());
 	}
 
 }

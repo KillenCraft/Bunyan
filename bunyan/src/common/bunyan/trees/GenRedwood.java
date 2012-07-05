@@ -10,29 +10,44 @@ package bunyan.trees;
 
 import java.util.Random;
 
+import net.minecraft.src.BiomeGenBase;
+import net.minecraft.src.World;
 import bunyan.blocks.BunyanBlock;
-import bunyan.blocks.CustomLeaves;
-import bunyan.blocks.CustomLog;
+import bunyan.blocks.WideLog;
+import extrabiomes.api.BiomeManager;
 import extrabiomes.api.TerrainGenManager;
 
 public class GenRedwood extends TreeGenStraightNoBranchesWide {
 
 	public GenRedwood(boolean doNotify) {
 		super(doNotify);
-		blockLeaf = BunyanBlock.leaves.blockID;
-		metaLeaf = CustomLeaves.metaRedwood;
+		blockLeaf = TerrainGenManager.blockRedwoodLeaves.blockID;
+		metaLeaf = TerrainGenManager.metaRedwoodLeaves;
 		blockWood = BunyanBlock.widewood.blockID;
-		metaWood = CustomLog.metaRedwood;
+		metaWood = WideLog.metaRedwood;
+	}
+
+	@Override
+	public boolean generate(World world, Random rand, int x, int y,
+			int z)
+	{
+		final BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
+		if (biome == BiomeManager.wasteland)
+			if (rand.nextInt(4) == 0)
+				return new DeadTreeHuge(metaWood).generate(world, rand,
+						x, y, z);
+
+		return super.generate(world, rand, x, y, z);
 	}
 
 	@Override
 	protected int getRandomHeight(Random random) {
-		return random.nextInt(8) + 24;
+		return random.nextInt(30) + 32;
 	}
 
 	@Override
 	protected int getRandomHeightLeavesStart(Random random) {
-		return 1 + random.nextInt(12);
+		return 1 + random.nextInt(24);
 	}
 
 	@Override

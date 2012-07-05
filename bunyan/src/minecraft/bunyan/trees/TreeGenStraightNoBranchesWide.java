@@ -28,26 +28,26 @@ public abstract class TreeGenStraightNoBranchesWide extends
 	protected void growRoots(World world, Random random, int x, int y,
 			int z)
 	{
-		super.growRoots(world, random, x, y, z);
-		super.growRoots(world, random, x - 1, y, z);
-		super.growRoots(world, random, x, y, z - 1);
-		super.growRoots(world, random, x - 1, y, z - 1);
+		for (int zOffset = 0; zOffset > -2; zOffset--)
+			for (int xOffset = 0; xOffset > -2; xOffset--)
+				super.growRoots(world, random, x + xOffset, y, z
+						+ zOffset);
 	}
 
 	@Override
 	protected boolean isGoodSoil(World world, int x, int y, int z) {
-		return super.isGoodSoil(world, x, y, z)
-				&& super.isGoodSoil(world, x, y, z - 1)
-				&& super.isGoodSoil(world, x - 1, y, z)
-				&& super.isGoodSoil(world, x - 1, y, z - 1);
+		for (int zOffset = 0; zOffset > -2; zOffset--)
+			for (int xOffset = 0; xOffset > -2; xOffset--)
+				if (!super.isGoodSoil(world, x + xOffset, y, z
+						+ zOffset)) return false;
+		return true;
 	}
 
 	@Override
 	protected void setLeafBlock(World world, int x, int y, int z) {
-		super.setLeafBlock(world, x, y, z);
-		super.setLeafBlock(world, x - 1, y, z);
-		super.setLeafBlock(world, x, y, z - 1);
-		super.setLeafBlock(world, x - 1, y, z - 1);
+		for (int zOffset = 0; zOffset > -2; zOffset--)
+			for (int xOffset = 0; xOffset > -2; xOffset--)
+				super.setLeafBlock(world, x + xOffset, y, z + zOffset);
 	}
 
 	protected void setMetadata(World world, int x, int y, int z,
@@ -71,22 +71,17 @@ public abstract class TreeGenStraightNoBranchesWide extends
 		if (Block.blocksList[id] == null || id == Block.snow.blockID
 				|| Block.blocksList[id].isLeaves(world, x, y, z))
 		{
-			setBlockAndMetadata(world, x, y, z, blockWood, metaWood);
-			setMetadata(world, x, y, z,
-					WideLog.metadataWithDirection(metaWood, 3));
+			final int directions[] = { 3, 4, 2, 5 };
 
-			setBlockAndMetadata(world, x - 1, y, z, blockWood, metaWood);
-			setMetadata(world, x - 1, y, z,
-					WideLog.metadataWithDirection(metaWood, 4));
-
-			setBlockAndMetadata(world, x, y, z - 1, blockWood, metaWood);
-			setMetadata(world, x, y, z - 1,
-					WideLog.metadataWithDirection(metaWood, 2));
-
-			setBlockAndMetadata(world, x - 1, y, z - 1, blockWood,
-					metaWood);
-			setMetadata(world, x - 1, y, z - 1,
-					WideLog.metadataWithDirection(metaWood, 5));
+			int dir = 0;
+			for (int zOffset = 0; zOffset > -2; zOffset--)
+				for (int xOffset = 0; xOffset > -2; xOffset--) {
+					setBlockAndMetadata(world, x + xOffset, y, z
+							+ zOffset, blockWood, metaWood);
+					setMetadata(world, x + xOffset, y, z + zOffset,
+							WideLog.metadataWithDirection(metaWood,
+									directions[dir++]));
+				}
 		}
 	}
 

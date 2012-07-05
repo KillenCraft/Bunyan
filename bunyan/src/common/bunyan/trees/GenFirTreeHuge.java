@@ -10,20 +10,34 @@ package bunyan.trees;
 
 import java.util.Random;
 
+import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.World;
 import bunyan.blocks.BunyanBlock;
-import bunyan.blocks.CustomLeaves;
 import bunyan.blocks.WideLog;
+import extrabiomes.api.BiomeManager;
 import extrabiomes.api.TerrainGenManager;
 
 public class GenFirTreeHuge extends TreeGenStraightNoBranchesWide {
 
 	public GenFirTreeHuge(boolean doNotify) {
 		super(doNotify);
-		blockLeaf = BunyanBlock.leaves.blockID;
-		metaLeaf = CustomLeaves.metaFir;
+		blockLeaf = TerrainGenManager.blockFirLeaves.blockID;
+		metaLeaf = TerrainGenManager.metaFirLeaves;
 		blockWood = BunyanBlock.widewood.blockID;
 		metaWood = WideLog.metaFir;
+	}
+
+	@Override
+	public boolean generate(World world, Random rand, int x, int y,
+			int z)
+	{
+		final BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
+		if (biome == BiomeManager.wasteland)
+			if (rand.nextInt(4) == 0)
+				return new DeadTreeHuge(metaWood).generate(world, rand,
+						x, y, z);
+
+		return super.generate(world, rand, x, y, z);
 	}
 
 	@Override

@@ -24,6 +24,7 @@ public class WideLog extends BlockLog implements ITextureProvider {
 	// metadata values
 	public static final int		metaRedwood	= 0;
 	public static final int		metaFir		= 1;
+	public static final int		metaOak		= 2;
 
 	public static int metadataWithDirection(int metadata, int direction)
 	{
@@ -52,6 +53,7 @@ public class WideLog extends BlockLog implements ITextureProvider {
 	public void addCreativeItems(ArrayList itemList) {
 		itemList.add(new ItemStack(blockID, 1, metaRedwood));
 		itemList.add(new ItemStack(blockID, 1, metaFir));
+		itemList.add(new ItemStack(blockID, 1, metaOak));
 	}
 
 	@Override

@@ -8,6 +8,8 @@
 
 package net.minecraft.src;
 
+import java.util.Random;
+
 import net.minecraft.src.forge.NetworkMod;
 import bunyan.Bunyan;
 
@@ -21,6 +23,13 @@ public class mod_Bunyan extends NetworkMod {
 	@Override
 	public boolean clientSideRequired() {
 		return Bunyan.clientSideRequired();
+	}
+
+	@Override
+	public void generateSurface(World world, Random random, int chunkX,
+			int chunkZ)
+	{
+		Bunyan.onGenerateSurface(world, random, chunkX, chunkZ);
 	}
 
 	@Override

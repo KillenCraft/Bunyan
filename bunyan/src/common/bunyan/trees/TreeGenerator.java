@@ -13,7 +13,7 @@ import java.util.Random;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
-import bunyan.blocks.CustomSapling;
+import extrabiomes.api.TerrainGenManager;
 
 public abstract class TreeGenerator extends WorldGenerator {
 
@@ -79,8 +79,8 @@ public abstract class TreeGenerator extends WorldGenerator {
 			int x, int y, int z, int height);
 
 	protected boolean isGoodSoil(World world, int x, int y, int z) {
-		return CustomSapling.isGoodSoil(world.getBlockId(x, y - 1,
-				z));
+		return TerrainGenManager.treesCanGrowOnIDs.contains(Integer
+				.valueOf(world.getBlockId(x, y - 1, z)));
 	}
 
 	protected boolean isRoomToGrow(World world, int x, int y, int z,
@@ -99,6 +99,10 @@ public abstract class TreeGenerator extends WorldGenerator {
 				for (int zToCheck = z - radiusToCheck; zToCheck <= z
 						+ radiusToCheck; zToCheck++)
 				{
+					if (!world.getChunkProvider().chunkExists(
+							xToCheck >> 4, zToCheck >> 4))
+						return false;
+
 					final int idToCheck = world.getBlockId(xToCheck,
 							yToCheck, zToCheck);
 
@@ -115,6 +119,9 @@ public abstract class TreeGenerator extends WorldGenerator {
 
 	protected void setLeafBlock(World world, final int x, int y, int z)
 	{
+		if (!world.getChunkProvider().chunkExists(x >> 4, z >> 4))
+			return;
+
 		final Block block = Block.blocksList[world.getBlockId(x, y, z)];
 
 		if (block == null
@@ -125,8 +132,7 @@ public abstract class TreeGenerator extends WorldGenerator {
 	protected void setWoodBlock(World world, int x, int y, int z) {
 		final int id = world.getBlockId(x, y, z);
 
-		if (Block.blocksList[id] == null
-				|| id == Block.snow.blockID
+		if (Block.blocksList[id] == null || id == Block.snow.blockID
 				|| Block.blocksList[id].isLeaves(world, x, y, z))
 			setBlockAndMetadata(world, x, y, z, blockWood, metaWood);
 	}
