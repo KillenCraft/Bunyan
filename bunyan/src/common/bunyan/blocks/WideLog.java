@@ -26,6 +26,11 @@ public class WideLog extends BlockLog implements ITextureProvider {
 	public static final int		metaFir		= 1;
 	public static final int		metaOak		= 2;
 
+	@Override
+	protected int damageDropped(int metadata) {
+		return metadata & 3;
+	}
+
 	public static int metadataWithDirection(int metadata, int direction)
 	{
 		direction -= 2;
