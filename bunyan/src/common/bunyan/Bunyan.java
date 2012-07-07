@@ -15,7 +15,6 @@ import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 import net.minecraft.src.forge.NetworkMod;
-import bunyan.blocks.WideLog;
 import bunyan.config.Config;
 import bunyan.trees.DeadTreeHuge;
 import bunyan.trees.GenFirTree;
@@ -72,16 +71,13 @@ public enum Bunyan {
 				new GenOakHuge(false).generate(world, random, x, y, z);
 			}
 		if (biome == BiomeManager.wasteland)
-		{
 			if (random.nextInt(50) == 0) {
 				final int x = chunkX + random.nextInt(16) + 8;
 				final int z = chunkZ + random.nextInt(16) + 8;
 				final int y = world.getHeightValue(x, z);
-				new DeadTreeHuge(random.nextInt(3)).generate(world, random, x, y,
-						z);
+				new DeadTreeHuge(random.nextInt(3)).generate(world,
+						random, x, y, z);
 			}
-			
-		}
 
 		if (!ExtrabiomesPlugin.isActive())
 			if (biome == BiomeGenBase.taiga
