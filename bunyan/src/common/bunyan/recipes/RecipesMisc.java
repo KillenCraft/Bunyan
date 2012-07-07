@@ -75,7 +75,7 @@ public class RecipesMisc {
 
 		// boat
 		Proxy.addRecipe(new ItemStack(Item.boat), new Object[] { "X X",
-				"XXX", Character.valueOf('a'), BunyanBlock.plank });
+				"XXX", Character.valueOf('X'), BunyanBlock.plank });
 
 		// door
 		Proxy.addRecipe(new ItemStack(Item.doorWood), new Object[] {
