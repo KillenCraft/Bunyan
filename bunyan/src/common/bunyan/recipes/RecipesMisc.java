@@ -22,37 +22,12 @@ public class RecipesMisc {
 	public static void addRecipes() {
 
 		// planks
-		Proxy.addRecipe(new ItemStack(BunyanBlock.plank, 4,
-				CustomWood.metaAcacia),
-				new Object[] {
-						"#",
-						Character.valueOf('#'),
-						new ItemStack(BunyanBlock.wood, 1,
-								CustomLog.metaAcacia) });
-
-		Proxy.addRecipe(new ItemStack(BunyanBlock.plank, 4,
-				CustomWood.metaFir),
-				new Object[] {
-						"#",
-						Character.valueOf('#'),
-						new ItemStack(BunyanBlock.wood, 1,
-								CustomLog.metaFir) });
-
-		Proxy.addRecipe(new ItemStack(BunyanBlock.plank, 4,
-				CustomWood.metaFir),
+		Proxy.addRecipe(new ItemStack(Block.planks, 4),
 				new Object[] {
 						"#",
 						Character.valueOf('#'),
 						new ItemStack(BunyanBlock.widewood, 1,
-								WideLog.metaFir) });
-
-		Proxy.addRecipe(new ItemStack(BunyanBlock.plank, 4,
-				CustomWood.metaRedwood),
-				new Object[] {
-						"#",
-						Character.valueOf('#'),
-						new ItemStack(BunyanBlock.widewood, 1,
-								WideLog.metaRedwood) });
+								WideLog.metaOak) });
 
 		// sticks
 		Proxy.addRecipe(new ItemStack(Item.stick, 4), new Object[] {
