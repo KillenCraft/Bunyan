@@ -14,7 +14,9 @@ import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
+import net.minecraft.src.forge.IOreHandler;
 import net.minecraft.src.forge.NetworkMod;
+import net.minecraft.src.forge.oredict.OreDictionary;
 import bunyan.config.Config;
 import bunyan.trees.DeadTreeHuge;
 import bunyan.trees.GenFirTree;
@@ -29,7 +31,9 @@ public enum Bunyan {
 	INSTANCE; // This enforces this object's singularity
 
 	private static final String	NAME	= "Bunyan";
-	private static final String	VERSION	= "1.1";
+	private static final String	VERSION	= "1.2";
+	
+	private static IOreHandler woodOreHandler;
 
 	public static boolean clientSideRequired() {
 		// Because this mod define custom blocks, the client side mod is
@@ -113,6 +117,9 @@ public enum Bunyan {
 
 		// Delegate mod configuration to the Config object
 		Config.onLoad();
+		
+		woodOreHandler = new WoodOreHandler();
+		OreDictionary.registerOreHandler(woodOreHandler);
 
 		PluginManager.plugins.add(ExtrabiomesPlugin.INSTANCE);
 

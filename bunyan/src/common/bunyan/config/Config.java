@@ -60,6 +60,7 @@ public enum Config {
 
 	public static void onModsLoaded() {
 		ConfigureBlocks.addNames();
+		ConfigureOreDictionary.initialize();
 	}
 
 }
