@@ -21,15 +21,9 @@ import net.minecraft.src.forge.ITextureProvider;
 
 public class WideLog extends BlockLog implements ITextureProvider {
 
-	// metadata values
-	public static final int		metaRedwood	= 0;
-	public static final int		metaFir		= 1;
-	public static final int		metaOak		= 2;
-
-	@Override
-	protected int damageDropped(int metadata) {
-		return metadata & 3;
-	}
+	public static final int	metaRedwood	= 0;
+	public static final int	metaFir		= 1;
+	public static final int	metaOak		= 2;
 
 	public static int metadataWithDirection(int metadata, int direction)
 	{
@@ -62,30 +56,17 @@ public class WideLog extends BlockLog implements ITextureProvider {
 	}
 
 	@Override
-	public float getExplosionResistance(Entity entity) {
-		return Block.wood.getExplosionResistance(entity);
+	protected int damageDropped(int metadata) {
+		return metadata & 3;
 	}
 
 	@Override
-	public int getFireSpreadSpeed(World world, int x, int y, int z,
-			int metadata, int face) {
-		return Block.wood.getFireSpreadSpeed(world, x, y, z, metadata, face);
-	}
-
-	@Override
-	public int getFlammability(IBlockAccess world, int x, int y, int z,
-			int metadata, int face) {
-		return Block.wood.getFlammability(world, x, y, z, metadata, face);
-	}
-
-	@Override
-	public float getHardness() {
-		return Block.wood.getHardness();
-	}
-
-	@Override
-	public float getHardness(int meta) {
-		return Block.wood.getHardness(meta);
+	protected void dropBlockAsItem_do(World par1World, int par2,
+			int par3, int par4, ItemStack par5ItemStack)
+	{
+		par5ItemStack.setItemDamage(par5ItemStack.getItemDamage() & 3);
+		super.dropBlockAsItem_do(par1World, par2, par3, par4,
+				par5ItemStack);
 	}
 
 	@Override
@@ -167,6 +148,37 @@ public class WideLog extends BlockLog implements ITextureProvider {
 		}
 
 		return (row + 3) * 16 + column + metadata * 2;
+	}
+
+	@Override
+	public float getExplosionResistance(Entity entity) {
+		return Block.wood.getExplosionResistance(entity);
+	}
+
+	@Override
+	public int getFireSpreadSpeed(World world, int x, int y, int z,
+			int metadata, int face)
+	{
+		return Block.wood.getFireSpreadSpeed(world, x, y, z, metadata,
+				face);
+	}
+
+	@Override
+	public int getFlammability(IBlockAccess world, int x, int y, int z,
+			int metadata, int face)
+	{
+		return Block.wood.getFlammability(world, x, y, z, metadata,
+				face);
+	}
+
+	@Override
+	public float getHardness() {
+		return Block.wood.getHardness();
+	}
+
+	@Override
+	public float getHardness(int meta) {
+		return Block.wood.getHardness(meta);
 	}
 
 	@Override
