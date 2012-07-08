@@ -2,9 +2,9 @@
 {
   "modid" : "mod_Bunyan",
   "name" : "Bunyan",
-  "version" : "0.2 pre",
+  "version" : "1.2",
   "url" : "",
-  "credits" : "Textures by bonemouse.",
+  "credits" : "Textures by bonemouse and Delocuro",
   "authors": [
     "ScottKillen"
   ],
