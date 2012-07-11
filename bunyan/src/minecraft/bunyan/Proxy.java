@@ -11,6 +11,7 @@ package bunyan;
 import java.io.File;
 
 import net.minecraft.src.Block;
+import net.minecraft.src.FurnaceRecipes;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.forge.IBonemealHandler;
 import net.minecraft.src.forge.MinecraftForge;
@@ -52,6 +53,13 @@ public enum Proxy {
 			Object[] inputs)
 	{
 		FMLRegistry.addShapelessRecipe(output, inputs);
+	}
+
+	public static void addSmelting(int itemIdIn, int metaIn,
+			ItemStack itemstackOut)
+	{
+		FurnaceRecipes.smelting().addSmelting(itemIdIn, metaIn,
+				itemstackOut);
 	}
 
 	/**

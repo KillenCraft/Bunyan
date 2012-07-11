@@ -11,6 +11,7 @@ package bunyan;
 import java.io.File;
 
 import net.minecraft.src.Block;
+import net.minecraft.src.FurnaceRecipes;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.forge.IBonemealHandler;
 import net.minecraft.src.forge.MinecraftForge;
@@ -53,11 +54,22 @@ public enum Proxy {
 		FMLRegistry.addShapelessRecipe(output, inputs);
 	}
 
+	public static void addSmelting(int itemIdIn, int metaIn,
+			ItemStack itemstackOut)
+	{
+		FurnaceRecipes.smelting().addSmelting(itemIdIn, metaIn,
+				itemstackOut);
+	}
+
 	/**
 	 * @return the root folder where game files are stored.
 	 */
 	public static File getMinecraftDir() {
 		return FMLCommonHandler.instance().getMinecraftRootDirectory();
+	}
+
+	public static void preloadTexture(String string) {
+		// NOOP on server
 	}
 
 	/**
@@ -93,10 +105,6 @@ public enum Proxy {
 	public static void registerBonemealHandler(IBonemealHandler handler)
 	{
 		MinecraftForge.registerBonemealHandler(handler);
-	}
-
-	public static void preloadTexture(String string) {
-		// NOOP on server
 	}
 
 }
