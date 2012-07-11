@@ -2,10 +2,12 @@
 package bunyan.recipes;
 
 import net.minecraft.src.Block;
+import net.minecraft.src.FurnaceRecipes;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import bunyan.Proxy;
 import bunyan.blocks.BunyanBlock;
+import bunyan.blocks.CustomLog;
 import bunyan.blocks.WideLog;
 
 public class CraftingRecipes {
@@ -133,5 +135,13 @@ public class CraftingRecipes {
 				new Object[] { "X", "X", "#", Character.valueOf('X'),
 						BunyanBlock.planks, Character.valueOf('#'),
 						Item.stick });
+		
+		// smelting
+		ItemStack itemCharcoal = new ItemStack(Item.coal, 1, 1);
+		Proxy.addSmelting(BunyanBlock.wood.blockID, CustomLog.metaAcacia, itemCharcoal);
+		Proxy.addSmelting(BunyanBlock.wood.blockID, CustomLog.metaFir, itemCharcoal);
+		Proxy.addSmelting(BunyanBlock.widewood.blockID, WideLog.metaFir, itemCharcoal);
+		Proxy.addSmelting(BunyanBlock.widewood.blockID, WideLog.metaOak, itemCharcoal);
+		Proxy.addSmelting(BunyanBlock.widewood.blockID, WideLog.metaRedwood, itemCharcoal);
 	}
 }
