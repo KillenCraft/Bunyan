@@ -19,19 +19,19 @@ public class RecipesTools {
 
 		Proxy.addRecipe(new ItemStack(Item.pickaxeWood), new Object[] {
 				"XXX", " # ", " # ", Character.valueOf('X'),
-				BunyanBlock.plank, Character.valueOf('#'), Item.stick });
+				BunyanBlock.planks, Character.valueOf('#'), Item.stick });
 
 		Proxy.addRecipe(new ItemStack(Item.shovelWood), new Object[] {
 				"X", "#", "#", Character.valueOf('X'),
-				BunyanBlock.plank, Character.valueOf('#'), Item.stick });
+				BunyanBlock.planks, Character.valueOf('#'), Item.stick });
 
 		Proxy.addRecipe(new ItemStack(Item.axeWood), new Object[] {
 				"XX", "X#", " #", Character.valueOf('X'),
-				BunyanBlock.plank, Character.valueOf('#'), Item.stick });
+				BunyanBlock.planks, Character.valueOf('#'), Item.stick });
 
 		Proxy.addRecipe(new ItemStack(Item.hoeWood), new Object[] {
 				"XX", " #", " #", Character.valueOf('X'),
-				BunyanBlock.plank, Character.valueOf('#'), Item.stick });
+				BunyanBlock.planks, Character.valueOf('#'), Item.stick });
 	}
 
 }

@@ -18,15 +18,15 @@ public class WoodOreHandler implements IOreHandler {
 	@Override
 	public void registerOre(String oreClass, ItemStack ore) {
 		if (oreClass.equals("woodAcacia"))
-			Proxy.addRecipe(new ItemStack(BunyanBlock.plank, 4,
+			Proxy.addRecipe(new ItemStack(BunyanBlock.planks, 4,
 					CustomWood.metaAcacia), new Object[] { "#",
 					Character.valueOf('#'), ore });
 		else if (oreClass.equals("woodFir"))
-			Proxy.addRecipe(new ItemStack(BunyanBlock.plank, 4,
+			Proxy.addRecipe(new ItemStack(BunyanBlock.planks, 4,
 					CustomWood.metaFir),
 					new Object[] { "#", Character.valueOf('#'), ore });
 		else if (oreClass.equals("woodRedWood"))
-			Proxy.addRecipe(new ItemStack(BunyanBlock.plank, 4,
+			Proxy.addRecipe(new ItemStack(BunyanBlock.planks, 4,
 					CustomWood.metaRedwood), new Object[] { "#",
 					Character.valueOf('#'), ore });
 	}

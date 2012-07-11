@@ -12,7 +12,7 @@ public class RecipesCrafting
      */
     public static void addRecipes()
     {
-        Proxy.addRecipe(new ItemStack(Block.chest), new Object[] {"###", "# #", "###", '#', BunyanBlock.plank});
-        Proxy.addRecipe(new ItemStack(Block.workbench), new Object[] {"##", "##", '#', BunyanBlock.plank});
+        Proxy.addRecipe(new ItemStack(Block.chest), new Object[] {"###", "# #", "###", '#', BunyanBlock.planks});
+        Proxy.addRecipe(new ItemStack(Block.workbench), new Object[] {"##", "##", '#', BunyanBlock.planks});
      }
 }

@@ -30,11 +30,11 @@ public class ConfigureBlocks {
 		Proxy.addName(new ItemStack(BunyanBlock.widewood, 1,
 				WideLog.metaOak), "Quarter Huge Oak Log");
 
-		Proxy.addName(new ItemStack(BunyanBlock.plank, 1,
+		Proxy.addName(new ItemStack(BunyanBlock.planks, 1,
 				CustomWood.metaRedwood), "Redwood Planks");
-		Proxy.addName(new ItemStack(BunyanBlock.plank, 1,
+		Proxy.addName(new ItemStack(BunyanBlock.planks, 1,
 				CustomWood.metaFir), "Fir Planks");
-		Proxy.addName(new ItemStack(BunyanBlock.plank, 1,
+		Proxy.addName(new ItemStack(BunyanBlock.planks, 1,
 				CustomWood.metaAcacia), "Acacia Planks");
 	}
 
@@ -51,14 +51,14 @@ public class ConfigureBlocks {
 
 		final int plankID = Config.getOrCreateBlockIdProperty(
 				"plank.id", 163);
-		BunyanBlock.plank = new CustomWood(plankID)
+		BunyanBlock.planks = new CustomWood(plankID)
 				.setBlockName("bunyan.plank");
 
 		Proxy.registerBlock(BunyanBlock.wood,
 				bunyan.items.MultiItemBlock.class);
 		Proxy.registerBlock(BunyanBlock.widewood,
 				bunyan.items.MultiItemBlock.class);
-		Proxy.registerBlock(BunyanBlock.plank,
+		Proxy.registerBlock(BunyanBlock.planks,
 				bunyan.items.MultiItemBlock.class);
 	}
 

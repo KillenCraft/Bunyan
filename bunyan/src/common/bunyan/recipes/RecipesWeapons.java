@@ -18,7 +18,7 @@ public class RecipesWeapons {
 	public static void addRecipes() {
 		Proxy.addRecipe(new ItemStack(Item.swordWood), new Object[] {
 				"X", "X", "#", Character.valueOf('X'),
-				BunyanBlock.plank, Character.valueOf('#'), Item.stick });
+				BunyanBlock.planks, Character.valueOf('#'), Item.stick });
 	}
 
 }

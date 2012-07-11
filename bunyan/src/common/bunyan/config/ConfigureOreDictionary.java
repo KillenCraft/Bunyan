@@ -39,18 +39,18 @@ public class ConfigureOreDictionary {
 				BunyanBlock.widewood, 1, WideLog.metaRedwood));
 		
 		OreDictionary.registerOre("planksAcacia", new ItemStack(
-				BunyanBlock.plank, 1, CustomWood.metaAcacia));
+				BunyanBlock.planks, 1, CustomWood.metaAcacia));
 		OreDictionary.registerOre("planksFir", new ItemStack(
-				BunyanBlock.plank, 1, CustomWood.metaFir));
+				BunyanBlock.planks, 1, CustomWood.metaFir));
 		OreDictionary.registerOre("planksRedWood", new ItemStack(
-				BunyanBlock.plank, 1, CustomWood.metaRedwood));
+				BunyanBlock.planks, 1, CustomWood.metaRedwood));
 		
 		OreDictionary.registerOre("planksWood", new ItemStack(
-				BunyanBlock.plank, 1, CustomWood.metaAcacia));
+				BunyanBlock.planks, 1, CustomWood.metaAcacia));
 		OreDictionary.registerOre("planksWood", new ItemStack(
-				BunyanBlock.plank, 1, CustomWood.metaFir));
+				BunyanBlock.planks, 1, CustomWood.metaFir));
 		OreDictionary.registerOre("planksWood", new ItemStack(
-				BunyanBlock.plank, 1, CustomWood.metaRedwood));
+				BunyanBlock.planks, 1, CustomWood.metaRedwood));
 	}
 
 }
