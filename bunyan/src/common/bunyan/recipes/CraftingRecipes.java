@@ -1,10 +1,3 @@
-/**
- * Copyright (c) Scott Killen, 2012
- * 
- * This mod is distributed under the terms of the Minecraft Mod Public
- * License 1.0, or MMPL. Please check the contents of the license
- * located in /MMPL-1.0.txt
- */
 
 package bunyan.recipes;
 
@@ -13,13 +6,17 @@ import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import bunyan.Proxy;
 import bunyan.blocks.BunyanBlock;
-import bunyan.blocks.CustomLog;
-import bunyan.blocks.CustomWood;
 import bunyan.blocks.WideLog;
 
-public class RecipesMisc {
-
+public class CraftingRecipes {
+	/**
+	 * Adds the crafting recipes to the CraftingManager.
+	 */
 	public static void addRecipes() {
+		Proxy.addRecipe(new ItemStack(Block.chest), new Object[] {
+				"###", "# #", "###", '#', BunyanBlock.planks });
+		Proxy.addRecipe(new ItemStack(Block.workbench), new Object[] {
+				"##", "##", '#', BunyanBlock.planks });
 
 		// planks
 		Proxy.addRecipe(new ItemStack(Block.planks, 4),
@@ -39,9 +36,9 @@ public class RecipesMisc {
 						BunyanBlock.planks });
 
 		// bowl
-		Proxy.addRecipe(new ItemStack(Item.bowlEmpty),
-				new Object[] { "# #", " # ", Character.valueOf('#'),
-						BunyanBlock.planks });
+		Proxy.addRecipe(new ItemStack(Item.bowlEmpty), new Object[] {
+				"# #", " # ", Character.valueOf('#'),
+				BunyanBlock.planks });
 
 		// slabs
 		Proxy.addRecipe(new ItemStack(Block.stairSingle, 6, 2),
@@ -58,9 +55,9 @@ public class RecipesMisc {
 				BunyanBlock.planks });
 
 		// trapdoor
-		Proxy.addRecipe(new ItemStack(Block.trapdoor, 2),
-				new Object[] { "aaa", "aaa", Character.valueOf('a'),
-						BunyanBlock.planks });
+		Proxy.addRecipe(new ItemStack(Block.trapdoor, 2), new Object[] {
+				"aaa", "aaa", Character.valueOf('a'),
+				BunyanBlock.planks });
 
 		// stairs
 		Proxy.addRecipe(
@@ -69,14 +66,17 @@ public class RecipesMisc {
 						Character.valueOf('a'), BunyanBlock.planks });
 
 		// gate
-		Proxy.addRecipe(new ItemStack(Block.fenceGate), new Object[] {
-				"sas", "sas", Character.valueOf('a'),
-				BunyanBlock.planks, Character.valueOf('s'), Item.stick });
+		Proxy.addRecipe(new ItemStack(Block.fenceGate),
+				new Object[] { "sas", "sas", Character.valueOf('a'),
+						BunyanBlock.planks, Character.valueOf('s'),
+						Item.stick });
 
 		// sign
-		Proxy.addRecipe(new ItemStack(Item.sign), new Object[] { "aaa",
-				"aaa", " s ", Character.valueOf('a'),
-				BunyanBlock.planks, Character.valueOf('s'), Item.stick });
+		Proxy.addRecipe(
+				new ItemStack(Item.sign),
+				new Object[] { "aaa", "aaa", " s ",
+						Character.valueOf('a'), BunyanBlock.planks,
+						Character.valueOf('s'), Item.stick });
 
 		// bed
 		Proxy.addRecipe(new ItemStack(Item.bed), new Object[] { "www",
@@ -90,11 +90,10 @@ public class RecipesMisc {
 				Item.redstone });
 
 		// jukebox
-		Proxy.addRecipe(
-				new ItemStack(Block.jukebox),
-				new Object[] { "aaa", "asa", "aaa",
-						Character.valueOf('a'), BunyanBlock.planks,
-						Character.valueOf('s'), Item.diamond });
+		Proxy.addRecipe(new ItemStack(Block.jukebox), new Object[] {
+				"aaa", "asa", "aaa", Character.valueOf('a'),
+				BunyanBlock.planks, Character.valueOf('s'),
+				Item.diamond });
 
 		// piston
 		Proxy.addRecipe(new ItemStack(Block.pistonBase), new Object[] {
@@ -108,6 +107,30 @@ public class RecipesMisc {
 				"aaa", "sss", "aaa", Character.valueOf('a'),
 				BunyanBlock.planks, Character.valueOf('s'), Item.book });
 
-	}
+		Proxy.addRecipe(
+				new ItemStack(Item.pickaxeWood),
+				new Object[] { "XXX", " # ", " # ",
+						Character.valueOf('X'), BunyanBlock.planks,
+						Character.valueOf('#'), Item.stick });
 
+		Proxy.addRecipe(new ItemStack(Item.shovelWood),
+				new Object[] { "X", "#", "#", Character.valueOf('X'),
+						BunyanBlock.planks, Character.valueOf('#'),
+						Item.stick });
+
+		Proxy.addRecipe(new ItemStack(Item.axeWood),
+				new Object[] { "XX", "X#", " #",
+						Character.valueOf('X'), BunyanBlock.planks,
+						Character.valueOf('#'), Item.stick });
+
+		Proxy.addRecipe(new ItemStack(Item.hoeWood),
+				new Object[] { "XX", " #", " #",
+						Character.valueOf('X'), BunyanBlock.planks,
+						Character.valueOf('#'), Item.stick });
+
+		Proxy.addRecipe(new ItemStack(Item.swordWood),
+				new Object[] { "X", "X", "#", Character.valueOf('X'),
+						BunyanBlock.planks, Character.valueOf('#'),
+						Item.stick });
+	}
 }

@@ -13,6 +13,7 @@ import java.io.File;
 import net.minecraft.src.forge.Configuration;
 import net.minecraft.src.forge.Property;
 import bunyan.Proxy;
+import bunyan.recipes.CraftingRecipes;
 
 public enum Config {
 	INSTANCE;
@@ -54,7 +55,7 @@ public enum Config {
 		config.load();
 
 		ConfigureBlocks.initialize();
-		ConfigureRecipes.initialize();
+		CraftingRecipes.addRecipes();
 		config.save();
 	}
 
