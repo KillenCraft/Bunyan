@@ -15,6 +15,7 @@ public class CraftingRecipes {
 	public static void addRecipes() {
 		Proxy.addRecipe(new ItemStack(Block.chest), new Object[] {
 				"###", "# #", "###", '#', BunyanBlock.planks });
+
 		Proxy.addRecipe(new ItemStack(Block.workbench), new Object[] {
 				"##", "##", '#', BunyanBlock.planks });
 
@@ -36,7 +37,7 @@ public class CraftingRecipes {
 						BunyanBlock.planks });
 
 		// bowl
-		Proxy.addRecipe(new ItemStack(Item.bowlEmpty), new Object[] {
+		Proxy.addRecipe(new ItemStack(Item.bowlEmpty, 4), new Object[] {
 				"# #", " # ", Character.valueOf('#'),
 				BunyanBlock.planks });
 
@@ -61,7 +62,7 @@ public class CraftingRecipes {
 
 		// stairs
 		Proxy.addRecipe(
-				new ItemStack(Block.stairCompactPlanks),
+				new ItemStack(Block.stairCompactPlanks, 4),
 				new Object[] { "  a", " aa", "aaa",
 						Character.valueOf('a'), BunyanBlock.planks });
 
