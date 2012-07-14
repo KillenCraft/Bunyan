@@ -64,9 +64,18 @@ public class WideLog extends BlockLog implements ITextureProvider {
 	protected void dropBlockAsItem_do(World par1World, int par2,
 			int par3, int par4, ItemStack par5ItemStack)
 	{
-		par5ItemStack.setItemDamage(par5ItemStack.getItemDamage() & 3);
+		par5ItemStack.setItemDamage(damageDropped(par5ItemStack
+				.getItemDamage()));
 		super.dropBlockAsItem_do(par1World, par2, par3, par4,
 				par5ItemStack);
+	}
+
+	@Override
+	public ArrayList<ItemStack> getBlockDropped(World world, int x,
+			int y, int z, int metadata, int fortune)
+	{
+		return super.getBlockDropped(world, x, y, z,
+				world.getBlockMetadata(x, y, z), fortune);
 	}
 
 	@Override
