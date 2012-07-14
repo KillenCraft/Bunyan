@@ -32,8 +32,8 @@ public enum Bunyan {
 
 	private static final String	NAME	= "Bunyan";
 	private static final String	VERSION	= "1.3";
-	
-	private static IOreHandler woodOreHandler;
+
+	private static IOreHandler	woodOreHandler;
 
 	public static boolean clientSideRequired() {
 		// Because this mod define custom blocks, the client side mod is
@@ -117,7 +117,7 @@ public enum Bunyan {
 
 		// Delegate mod configuration to the Config object
 		Config.onLoad();
-		
+
 		woodOreHandler = new WoodOreHandler();
 		OreDictionary.registerOreHandler(woodOreHandler);
 
@@ -141,6 +141,7 @@ public enum Bunyan {
 	public static void onModsLoaded() {
 		// Handle post loading configuration tasks
 		Config.onModsLoaded();
+		if (modEE.isEnabled()) modEE.INSTANCE.activate();
 	}
 
 }
