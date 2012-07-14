@@ -55,7 +55,7 @@ public enum Config {
 		config.load();
 
 		ConfigureBlocks.initialize();
-		CraftingRecipes.addRecipes();
+		CraftingRecipes.initialize();
 		config.save();
 	}
 
