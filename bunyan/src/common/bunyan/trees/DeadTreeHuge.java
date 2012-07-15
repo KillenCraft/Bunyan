@@ -12,6 +12,7 @@ import java.util.Random;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
+import bunyan.Direction;
 import bunyan.blocks.BunyanBlock;
 import bunyan.blocks.WideLog;
 import extrabiomes.api.TerrainGenManager;
@@ -50,7 +51,8 @@ public class DeadTreeHuge extends TreeGenStraightNoBranchesWide {
 		if (!isRoomToGrow(world, maxHeight, x, y, z)) return false;
 
 		for (int yOffset = 0; yOffset < maxHeight; yOffset++) {
-			final int directions[] = { 3, 4, 2, 5 };
+			final Direction directions[] = { Direction.SOUTH,
+					Direction.WEST, Direction.NORTH, Direction.EAST };
 			int dir = 0;
 			for (int zOffset = 0; zOffset > -2; zOffset--)
 				for (int xOffset = 0; xOffset > -2; xOffset--) {

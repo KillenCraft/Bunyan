@@ -18,6 +18,7 @@ import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import net.minecraft.src.forge.ITextureProvider;
+import bunyan.Direction;
 
 public class WideLog extends BlockLog implements ITextureProvider {
 
@@ -25,14 +26,19 @@ public class WideLog extends BlockLog implements ITextureProvider {
 	public static final int	metaFir		= 1;
 	public static final int	metaOak		= 2;
 
-	public static int metadataWithDirection(int metadata, int direction)
+	private static Direction directionFromMetadata(final int metadata) {
+		return Direction.fromValue(((metadata & 3 << 2) >> 2) + 2);
+	}
+
+	public static int metadataWithDirection(int metadata,
+			Direction direction)
 	{
-		direction -= 2;
-		return metadata | direction << 2;
+		final byte valueDirection = (byte) (direction.getValue() - 2);
+		return metadata | valueDirection << 2;
 	}
 
 	public static void setDirection(World world, int x, int y, int z,
-			byte direction)
+			Direction direction)
 	{
 		final int metadata = world.getBlockMetadata(x, y, z);
 		world.setBlockMetadataWithNotify(x, y, z,
@@ -81,82 +87,130 @@ public class WideLog extends BlockLog implements ITextureProvider {
 	@Override
 	public int getBlockTextureFromSideAndMetadata(int side, int metadata)
 	{
-		final int direction = ((metadata & 3 << 2) >> 2) + 2;
-		metadata &= 3;
+		final Direction direction = directionFromMetadata(metadata);
+		final Direction face = Direction.fromValue(side);
+		final int textureSet = metadata & 3;
 		int row = 0;
 		int column = 0;
 
-		if (side == 0 || side == 1) { // bottom or top
-			if (direction == 2) {
-				row = 1;
-				column = 1;
-			} else if (direction == 3) {
-				row = 2;
-				column = 1;
-			} else if (direction == 4) {
-				row = 2;
-				column = 0;
-			} else if (direction == 5) {
-				row = 1;
-				column = 0;
-			}
-		} else if (side == 2) {
-			if (direction == 2) {
-				row = 0;
-				column = 0;
-			} else if (direction == 3) {
-				row = 3;
-				column = 0;
-			} else if (direction == 4) {
-				row = 3;
-				column = 1;
-			} else if (direction == 5) {
-				row = 0;
-				column = 1;
-			}
-		} else if (side == 3) {
-			if (direction == 2) {
-				row = 3;
-				column = 1;
-			} else if (direction == 3) {
-				row = 0;
-				column = 1;
-			} else if (direction == 4) {
-				row = 0;
-				column = 0;
-			} else if (direction == 5) {
-				row = 3;
-				column = 0;
-			}
-		} else if (side == 4) {
-			if (direction == 2) {
-				row = 3;
-				column = 0;
-			} else if (direction == 3) {
-				row = 3;
-				column = 1;
-			} else if (direction == 4) {
-				row = 0;
-				column = 1;
-			} else if (direction == 5) {
-				row = 0;
-				column = 0;
-			}
-		} else if (side == 5) if (direction == 2) {
-			row = 0;
-			column = 1;
-		} else if (direction == 3) {
-			row = 0;
-			column = 0;
-		} else if (direction == 4) {
-			row = 3;
-			column = 0;
-		} else if (direction == 5) {
-			row = 3;
-			column = 1;
+		switch (face) {
+			case DOWN:
+			case UP:
+				switch (direction) {
+					case NORTH:
+						row = 1;
+						column = 1;
+						break;
+					case SOUTH:
+						row = 2;
+						column = 1;
+						break;
+					case WEST:
+						row = 2;
+						column = 0;
+						break;
+					case EAST:
+						row = 1;
+						column = 0;
+						break;
+					default:
+						break;
+				}
+				break;
+
+			case NORTH:
+				switch (direction) {
+					case NORTH:
+						row = 0;
+						column = 0;
+						break;
+					case SOUTH:
+						row = 3;
+						column = 0;
+						break;
+					case WEST:
+						row = 3;
+						column = 1;
+						break;
+					case EAST:
+						row = 0;
+						column = 1;
+						break;
+					default:
+						break;
+				}
+				break;
+
+			case SOUTH:
+				switch (direction) {
+					case NORTH:
+						row = 3;
+						column = 1;
+						break;
+					case SOUTH:
+						row = 0;
+						column = 1;
+						break;
+					case WEST:
+						row = 0;
+						column = 0;
+						break;
+					case EAST:
+						row = 3;
+						column = 0;
+						break;
+					default:
+						break;
+				}
+				break;
+
+			case WEST:
+				switch (direction) {
+					case NORTH:
+						row = 3;
+						column = 0;
+						break;
+					case SOUTH:
+						row = 3;
+						column = 1;
+						break;
+					case WEST:
+						row = 0;
+						column = 1;
+						break;
+					case EAST:
+						row = 0;
+						column = 0;
+						break;
+					default:
+						break;
+				}
+				break;
+
+			case EAST:
+				switch (direction) {
+					case NORTH:
+						row = 0;
+						column = 1;
+						break;
+					case SOUTH:
+						row = 0;
+						column = 0;
+						break;
+					case WEST:
+						row = 3;
+						column = 0;
+						break;
+					case EAST:
+						row = 3;
+						column = 1;
+						break;
+					default:
+						break;
+				}
 		}
 
-		return (row + 3) * 16 + column + metadata * 2;
+		return (row + 3) * 16 + column + textureSet * 2;
 	}
 
 	@Override
@@ -212,7 +266,7 @@ public class WideLog extends BlockLog implements ITextureProvider {
 			final int westBlock = world.getBlockId(x, y, z + 1);
 			final int northBlock = world.getBlockId(x - 1, y, z);
 			final int southBlock = world.getBlockId(x + 1, y, z);
-			byte direction = 3;
+			Direction direction = Direction.SOUTH;
 
 			if (eastBlock != blockID && westBlock != blockID
 					&& northBlock != blockID && southBlock != blockID)
@@ -220,19 +274,19 @@ public class WideLog extends BlockLog implements ITextureProvider {
 
 				if (Block.opaqueCubeLookup[eastBlock]
 						&& !Block.opaqueCubeLookup[westBlock])
-					direction = 3;
+					direction = Direction.SOUTH;
 
 				if (Block.opaqueCubeLookup[westBlock]
 						&& !Block.opaqueCubeLookup[eastBlock])
-					direction = 2;
+					direction = Direction.NORTH;
 
 				if (Block.opaqueCubeLookup[northBlock]
 						&& !Block.opaqueCubeLookup[southBlock])
-					direction = 5;
+					direction = Direction.EAST;
 
 				if (Block.opaqueCubeLookup[southBlock]
 						&& !Block.opaqueCubeLookup[northBlock])
-					direction = 4;
+					direction = Direction.WEST;
 				setDirection(world, x, y, z, direction);
 			} else
 				setSmartDirection(world, x, y, z);
@@ -241,42 +295,46 @@ public class WideLog extends BlockLog implements ITextureProvider {
 
 	private void setSmartDirection(World world, int x, int y, int z) {
 		int block = world.getBlockId(x, y, z + 1);
-		int direction = 3;
+		Direction direction = Direction.SOUTH;
 		if (block == blockID) {
-			final int blockMeta = world.getBlockMetadata(x, y, z + 1);
-			final int blockDirection = ((blockMeta & 3 << 2) >> 2) + 2;
-			direction = blockDirection == 3 ? 2
-					: blockDirection == 2 ? 3 : blockDirection == 4 ? 5
-							: 4;
+			final Direction blockDirection = directionFromMetadata(world
+					.getBlockMetadata(x, y, z + 1));
+			direction = blockDirection == Direction.SOUTH ? Direction.NORTH
+					: blockDirection == Direction.NORTH ? Direction.SOUTH
+							: blockDirection == Direction.WEST ? Direction.EAST
+									: Direction.WEST;
 		}
 
 		block = world.getBlockId(x, y, z - 1);
 		if (block == blockID) {
-			final int blockMeta = world.getBlockMetadata(x, y, z - 1);
-			final int blockDirection = ((blockMeta & 3 << 2) >> 2) + 2;
-			direction = blockDirection == 3 ? 2
-					: blockDirection == 2 ? 3 : blockDirection == 4 ? 5
-							: 4;
+			final Direction blockDirection = directionFromMetadata(world
+					.getBlockMetadata(x, y, z - 1));
+			direction = blockDirection == Direction.SOUTH ? Direction.NORTH
+					: blockDirection == Direction.NORTH ? Direction.SOUTH
+							: blockDirection == Direction.WEST ? Direction.EAST
+									: Direction.WEST;
 		}
 
 		block = world.getBlockId(x - 1, y, z);
 		if (block == blockID) {
-			final int blockMeta = world.getBlockMetadata(x - 1, y, z);
-			final int blockDirection = ((blockMeta & 3 << 2) >> 2) + 2;
-			direction = blockDirection == 3 ? 4
-					: blockDirection == 4 ? 3 : blockDirection == 2 ? 5
-							: 2;
+			final Direction blockDirection = directionFromMetadata(world
+					.getBlockMetadata(x - 1, y, z));
+			direction = blockDirection == Direction.SOUTH ? Direction.WEST
+					: blockDirection == Direction.WEST ? Direction.SOUTH
+							: blockDirection == Direction.NORTH ? Direction.EAST
+									: Direction.NORTH;
 		}
 
 		block = world.getBlockId(x + 1, y, z);
 		if (block == blockID) {
-			final int blockMeta = world.getBlockMetadata(x + 1, y, z);
-			final int blockDirection = ((blockMeta & 3 << 2) >> 2) + 2;
-			direction = blockDirection == 3 ? 4
-					: blockDirection == 4 ? 3 : blockDirection == 2 ? 5
-							: 2;
+			final Direction blockDirection = directionFromMetadata(world
+					.getBlockMetadata(x + 1, y, z));
+			direction = blockDirection == Direction.SOUTH ? Direction.WEST
+					: blockDirection == Direction.WEST ? Direction.SOUTH
+							: blockDirection == Direction.NORTH ? Direction.EAST
+									: Direction.NORTH;
 		}
-		setDirection(world, x, y, z, (byte) direction);
+		setDirection(world, x, y, z, direction);
 	}
 
 }

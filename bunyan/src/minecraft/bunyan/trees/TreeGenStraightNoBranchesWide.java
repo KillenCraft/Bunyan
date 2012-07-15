@@ -12,6 +12,7 @@ import java.util.Random;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
+import bunyan.Direction;
 import bunyan.blocks.WideLog;
 
 public abstract class TreeGenStraightNoBranchesWide extends
@@ -71,7 +72,8 @@ public abstract class TreeGenStraightNoBranchesWide extends
 		if (Block.blocksList[id] == null || id == Block.snow.blockID
 				|| Block.blocksList[id].isLeaves(world, x, y, z))
 		{
-			final int directions[] = { 3, 4, 2, 5 };
+			final Direction directions[] = { Direction.SOUTH,
+					Direction.WEST, Direction.NORTH, Direction.EAST };
 
 			int dir = 0;
 			for (int zOffset = 0; zOffset > -2; zOffset--)

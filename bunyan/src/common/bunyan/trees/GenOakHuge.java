@@ -5,6 +5,7 @@ import java.util.Random;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
+import bunyan.Direction;
 import bunyan.blocks.BunyanBlock;
 import bunyan.blocks.WideLog;
 
@@ -137,7 +138,8 @@ public class GenOakHuge extends TreeGenerator {
 			int z, int height)
 	{
 
-		final int directions[] = { 3, 4, 2, 5 };
+		final Direction directions[] = { Direction.SOUTH,
+				Direction.WEST, Direction.NORTH, Direction.EAST };
 
 		for (int yOffset = 0; yOffset < height + 1; yOffset++) {
 			int dir = 0;

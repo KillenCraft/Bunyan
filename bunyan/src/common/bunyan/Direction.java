@@ -10,10 +10,25 @@ package bunyan;
 public enum Direction {
 
 	DOWN(0), UP(1), NORTH(2), SOUTH(3), WEST(4), EAST(5);
+
 	public static Direction fromValue(int i) {
-		for (final Direction d : values())
-			if (d.getValue() == i) return d;
-		return UP;
+		
+		switch (i) {
+			case 0:
+				return DOWN;
+			case 1:
+				return UP;
+			case 2:
+				return NORTH;
+			case 3:
+				return SOUTH;
+			case 4:
+				return WEST;
+			case 5:
+				return EAST;
+			default:
+				return null;
+		}
 	}
 
 	private final byte	value;
