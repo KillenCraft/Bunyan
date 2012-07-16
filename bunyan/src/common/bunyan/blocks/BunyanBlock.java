@@ -16,5 +16,6 @@ public enum BunyanBlock {
 	public static Block	planks;
 	public static Block	widewood;
 	public static Block	wood;
+	public static Block direcionalVanillaWood;
 
 }

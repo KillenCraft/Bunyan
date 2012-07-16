@@ -107,4 +107,8 @@ public enum Proxy {
 		MinecraftForge.registerBonemealHandler(handler);
 	}
 
+	public static String getObjectDisplayName(ItemStack itemStack) {
+		return "";
+	}
+
 }

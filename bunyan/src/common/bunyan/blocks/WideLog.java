@@ -9,49 +9,23 @@
 package bunyan.blocks;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import net.minecraft.src.Block;
-import net.minecraft.src.BlockLog;
 import net.minecraft.src.Entity;
 import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
-import net.minecraft.src.forge.ITextureProvider;
 import bunyan.Direction;
 
-public class WideLog extends BlockLog implements ITextureProvider {
+public class WideLog extends DirectionalBlock {
 
 	public static final int	metaRedwood	= 0;
 	public static final int	metaFir		= 1;
 	public static final int	metaOak		= 2;
 
-	private static Direction directionFromMetadata(final int metadata) {
-		return Direction.fromValue(((metadata & 3 << 2) >> 2) + 2);
-	}
-
-	public static int metadataWithDirection(int metadata,
-			Direction direction)
-	{
-		final byte valueDirection = (byte) (direction.getValue() - 2);
-		return metadata | valueDirection << 2;
-	}
-
-	public static void setDirection(World world, int x, int y, int z,
-			Direction direction)
-	{
-		final int metadata = world.getBlockMetadata(x, y, z);
-		world.setBlockMetadataWithNotify(x, y, z,
-				metadataWithDirection(metadata, direction));
-	}
-
 	public WideLog(int id) {
 		super(id);
-		blockIndexInTexture = 0;
-		setStepSound(soundWoodFootstep);
-		setHardness(Block.wood.getHardness());
-		setResistance(Block.wood.getExplosionResistance(null) * 5.0F);
-		setRequiresSelfNotify();
+		blockIndexInTexture = 48;
 	}
 
 	@Override
@@ -59,158 +33,6 @@ public class WideLog extends BlockLog implements ITextureProvider {
 		itemList.add(new ItemStack(blockID, 1, metaRedwood));
 		itemList.add(new ItemStack(blockID, 1, metaFir));
 		itemList.add(new ItemStack(blockID, 1, metaOak));
-	}
-
-	@Override
-	protected int damageDropped(int metadata) {
-		return metadata & 3;
-	}
-
-	@Override
-	protected void dropBlockAsItem_do(World par1World, int par2,
-			int par3, int par4, ItemStack par5ItemStack)
-	{
-		par5ItemStack.setItemDamage(damageDropped(par5ItemStack
-				.getItemDamage()));
-		super.dropBlockAsItem_do(par1World, par2, par3, par4,
-				par5ItemStack);
-	}
-
-	@Override
-	public ArrayList<ItemStack> getBlockDropped(World world, int x,
-			int y, int z, int metadata, int fortune)
-	{
-		return super.getBlockDropped(world, x, y, z,
-				world.getBlockMetadata(x, y, z), fortune);
-	}
-
-	@Override
-	public int getBlockTextureFromSideAndMetadata(int side, int metadata)
-	{
-		final Direction direction = directionFromMetadata(metadata);
-		final Direction face = Direction.fromValue(side);
-		final int textureSet = metadata & 3;
-		int row = 0;
-		int column = 0;
-
-		switch (face) {
-			case DOWN:
-			case UP:
-				switch (direction) {
-					case NORTH:
-						row = 1;
-						column = 1;
-						break;
-					case SOUTH:
-						row = 2;
-						column = 1;
-						break;
-					case WEST:
-						row = 2;
-						column = 0;
-						break;
-					case EAST:
-						row = 1;
-						column = 0;
-						break;
-					default:
-						break;
-				}
-				break;
-
-			case NORTH:
-				switch (direction) {
-					case NORTH:
-						row = 0;
-						column = 0;
-						break;
-					case SOUTH:
-						row = 3;
-						column = 0;
-						break;
-					case WEST:
-						row = 3;
-						column = 1;
-						break;
-					case EAST:
-						row = 0;
-						column = 1;
-						break;
-					default:
-						break;
-				}
-				break;
-
-			case SOUTH:
-				switch (direction) {
-					case NORTH:
-						row = 3;
-						column = 1;
-						break;
-					case SOUTH:
-						row = 0;
-						column = 1;
-						break;
-					case WEST:
-						row = 0;
-						column = 0;
-						break;
-					case EAST:
-						row = 3;
-						column = 0;
-						break;
-					default:
-						break;
-				}
-				break;
-
-			case WEST:
-				switch (direction) {
-					case NORTH:
-						row = 3;
-						column = 0;
-						break;
-					case SOUTH:
-						row = 3;
-						column = 1;
-						break;
-					case WEST:
-						row = 0;
-						column = 1;
-						break;
-					case EAST:
-						row = 0;
-						column = 0;
-						break;
-					default:
-						break;
-				}
-				break;
-
-			case EAST:
-				switch (direction) {
-					case NORTH:
-						row = 0;
-						column = 1;
-						break;
-					case SOUTH:
-						row = 0;
-						column = 0;
-						break;
-					case WEST:
-						row = 3;
-						column = 0;
-						break;
-					case EAST:
-						row = 3;
-						column = 1;
-						break;
-					default:
-						break;
-				}
-		}
-
-		return (row + 3) * 16 + column + textureSet * 2;
 	}
 
 	@Override
@@ -242,16 +64,6 @@ public class WideLog extends BlockLog implements ITextureProvider {
 	@Override
 	public float getHardness(int meta) {
 		return Block.wood.getHardness(meta);
-	}
-
-	@Override
-	public String getTextureFile() {
-		return "/bunyan/blocks/blocks.png";
-	}
-
-	@Override
-	public int idDropped(int metadata, Random random, int alwaysZero) {
-		return blockID;
 	}
 
 	@Override

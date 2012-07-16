@@ -7,6 +7,7 @@ import net.minecraft.src.ItemStack;
 import bunyan.Proxy;
 import bunyan.blocks.BunyanBlock;
 import bunyan.blocks.CustomLog;
+import bunyan.blocks.DirectionalVanillaLog;
 import bunyan.blocks.WideLog;
 
 public class CraftingRecipes {
@@ -212,6 +213,29 @@ public class CraftingRecipes {
 						Character.valueOf('#'),
 						new ItemStack(BunyanBlock.widewood, 1,
 								WideLog.metaOak) });
+		Proxy.addRecipe(new ItemStack(Block.planks, 4), new Object[] {
+				"#",
+				Character.valueOf('#'),
+				new ItemStack(BunyanBlock.direcionalVanillaWood, 1,
+						DirectionalVanillaLog.metaOak) });
+		Proxy.addRecipe(new ItemStack(Block.planks, 4, 1),
+				new Object[] {
+						"#",
+						Character.valueOf('#'),
+						new ItemStack(BunyanBlock.direcionalVanillaWood,
+								1, DirectionalVanillaLog.metaPine) });
+		Proxy.addRecipe(new ItemStack(Block.planks, 4, 2),
+				new Object[] {
+						"#",
+						Character.valueOf('#'),
+						new ItemStack(BunyanBlock.direcionalVanillaWood,
+								1, DirectionalVanillaLog.metaBirch) });
+		Proxy.addRecipe(new ItemStack(Block.planks, 4, 3),
+				new Object[] {
+						"#",
+						Character.valueOf('#'),
+						new ItemStack(BunyanBlock.direcionalVanillaWood,
+								1, DirectionalVanillaLog.metaJungle) });
 	}
 
 	private static void addPressurePlateRecipes() {
@@ -266,7 +290,15 @@ public class CraftingRecipes {
 				{ BunyanBlock.wood.blockID, CustomLog.metaFir },
 				{ BunyanBlock.widewood.blockID, WideLog.metaFir },
 				{ BunyanBlock.widewood.blockID, WideLog.metaOak },
-				{ BunyanBlock.widewood.blockID, WideLog.metaRedwood } };
+				{ BunyanBlock.widewood.blockID, WideLog.metaRedwood },
+				{ BunyanBlock.direcionalVanillaWood.blockID,
+						DirectionalVanillaLog.metaOak },
+				{ BunyanBlock.direcionalVanillaWood.blockID,
+						DirectionalVanillaLog.metaPine },
+				{ BunyanBlock.direcionalVanillaWood.blockID,
+						DirectionalVanillaLog.metaBirch },
+				{ BunyanBlock.direcionalVanillaWood.blockID,
+						DirectionalVanillaLog.metaJungle } };
 
 		for (final int blockIDMeta[] : blockIDMetas)
 			Proxy.addSmelting(blockIDMeta[0], blockIDMeta[1], output);

@@ -8,34 +8,66 @@
 
 package bunyan.config;
 
+import net.minecraft.src.Block;
 import net.minecraft.src.ItemStack;
 import bunyan.Proxy;
 import bunyan.blocks.BunyanBlock;
 import bunyan.blocks.CustomLog;
 import bunyan.blocks.CustomWood;
+import bunyan.blocks.DirectionalVanillaLog;
 import bunyan.blocks.WideLog;
 
 public class ConfigureBlocks {
 
-	public static void addNames() {
+	private static void addCustomLogNames() {
 		Proxy.addName(new ItemStack(BunyanBlock.wood, 1,
 				CustomLog.metaFir), "Fir Log");
 		Proxy.addName(new ItemStack(BunyanBlock.wood, 1,
 				CustomLog.metaAcacia), "Acacia Log");
+	}
 
-		Proxy.addName(new ItemStack(BunyanBlock.widewood, 1,
-				WideLog.metaRedwood), "Quarter Huge Redwood Log");
-		Proxy.addName(new ItemStack(BunyanBlock.widewood, 1,
-				WideLog.metaFir), "Quarter Huge Fir Log");
-		Proxy.addName(new ItemStack(BunyanBlock.widewood, 1,
-				WideLog.metaOak), "Quarter Huge Oak Log");
+	private static void addDirectionalVanillaLogNames() {
+		String name = Proxy.getObjectDisplayName(new ItemStack(
+				Block.wood, 1, DirectionalVanillaLog.metaOak));
+		Proxy.addName(new ItemStack(BunyanBlock.direcionalVanillaWood,
+				1, DirectionalVanillaLog.metaOak), name);
+		name = Proxy.getObjectDisplayName(new ItemStack(Block.wood, 1,
+				DirectionalVanillaLog.metaPine));
+		Proxy.addName(new ItemStack(BunyanBlock.direcionalVanillaWood,
+				1, DirectionalVanillaLog.metaPine), name);
+		name = Proxy.getObjectDisplayName(new ItemStack(Block.wood, 1,
+				DirectionalVanillaLog.metaBirch));
+		Proxy.addName(new ItemStack(BunyanBlock.direcionalVanillaWood,
+				1, DirectionalVanillaLog.metaBirch), name);
+		name = Proxy.getObjectDisplayName(new ItemStack(Block.wood, 1,
+				DirectionalVanillaLog.metaJungle));
+		Proxy.addName(new ItemStack(BunyanBlock.direcionalVanillaWood,
+				1, DirectionalVanillaLog.metaJungle), name);
+	}
 
+	public static void addNames() {
+		addCustomLogNames();
+		addWideLogNames();
+		addPlankNames();
+		addDirectionalVanillaLogNames();
+	}
+
+	private static void addPlankNames() {
 		Proxy.addName(new ItemStack(BunyanBlock.planks, 1,
 				CustomWood.metaRedwood), "Redwood Planks");
 		Proxy.addName(new ItemStack(BunyanBlock.planks, 1,
 				CustomWood.metaFir), "Fir Planks");
 		Proxy.addName(new ItemStack(BunyanBlock.planks, 1,
 				CustomWood.metaAcacia), "Acacia Planks");
+	}
+
+	private static void addWideLogNames() {
+		Proxy.addName(new ItemStack(BunyanBlock.widewood, 1,
+				WideLog.metaRedwood), "Quarter Huge Redwood Log");
+		Proxy.addName(new ItemStack(BunyanBlock.widewood, 1,
+				WideLog.metaFir), "Quarter Huge Fir Log");
+		Proxy.addName(new ItemStack(BunyanBlock.widewood, 1,
+				WideLog.metaOak), "Quarter Huge Oak Log");
 	}
 
 	public static void initialize() {
@@ -54,11 +86,19 @@ public class ConfigureBlocks {
 		BunyanBlock.planks = new CustomWood(plankID)
 				.setBlockName("bunyan.plank");
 
+		final int directionalWoodID = Config
+				.getOrCreateBlockIdProperty("directional.wood.id", 161);
+		BunyanBlock.direcionalVanillaWood = new DirectionalVanillaLog(
+				directionalWoodID)
+				.setBlockName("bunyan.directional.wood");
+
 		Proxy.registerBlock(BunyanBlock.wood,
 				bunyan.items.MultiItemBlock.class);
 		Proxy.registerBlock(BunyanBlock.widewood,
 				bunyan.items.MultiItemBlock.class);
 		Proxy.registerBlock(BunyanBlock.planks,
+				bunyan.items.MultiItemBlock.class);
+		Proxy.registerBlock(BunyanBlock.direcionalVanillaWood,
 				bunyan.items.MultiItemBlock.class);
 	}
 
