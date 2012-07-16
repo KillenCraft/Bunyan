@@ -114,6 +114,7 @@ public enum Bunyan {
 	 */
 	public static void onLoad(NetworkMod mod) {
 		Proxy.preloadTexture("/bunyan/blocks/blocks.png");
+		Proxy.preloadTexture("/bunyan/items/items.png");
 
 		// Delegate mod configuration to the Config object
 		Config.onLoad();

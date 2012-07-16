@@ -9,6 +9,7 @@ import bunyan.blocks.BunyanBlock;
 import bunyan.blocks.CustomLog;
 import bunyan.blocks.DirectionalVanillaLog;
 import bunyan.blocks.WideLog;
+import bunyan.items.BunyanItem;
 
 public class CraftingRecipes {
 
@@ -222,20 +223,23 @@ public class CraftingRecipes {
 				new Object[] {
 						"#",
 						Character.valueOf('#'),
-						new ItemStack(BunyanBlock.direcionalVanillaWood,
-								1, DirectionalVanillaLog.metaPine) });
+						new ItemStack(
+								BunyanBlock.direcionalVanillaWood, 1,
+								DirectionalVanillaLog.metaPine) });
 		Proxy.addRecipe(new ItemStack(Block.planks, 4, 2),
 				new Object[] {
 						"#",
 						Character.valueOf('#'),
-						new ItemStack(BunyanBlock.direcionalVanillaWood,
-								1, DirectionalVanillaLog.metaBirch) });
+						new ItemStack(
+								BunyanBlock.direcionalVanillaWood, 1,
+								DirectionalVanillaLog.metaBirch) });
 		Proxy.addRecipe(new ItemStack(Block.planks, 4, 3),
 				new Object[] {
 						"#",
 						Character.valueOf('#'),
-						new ItemStack(BunyanBlock.direcionalVanillaWood,
-								1, DirectionalVanillaLog.metaJungle) });
+						new ItemStack(
+								BunyanBlock.direcionalVanillaWood, 1,
+								DirectionalVanillaLog.metaJungle) });
 	}
 
 	private static void addPressurePlateRecipes() {
@@ -363,6 +367,13 @@ public class CraftingRecipes {
 							Block.planks });
 	}
 
+	private static void addTurnerRecipes() {
+		final ItemStack output = new ItemStack(BunyanItem.logTurner);
+
+		Proxy.addRecipe(output, new Object[] { "ss", " s", "ss",
+				Character.valueOf('s'), Item.stick });
+	}
+
 	private static void addWorkbenchRecipes() {
 		final String rows[] = { "##", "A#", "#A", "AA" };
 		final ItemStack output = new ItemStack(Block.workbench);
@@ -399,6 +410,8 @@ public class CraftingRecipes {
 		addSwordRecipes();
 		addTrapDoorRecipes();
 		addWorkbenchRecipes();
+
+		addTurnerRecipes();
 
 		addSmelting();
 	}

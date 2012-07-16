@@ -22,6 +22,7 @@ XCOPY /Q bunyan\LICENSE.txt reobf\minecraft_server\
 XCOPY /Q bunyan\mcmod.info reobf\minecraft\
 XCOPY /Q bunyan\mcmod.info reobf\minecraft_server\
 XCOPY /Q bunyan\src\common\bunyan\blocks\blocks.png reobf\minecraft\bunyan\blocks\
+XCOPY /Q bunyan\src\common\bunyan\items\items.png reobf\minecraft\bunyan\items\
 XCOPY /Q bunyan\artwork\logo.png reobf\minecraft\bunyan\
 XCOPY /q bunyan\artwork\logo.png reobf\minecraft_server\bunyan\
 ECHO.

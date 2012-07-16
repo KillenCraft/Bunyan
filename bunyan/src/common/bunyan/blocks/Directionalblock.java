@@ -18,9 +18,14 @@ import bunyan.Direction;
 
 public abstract class DirectionalBlock extends BlockLog {
 
-	protected static Direction directionFromMetadata(final int metadata)
-	{
+	public static Direction directionFromMetadata(final int metadata) {
 		return Direction.fromValue(((metadata & 3 << 2) >> 2) + 2);
+	}
+
+	public static Direction getDirection(World world, int x, int y,
+			int z)
+	{
+		return directionFromMetadata(world.getBlockMetadata(x, y, z));
 	}
 
 	public static int metadataWithDirection(int metadata,
@@ -33,9 +38,13 @@ public abstract class DirectionalBlock extends BlockLog {
 	public static void setDirection(World world, int x, int y, int z,
 			Direction direction)
 	{
-		final int metadata = world.getBlockMetadata(x, y, z);
+		final int type = typeFromMetadata(world.getBlockMetadata(x, y, z));
 		world.setBlockMetadataWithNotify(x, y, z,
-				metadataWithDirection(metadata, direction));
+				metadataWithDirection(type, direction));
+	}
+
+	public static int typeFromMetadata(int metadata) {
+		return metadata & 3;
 	}
 
 	public DirectionalBlock(int par1) {
@@ -203,10 +212,6 @@ public abstract class DirectionalBlock extends BlockLog {
 	@Override
 	public int idDropped(int metadata, Random random, int alwaysZero) {
 		return blockID;
-	}
-
-	protected int typeFromMetadata(int metadata) {
-		return metadata & 3;
 	}
 
 }

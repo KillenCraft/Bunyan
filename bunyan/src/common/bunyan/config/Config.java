@@ -55,12 +55,14 @@ public enum Config {
 		config.load();
 
 		ConfigureBlocks.initialize();
+		ConfigureItems.initialize();
 		CraftingRecipes.initialize();
 		config.save();
 	}
 
 	public static void onModsLoaded() {
 		ConfigureBlocks.addNames();
+		ConfigureItems.addNames();
 		ConfigureOreDictionary.initialize();
 	}
 
