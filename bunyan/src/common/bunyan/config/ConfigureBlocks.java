@@ -14,7 +14,7 @@ import bunyan.Proxy;
 import bunyan.blocks.BunyanBlock;
 import bunyan.blocks.CustomLog;
 import bunyan.blocks.CustomWood;
-import bunyan.blocks.DirectionalVanillaLog;
+import bunyan.blocks.TurnableVanillaLog;
 import bunyan.blocks.WideLog;
 
 public class ConfigureBlocks {
@@ -28,21 +28,21 @@ public class ConfigureBlocks {
 
 	private static void addDirectionalVanillaLogNames() {
 		String name = Proxy.getObjectDisplayName(new ItemStack(
-				Block.wood, 1, DirectionalVanillaLog.metaOak));
-		Proxy.addName(new ItemStack(BunyanBlock.direcionalVanillaWood,
-				1, DirectionalVanillaLog.metaOak), name);
+				Block.wood, 1, 0));
+		Proxy.addName(new ItemStack(BunyanBlock.turnableVanillaWood, 1,
+				TurnableVanillaLog.metaOak), name);
 		name = Proxy.getObjectDisplayName(new ItemStack(Block.wood, 1,
-				DirectionalVanillaLog.metaPine));
-		Proxy.addName(new ItemStack(BunyanBlock.direcionalVanillaWood,
-				1, DirectionalVanillaLog.metaPine), name);
+				1));
+		Proxy.addName(new ItemStack(BunyanBlock.turnableVanillaWood, 1,
+				TurnableVanillaLog.metaPine), name);
 		name = Proxy.getObjectDisplayName(new ItemStack(Block.wood, 1,
-				DirectionalVanillaLog.metaBirch));
-		Proxy.addName(new ItemStack(BunyanBlock.direcionalVanillaWood,
-				1, DirectionalVanillaLog.metaBirch), name);
+				2));
+		Proxy.addName(new ItemStack(BunyanBlock.turnableVanillaWood, 1,
+				TurnableVanillaLog.metaBirch), name);
 		name = Proxy.getObjectDisplayName(new ItemStack(Block.wood, 1,
-				DirectionalVanillaLog.metaJungle));
-		Proxy.addName(new ItemStack(BunyanBlock.direcionalVanillaWood,
-				1, DirectionalVanillaLog.metaJungle), name);
+				3));
+		Proxy.addName(new ItemStack(BunyanBlock.turnableVanillaWood, 1,
+				TurnableVanillaLog.metaJungle), name);
 	}
 
 	public static void addNames() {
@@ -86,11 +86,12 @@ public class ConfigureBlocks {
 		BunyanBlock.planks = new CustomWood(plankID)
 				.setBlockName("bunyan.plank");
 
-		final int directionalWoodID = Config
-				.getOrCreateBlockIdProperty("directional.wood.id", 161);
-		BunyanBlock.direcionalVanillaWood = new DirectionalVanillaLog(
-				directionalWoodID)
-				.setBlockName("bunyan.directional.wood");
+		final int turnableVanillaWoodID = Config
+				.getOrCreateBlockIdProperty("turnable.vanilla.wood.id",
+						164);
+		BunyanBlock.turnableVanillaWood = new TurnableVanillaLog(
+				turnableVanillaWoodID)
+				.setBlockName("bunyan.turnable.vanilla.wood");
 
 		Proxy.registerBlock(BunyanBlock.wood,
 				bunyan.items.MultiItemBlock.class);
@@ -98,7 +99,7 @@ public class ConfigureBlocks {
 				bunyan.items.MultiItemBlock.class);
 		Proxy.registerBlock(BunyanBlock.planks,
 				bunyan.items.MultiItemBlock.class);
-		Proxy.registerBlock(BunyanBlock.direcionalVanillaWood,
+		Proxy.registerBlock(BunyanBlock.turnableVanillaWood,
 				bunyan.items.MultiItemBlock.class);
 	}
 

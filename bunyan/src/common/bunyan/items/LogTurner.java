@@ -13,9 +13,10 @@ import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
-import bunyan.Direction;
+import bunyan.api.Direction;
+import bunyan.api.DirectionalBlock;
+import bunyan.api.ITurnable;
 import bunyan.blocks.BunyanBlock;
-import bunyan.blocks.DirectionalBlock;
 
 public class LogTurner extends Item {
 
@@ -34,26 +35,20 @@ public class LogTurner extends Item {
 			World world, int x, int y, int z, int side)
 	{
 		final int id = world.getBlockId(x, y, z);
-		if (id != Block.wood.blockID
-				&& id != BunyanBlock.direcionalVanillaWood.blockID)
+		if (id == 0 || id != Block.wood.blockID
+				&& !(Block.blocksList[id] instanceof ITurnable))
 			return false;
-		final int metadata = world.getBlockMetadata(x, y, z);
 		if (id == Block.wood.blockID) {
 			if (side != 0 && side != 1) {
-				world.setBlockAndMetadata(x, y, z,
-						BunyanBlock.direcionalVanillaWood.blockID,
-						metadata);
-				DirectionalBlock.setDirection(world, x, y, z,
-						Direction.fromValue(side));
+				final int metadata = world.getBlockMetadata(x, y, z);
+				world.setBlock(x, y, z,
+						BunyanBlock.turnableVanillaWood.blockID);
+				DirectionalBlock.setDataAndFacing(world, x, y, z,
+						metadata, Direction.fromValue(side), true);
 			}
-		} else if (id == BunyanBlock.direcionalVanillaWood.blockID) {
-			if (side == 0 || side == 1)
-				world.setBlockAndMetadataWithNotify(x, y, z,
-						Block.wood.blockID,
-						DirectionalBlock.typeFromMetadata(metadata));
-			DirectionalBlock.setDirection(world, x, y, z,
-					Direction.fromValue(side));
-		}
+		} else
+			((ITurnable) Block.blocksList[id]).onLogTurner(player,
+					world, x, y, z, Direction.fromValue(side));
 		return true;
 	}
 

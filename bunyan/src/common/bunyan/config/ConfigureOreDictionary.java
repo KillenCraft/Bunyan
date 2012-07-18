@@ -32,16 +32,16 @@ public class ConfigureOreDictionary {
 		OreDictionary.registerOre("woodRedWood", new ItemStack(
 				BunyanBlock.widewood, 1, WideLog.metaRedwood));
 		OreDictionary.registerOre("woodOak", new ItemStack(
-				BunyanBlock.direcionalVanillaWood, 1,
+				BunyanBlock.turnableVanillaWood, 1,
 				DirectionalVanillaLog.metaOak));
 		OreDictionary.registerOre("woodPine", new ItemStack(
-				BunyanBlock.direcionalVanillaWood, 1,
+				BunyanBlock.turnableVanillaWood, 1,
 				DirectionalVanillaLog.metaPine));
 		OreDictionary.registerOre("woodBirch", new ItemStack(
-				BunyanBlock.direcionalVanillaWood, 1,
+				BunyanBlock.turnableVanillaWood, 1,
 				DirectionalVanillaLog.metaBirch));
 		OreDictionary.registerOre("woodJungle", new ItemStack(
-				BunyanBlock.direcionalVanillaWood, 1,
+				BunyanBlock.turnableVanillaWood, 1,
 				DirectionalVanillaLog.metaJungle));
 
 		OreDictionary.registerOre("logWood", new ItemStack(
@@ -53,16 +53,16 @@ public class ConfigureOreDictionary {
 		OreDictionary.registerOre("logWood", new ItemStack(
 				BunyanBlock.widewood, 1, WideLog.metaRedwood));
 		OreDictionary.registerOre("logWood", new ItemStack(
-				BunyanBlock.direcionalVanillaWood, 1,
+				BunyanBlock.turnableVanillaWood, 1,
 				DirectionalVanillaLog.metaOak));
 		OreDictionary.registerOre("logWood", new ItemStack(
-				BunyanBlock.direcionalVanillaWood, 1,
+				BunyanBlock.turnableVanillaWood, 1,
 				DirectionalVanillaLog.metaPine));
 		OreDictionary.registerOre("logWood", new ItemStack(
-				BunyanBlock.direcionalVanillaWood, 1,
+				BunyanBlock.turnableVanillaWood, 1,
 				DirectionalVanillaLog.metaBirch));
 		OreDictionary.registerOre("logWood", new ItemStack(
-				BunyanBlock.direcionalVanillaWood, 1,
+				BunyanBlock.turnableVanillaWood, 1,
 				DirectionalVanillaLog.metaJungle));
 
 		OreDictionary.registerOre("planksAcacia", new ItemStack(

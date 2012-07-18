@@ -217,29 +217,26 @@ public class CraftingRecipes {
 		Proxy.addRecipe(new ItemStack(Block.planks, 4), new Object[] {
 				"#",
 				Character.valueOf('#'),
-				new ItemStack(BunyanBlock.direcionalVanillaWood, 1,
+				new ItemStack(BunyanBlock.turnableVanillaWood, 1,
 						DirectionalVanillaLog.metaOak) });
 		Proxy.addRecipe(new ItemStack(Block.planks, 4, 1),
 				new Object[] {
 						"#",
 						Character.valueOf('#'),
-						new ItemStack(
-								BunyanBlock.direcionalVanillaWood, 1,
-								DirectionalVanillaLog.metaPine) });
+						new ItemStack(BunyanBlock.turnableVanillaWood,
+								1, DirectionalVanillaLog.metaPine) });
 		Proxy.addRecipe(new ItemStack(Block.planks, 4, 2),
 				new Object[] {
 						"#",
 						Character.valueOf('#'),
-						new ItemStack(
-								BunyanBlock.direcionalVanillaWood, 1,
-								DirectionalVanillaLog.metaBirch) });
+						new ItemStack(BunyanBlock.turnableVanillaWood,
+								1, DirectionalVanillaLog.metaBirch) });
 		Proxy.addRecipe(new ItemStack(Block.planks, 4, 3),
 				new Object[] {
 						"#",
 						Character.valueOf('#'),
-						new ItemStack(
-								BunyanBlock.direcionalVanillaWood, 1,
-								DirectionalVanillaLog.metaJungle) });
+						new ItemStack(BunyanBlock.turnableVanillaWood,
+								1, DirectionalVanillaLog.metaJungle) });
 	}
 
 	private static void addPressurePlateRecipes() {
@@ -295,13 +292,13 @@ public class CraftingRecipes {
 				{ BunyanBlock.widewood.blockID, WideLog.metaFir },
 				{ BunyanBlock.widewood.blockID, WideLog.metaOak },
 				{ BunyanBlock.widewood.blockID, WideLog.metaRedwood },
-				{ BunyanBlock.direcionalVanillaWood.blockID,
+				{ BunyanBlock.turnableVanillaWood.blockID,
 						DirectionalVanillaLog.metaOak },
-				{ BunyanBlock.direcionalVanillaWood.blockID,
+				{ BunyanBlock.turnableVanillaWood.blockID,
 						DirectionalVanillaLog.metaPine },
-				{ BunyanBlock.direcionalVanillaWood.blockID,
+				{ BunyanBlock.turnableVanillaWood.blockID,
 						DirectionalVanillaLog.metaBirch },
-				{ BunyanBlock.direcionalVanillaWood.blockID,
+				{ BunyanBlock.turnableVanillaWood.blockID,
 						DirectionalVanillaLog.metaJungle } };
 
 		for (final int blockIDMeta[] : blockIDMetas)
