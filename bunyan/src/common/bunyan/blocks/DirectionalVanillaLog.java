@@ -16,7 +16,7 @@ import net.minecraft.src.EntityLiving;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.World;
-import bunyan.Direction;
+import bunyan.api.Direction;
 
 public class DirectionalVanillaLog extends DirectionalLog {
 

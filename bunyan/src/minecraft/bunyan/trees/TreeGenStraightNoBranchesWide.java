@@ -12,7 +12,7 @@ import java.util.Random;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
-import bunyan.Direction;
+import bunyan.api.Direction;
 import bunyan.blocks.WideLog;
 
 public abstract class TreeGenStraightNoBranchesWide extends

@@ -12,7 +12,7 @@ import java.util.Random;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
-import bunyan.Direction;
+import bunyan.api.Direction;
 import bunyan.blocks.BunyanBlock;
 import bunyan.blocks.WideLog;
 import extrabiomes.api.TerrainGenManager;

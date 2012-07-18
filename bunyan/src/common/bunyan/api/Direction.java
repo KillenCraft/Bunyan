@@ -1,5 +1,5 @@
 
-package bunyan;
+package bunyan.api;
 
 /**
  * This enum represents the standard Minecraft defined direction values
