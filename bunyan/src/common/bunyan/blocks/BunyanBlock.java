@@ -14,8 +14,9 @@ public enum BunyanBlock {
 	INSTANCE;
 
 	public static Block	planks;
+	public static Block	turnableCustomWood;
+	public static Block	turnableVanillaWood;
 	public static Block	widewood;
 	public static Block	wood;
-	public static Block turnableVanillaWood;
 
 }

@@ -7,6 +7,7 @@ import net.minecraft.src.ItemStack;
 import bunyan.Proxy;
 import bunyan.blocks.BunyanBlock;
 import bunyan.blocks.CustomLog;
+import bunyan.blocks.TurnableCustomLog;
 import bunyan.blocks.TurnableVanillaLog;
 import bunyan.blocks.WideLog;
 import bunyan.items.BunyanItem;
@@ -299,7 +300,11 @@ public class CraftingRecipes {
 				{ BunyanBlock.turnableVanillaWood.blockID,
 						TurnableVanillaLog.metaBirch },
 				{ BunyanBlock.turnableVanillaWood.blockID,
-						TurnableVanillaLog.metaJungle } };
+						TurnableVanillaLog.metaJungle },
+				{ BunyanBlock.turnableCustomWood.blockID,
+						TurnableCustomLog.metaAcacia },
+				{ BunyanBlock.turnableCustomWood.blockID,
+						TurnableCustomLog.metaFir } };
 
 		for (final int blockIDMeta[] : blockIDMetas)
 			Proxy.addSmelting(blockIDMeta[0], blockIDMeta[1], output);

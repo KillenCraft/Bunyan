@@ -13,7 +13,7 @@ import net.minecraft.src.forge.oredict.OreDictionary;
 import bunyan.blocks.BunyanBlock;
 import bunyan.blocks.CustomLog;
 import bunyan.blocks.CustomWood;
-import bunyan.blocks.DirectionalVanillaLog;
+import bunyan.blocks.TurnableCustomLog;
 import bunyan.blocks.TurnableVanillaLog;
 import bunyan.blocks.WideLog;
 
@@ -22,8 +22,14 @@ public class ConfigureOreDictionary {
 	public static void initialize() {
 		OreDictionary.registerOre("woodAcacia", new ItemStack(
 				BunyanBlock.wood, 1, CustomLog.metaAcacia));
+		OreDictionary.registerOre("woodAcacia", new ItemStack(
+				BunyanBlock.turnableCustomWood, 1,
+				TurnableCustomLog.metaAcacia));
 		OreDictionary.registerOre("woodFir", new ItemStack(
 				BunyanBlock.wood, 1, CustomLog.metaFir));
+		OreDictionary.registerOre("woodFir", new ItemStack(
+				BunyanBlock.turnableCustomWood, 1,
+				TurnableCustomLog.metaFir));
 		OreDictionary.registerOre("woodFir", new ItemStack(
 				BunyanBlock.widewood, 1, WideLog.metaFir));
 		OreDictionary.registerOre("woodOak", new ItemStack(

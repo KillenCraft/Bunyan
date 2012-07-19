@@ -14,11 +14,15 @@ import java.util.Random;
 import net.minecraft.src.Block;
 import net.minecraft.src.BlockLog;
 import net.minecraft.src.Entity;
+import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
+import bunyan.api.Direction;
+import bunyan.api.DirectionalBlock;
+import bunyan.api.ITurnable;
 
-public class CustomLog extends BlockLog {
+public class CustomLog extends BlockLog implements ITurnable {
 
 	// metadata values
 	public static final int	metaFir		= 1;
@@ -85,6 +89,19 @@ public class CustomLog extends BlockLog {
 	@Override
 	public int idDropped(int metadata, Random random, int alwaysZero) {
 		return blockID;
+	}
+
+	@Override
+	public void onLogTurner(EntityPlayer player, World world, int x,
+			int y, int z, Direction side)
+	{
+		if (side != Direction.DOWN && side != Direction.UP) {
+			final int metadata = world.getBlockMetadata(x, y, z);
+			world.setBlock(x, y, z,
+					BunyanBlock.turnableCustomWood.blockID);
+			DirectionalBlock.setDataAndFacing(world, x, y, z, metadata,
+					side, true);
+		}
 	}
 
 }
