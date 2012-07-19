@@ -6,6 +6,7 @@ import java.util.Random;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import bunyan.api.Direction;
+import bunyan.api.DirectionalBlock;
 import bunyan.blocks.BunyanBlock;
 import bunyan.blocks.WideLog;
 
@@ -147,8 +148,8 @@ public class GenOakHuge extends TreeGenerator {
 				for (int xOffset = 0; xOffset > -2; xOffset--)
 					setBlockAndMetadata(world, x + xOffset,
 							y + yOffset, z + zOffset, blockTrunk,
-							WideLog.metadataWithDirection(metaTrunk,
-									directions[dir++]));
+							DirectionalBlock.getCompositeDataAndFacing(
+									metaTrunk, directions[dir++]));
 		}
 
 	}

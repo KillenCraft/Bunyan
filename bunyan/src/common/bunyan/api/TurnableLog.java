@@ -10,6 +10,8 @@ package bunyan.api;
 
 import java.util.Random;
 
+import net.minecraft.src.World;
+
 /**
  * TurnableLog allows mod authors to quickly implement turnable logs by
  * extending this class. Requiring implementation of ITurnable ensures
@@ -30,6 +32,17 @@ public abstract class TurnableLog extends DirectionalBlock implements
 	}
 
 	@Override
-	public abstract int idDropped(int metadata, Random random, int alwaysZero);
+	public boolean canSustainLeaves(World world, int x, int y, int z) {
+		return true;
+	}
+
+	@Override
+	public abstract int idDropped(int metadata, Random random,
+			int alwaysZero);
+
+	@Override
+	public boolean isWood(World world, int x, int y, int z) {
+		return true;
+	}
 
 }

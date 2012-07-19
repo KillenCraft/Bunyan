@@ -13,7 +13,7 @@ import java.util.Random;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import bunyan.api.Direction;
-import bunyan.blocks.WideLog;
+import bunyan.api.DirectionalBlock;
 
 public abstract class TreeGenStraightNoBranchesWide extends
 		TreeGenStraightNoBranches
@@ -73,24 +73,25 @@ public abstract class TreeGenStraightNoBranchesWide extends
 				|| Block.blocksList[id].isLeaves(world, x, y, z))
 		{
 			setBlockAndMetadata(world, x, y, z, blockWood, metaWood);
-			setMetadata(world, x, y, z, WideLog.metadataWithDirection(
-					metaWood, Direction.SOUTH));
+			setMetadata(world, x, y, z,
+					DirectionalBlock.getCompositeDataAndFacing(
+							metaWood, Direction.SOUTH));
 
 			setBlockAndMetadata(world, x - 1, y, z, blockWood, metaWood);
 			setMetadata(world, x - 1, y, z,
-					WideLog.metadataWithDirection(metaWood,
-							Direction.WEST));
+					DirectionalBlock.getCompositeDataAndFacing(
+							metaWood, Direction.WEST));
 
 			setBlockAndMetadata(world, x, y, z - 1, blockWood, metaWood);
 			setMetadata(world, x, y, z - 1,
-					WideLog.metadataWithDirection(metaWood,
-							Direction.NORTH));
+					DirectionalBlock.getCompositeDataAndFacing(
+							metaWood, Direction.NORTH));
 
 			setBlockAndMetadata(world, x - 1, y, z - 1, blockWood,
 					metaWood);
 			setMetadata(world, x - 1, y, z - 1,
-					WideLog.metadataWithDirection(metaWood,
-							Direction.EAST));
+					DirectionalBlock.getCompositeDataAndFacing(
+							metaWood, Direction.EAST));
 		}
 	}
 
