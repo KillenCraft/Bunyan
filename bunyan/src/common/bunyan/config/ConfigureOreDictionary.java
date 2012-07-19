@@ -14,6 +14,7 @@ import bunyan.blocks.BunyanBlock;
 import bunyan.blocks.CustomLog;
 import bunyan.blocks.CustomWood;
 import bunyan.blocks.DirectionalVanillaLog;
+import bunyan.blocks.TurnableVanillaLog;
 import bunyan.blocks.WideLog;
 
 public class ConfigureOreDictionary {
@@ -33,16 +34,16 @@ public class ConfigureOreDictionary {
 				BunyanBlock.widewood, 1, WideLog.metaRedwood));
 		OreDictionary.registerOre("woodOak", new ItemStack(
 				BunyanBlock.turnableVanillaWood, 1,
-				DirectionalVanillaLog.metaOak));
+				TurnableVanillaLog.metaOak));
 		OreDictionary.registerOre("woodPine", new ItemStack(
 				BunyanBlock.turnableVanillaWood, 1,
-				DirectionalVanillaLog.metaPine));
+				TurnableVanillaLog.metaPine));
 		OreDictionary.registerOre("woodBirch", new ItemStack(
 				BunyanBlock.turnableVanillaWood, 1,
-				DirectionalVanillaLog.metaBirch));
+				TurnableVanillaLog.metaBirch));
 		OreDictionary.registerOre("woodJungle", new ItemStack(
 				BunyanBlock.turnableVanillaWood, 1,
-				DirectionalVanillaLog.metaJungle));
+				TurnableVanillaLog.metaJungle));
 
 		OreDictionary.registerOre("logWood", new ItemStack(
 				BunyanBlock.wood, 1, CustomLog.metaAcacia));
@@ -54,16 +55,16 @@ public class ConfigureOreDictionary {
 				BunyanBlock.widewood, 1, WideLog.metaRedwood));
 		OreDictionary.registerOre("logWood", new ItemStack(
 				BunyanBlock.turnableVanillaWood, 1,
-				DirectionalVanillaLog.metaOak));
+				TurnableVanillaLog.metaOak));
 		OreDictionary.registerOre("logWood", new ItemStack(
 				BunyanBlock.turnableVanillaWood, 1,
-				DirectionalVanillaLog.metaPine));
+				TurnableVanillaLog.metaPine));
 		OreDictionary.registerOre("logWood", new ItemStack(
 				BunyanBlock.turnableVanillaWood, 1,
-				DirectionalVanillaLog.metaBirch));
+				TurnableVanillaLog.metaBirch));
 		OreDictionary.registerOre("logWood", new ItemStack(
 				BunyanBlock.turnableVanillaWood, 1,
-				DirectionalVanillaLog.metaJungle));
+				TurnableVanillaLog.metaJungle));
 
 		OreDictionary.registerOre("planksAcacia", new ItemStack(
 				BunyanBlock.planks, 1, CustomWood.metaAcacia));

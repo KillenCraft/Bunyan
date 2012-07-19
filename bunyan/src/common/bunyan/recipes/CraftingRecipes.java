@@ -7,7 +7,7 @@ import net.minecraft.src.ItemStack;
 import bunyan.Proxy;
 import bunyan.blocks.BunyanBlock;
 import bunyan.blocks.CustomLog;
-import bunyan.blocks.DirectionalVanillaLog;
+import bunyan.blocks.TurnableVanillaLog;
 import bunyan.blocks.WideLog;
 import bunyan.items.BunyanItem;
 
@@ -218,25 +218,25 @@ public class CraftingRecipes {
 				"#",
 				Character.valueOf('#'),
 				new ItemStack(BunyanBlock.turnableVanillaWood, 1,
-						DirectionalVanillaLog.metaOak) });
+						TurnableVanillaLog.metaOak) });
 		Proxy.addRecipe(new ItemStack(Block.planks, 4, 1),
 				new Object[] {
 						"#",
 						Character.valueOf('#'),
 						new ItemStack(BunyanBlock.turnableVanillaWood,
-								1, DirectionalVanillaLog.metaPine) });
+								1, TurnableVanillaLog.metaPine) });
 		Proxy.addRecipe(new ItemStack(Block.planks, 4, 2),
 				new Object[] {
 						"#",
 						Character.valueOf('#'),
 						new ItemStack(BunyanBlock.turnableVanillaWood,
-								1, DirectionalVanillaLog.metaBirch) });
+								1, TurnableVanillaLog.metaBirch) });
 		Proxy.addRecipe(new ItemStack(Block.planks, 4, 3),
 				new Object[] {
 						"#",
 						Character.valueOf('#'),
 						new ItemStack(BunyanBlock.turnableVanillaWood,
-								1, DirectionalVanillaLog.metaJungle) });
+								1, TurnableVanillaLog.metaJungle) });
 	}
 
 	private static void addPressurePlateRecipes() {
@@ -293,13 +293,13 @@ public class CraftingRecipes {
 				{ BunyanBlock.widewood.blockID, WideLog.metaOak },
 				{ BunyanBlock.widewood.blockID, WideLog.metaRedwood },
 				{ BunyanBlock.turnableVanillaWood.blockID,
-						DirectionalVanillaLog.metaOak },
+						TurnableVanillaLog.metaOak },
 				{ BunyanBlock.turnableVanillaWood.blockID,
-						DirectionalVanillaLog.metaPine },
+						TurnableVanillaLog.metaPine },
 				{ BunyanBlock.turnableVanillaWood.blockID,
-						DirectionalVanillaLog.metaBirch },
+						TurnableVanillaLog.metaBirch },
 				{ BunyanBlock.turnableVanillaWood.blockID,
-						DirectionalVanillaLog.metaJungle } };
+						TurnableVanillaLog.metaJungle } };
 
 		for (final int blockIDMeta[] : blockIDMetas)
 			Proxy.addSmelting(blockIDMeta[0], blockIDMeta[1], output);

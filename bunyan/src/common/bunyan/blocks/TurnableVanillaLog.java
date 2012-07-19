@@ -9,6 +9,7 @@
 package bunyan.blocks;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.ItemStack;
@@ -133,6 +134,11 @@ public class TurnableVanillaLog extends TurnableLog {
 				}
 		}
 		return column + getDataFromMetadata(metadata) * 16;
+	}
+
+	@Override
+	public int idDropped(int metadata, Random random, int alwaysZero) {
+		return wood.blockID;
 	}
 
 	@Override

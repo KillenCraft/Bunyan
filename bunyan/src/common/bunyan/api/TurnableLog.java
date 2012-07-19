@@ -30,8 +30,6 @@ public abstract class TurnableLog extends DirectionalBlock implements
 	}
 
 	@Override
-	public int idDropped(int metadata, Random random, int alwaysZero) {
-		return wood.blockID;
-	}
+	public abstract int idDropped(int metadata, Random random, int alwaysZero);
 
 }
