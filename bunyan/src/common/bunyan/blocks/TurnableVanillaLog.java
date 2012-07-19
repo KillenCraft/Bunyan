@@ -38,6 +38,14 @@ public class TurnableVanillaLog extends TurnableLog {
 	}
 
 	@Override
+	protected void dropBlockAsItem_do(World world, int x, int y, int z,
+			ItemStack itemstack)
+	{
+		itemstack.itemID = new ItemStack(wood).itemID;
+		super.dropBlockAsItem_do(world, x, y, z, itemstack);
+	}
+
+	@Override
 	public String getTextureFile() {
 		return "/bunyan/blocks/blocks.png";
 	}
