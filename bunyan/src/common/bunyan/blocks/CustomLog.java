@@ -46,8 +46,9 @@ public class CustomLog extends BlockLog implements ITurnable {
 	@Override
 	public int getBlockTextureFromSideAndMetadata(int side, int metadata)
 	{
-		final int column = side == 0 || side == 1 ? 0 : 1;
-		return blockIndexInTexture + metadata * 16 + column;
+		final int row = side != 0 && side != 1 ? 0 : 1;
+		final int column = metadata;
+		return row * 16 + column;
 	}
 
 	@Override
