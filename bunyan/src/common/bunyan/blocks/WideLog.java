@@ -11,11 +11,8 @@ package bunyan.blocks;
 import java.util.ArrayList;
 import java.util.Random;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.Entity;
 import net.minecraft.src.EntityLiving;
 import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.World;
@@ -41,31 +38,9 @@ public class WideLog extends TurnableLog {
 	}
 
 	@Override
-	public void onLogTurner(EntityPlayer player, World world, int x,
-			int y, int z, Direction side)
-	{
-		if (side == Direction.UP || side == Direction.DOWN) {
-			final int metadata = DirectionalBlock
-					.getDataFromMetadata(world
-							.getBlockMetadata(x, y, z));
-			world.setBlockAndMetadataWithNotify(x, y, z,
-					BunyanBlock.wood.blockID, metadata);
-		} else {
-			Direction facing = Direction.NORTH;
-			switch (side) {
-				case NORTH:
-				case EAST:
-					facing = side.oppositeSide();
-					break;
-				default:
-					facing = side.rightSide();
-			}
-			DirectionalBlock.setFacing(world, x, y, z, facing, true);}
-	}
-
-	@Override
-	public int idDropped(int metadata, Random random, int alwaysZero) {
-		return blockID;
+	public int getRenderType() {
+		// even though it is turnable, render like a standard block.
+		return 0;
 	}
 
 	@Override
@@ -202,6 +177,11 @@ public class WideLog extends TurnableLog {
 	}
 
 	@Override
+	public int idDropped(int metadata, Random random, int alwaysZero) {
+		return blockID;
+	}
+
+	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z,
 			EntityLiving entity)
 	{
@@ -224,6 +204,30 @@ public class WideLog extends TurnableLog {
 					facingBlock = Direction.NORTH;
 			}
 			setFacing(world, x, y, z, facingBlock, true);
+		}
+	}
+
+	@Override
+	public void onLogTurner(EntityPlayer player, World world, int x,
+			int y, int z, Direction side)
+	{
+		if (side == Direction.UP || side == Direction.DOWN) {
+			final int metadata = DirectionalBlock
+					.getDataFromMetadata(world
+							.getBlockMetadata(x, y, z));
+			world.setBlockAndMetadataWithNotify(x, y, z,
+					BunyanBlock.wood.blockID, metadata);
+		} else {
+			Direction facing = Direction.NORTH;
+			switch (side) {
+				case NORTH:
+				case EAST:
+					facing = side.oppositeSide();
+					break;
+				default:
+					facing = side.rightSide();
+			}
+			DirectionalBlock.setFacing(world, x, y, z, facing, true);
 		}
 	}
 
