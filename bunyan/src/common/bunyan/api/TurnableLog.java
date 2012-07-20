@@ -21,6 +21,8 @@ public abstract class TurnableLog extends DirectionalBlock implements
 		ITurnable
 {
 
+	private static int renderType = 0;
+	
 	protected TurnableLog(int id, int index) {
 		super(id, index, wood.blockMaterial);
 		setStepSound(soundWoodFootstep);
@@ -34,6 +36,15 @@ public abstract class TurnableLog extends DirectionalBlock implements
 	@Override
 	public boolean canSustainLeaves(World world, int x, int y, int z) {
 		return true;
+	}
+
+	@Override
+	public int getRenderType() {
+		return renderType;
+	}
+
+	public static void setRenderType(int renderType) {
+		TurnableLog.renderType = renderType;
 	}
 
 	@Override

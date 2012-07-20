@@ -13,9 +13,11 @@ import java.io.File;
 import net.minecraft.src.Block;
 import net.minecraft.src.FurnaceRecipes;
 import net.minecraft.src.ItemStack;
+import net.minecraft.src.ModLoader;
 import net.minecraft.src.forge.IBonemealHandler;
 import net.minecraft.src.forge.MinecraftForge;
 import net.minecraft.src.forge.MinecraftForgeClient;
+import net.minecraft.src.forge.NetworkMod;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.FMLRegistry;
 
@@ -69,6 +71,17 @@ public enum Proxy {
 		return FMLCommonHandler.instance().getMinecraftRootDirectory();
 	}
 
+	public static String getObjectDisplayName(ItemStack itemstack) {
+		return (String) itemstack.getItemNameandInformation().get(0);
+	}
+
+	public static int getUniqueBlockModelID(NetworkMod mod,
+			boolean render3DinInventory)
+	{
+		return ModLoader
+				.getUniqueBlockModelID(mod, render3DinInventory);
+	}
+
 	/**
 	 * Preload a texture. Textures must be preloaded before the first
 	 * use, or they will cause visual anomalies.
@@ -116,8 +129,4 @@ public enum Proxy {
 		MinecraftForge.registerBonemealHandler(handler);
 	}
 
-	public static String getObjectDisplayName(ItemStack itemstack) {
-		return (String) itemstack.getItemNameandInformation().get(0);
-	}
-	
 }

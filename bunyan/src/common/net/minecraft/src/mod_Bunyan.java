@@ -52,4 +52,21 @@ public class mod_Bunyan extends NetworkMod {
 		Bunyan.onModsLoaded();
 	}
 
+	@Override
+	public void renderInvBlock(RenderBlocks renderer, Block block,
+			int metadata, int modelID)
+	{
+		Bunyan.onRenderInventoryBlock(renderer, block, metadata,
+				modelID);
+	}
+
+	@Override
+	public boolean renderWorldBlock(RenderBlocks renderer,
+			IBlockAccess world, int x, int y, int z, Block block,
+			int modelID)
+	{
+		return Bunyan.onRenderWorldBlock(renderer, world, x, y, z,
+				block, modelID);
+	}
+
 }
