@@ -20,13 +20,15 @@ import bunyan.api.TurnableLog;
 
 public class TurnableVanillaLog extends TurnableLog {
 
-	public static final int	metaOak		= 0;
-	public static final int	metaPine	= 1;
-	public static final int	metaBirch	= 2;
-	public static final int	metaJungle	= 3;
+	public static final int		metaOak			= 0;
+	public static final int		metaPine		= 1;
+	public static final int		metaBirch		= 2;
+	public static final int		metaJungle		= 3;
+
+	private static final int	BARK_OFFSETS[]	= { -1, 95, 96, 132 };
 
 	public TurnableVanillaLog(int id) {
-		super(id, 6);
+		super(id, 21);
 	}
 
 	@Override
@@ -46,102 +48,30 @@ public class TurnableVanillaLog extends TurnableLog {
 	}
 
 	@Override
-	public String getTextureFile() {
-		return "/bunyan/blocks/blocks.png";
-	}
-
-	@Override
 	public int getTextureOffsetFromFacingSideAndMetadata(
 			Direction facing, Direction side, int metadata)
 	{
-		int column = 0;
+		int offset = 0;
+		final int species = getDataFromMetadata(metadata);
 
 		switch (side) {
 			case DOWN:
 			case UP:
-				switch (facing) {
-					case NORTH:
-						column = 1;
-						break;
-					case SOUTH:
-						column = 3;
-						break;
-					case WEST:
-						column = 4;
-						break;
-					case EAST:
-						column = 2;
-						break;
-					default:
-						break;
-				}
-				if (side == Direction.DOWN) column += 4;
+				offset = BARK_OFFSETS[species];
 				break;
 			case NORTH:
-				switch (facing) {
-					case NORTH:
-					case SOUTH:
-						column = 0;
-						break;
-					case WEST:
-						column = 2;
-						break;
-					case EAST:
-						column = 4;
-						break;
-					default:
-						break;
-				}
-				break;
 			case SOUTH:
-				switch (facing) {
-					case NORTH:
-					case SOUTH:
-						column = 0;
-						break;
-					case WEST:
-						column = 4;
-						break;
-					case EAST:
-						column = 2;
-						break;
-					default:
-						break;
-				}
+				if (facing == Direction.WEST
+						|| facing == Direction.EAST)
+					offset = BARK_OFFSETS[species];
 				break;
 			case WEST:
-				switch (facing) {
-					case NORTH:
-						column = 4;
-						break;
-					case SOUTH:
-						column = 2;
-						break;
-					case WEST:
-					case EAST:
-						column = 0;
-						break;
-					default:
-						break;
-				}
-				break;
 			case EAST:
-				switch (facing) {
-					case NORTH:
-						column = 2;
-						break;
-					case SOUTH:
-						column = 4;
-						break;
-					case WEST:
-					case EAST:
-						column = 0;
-						break;
-					default:
-						break;
-				}
+				if (facing == Direction.NORTH
+						|| facing == Direction.SOUTH)
+					offset = BARK_OFFSETS[species];
 		}
-		return column + getDataFromMetadata(metadata) * 16;
+		return offset;
 	}
 
 	@Override

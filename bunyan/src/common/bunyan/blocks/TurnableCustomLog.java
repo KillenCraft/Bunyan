@@ -24,7 +24,7 @@ public class TurnableCustomLog extends TurnableLog {
 	public static final int	metaAcacia	= 2;
 
 	public TurnableCustomLog(int id) {
-		super(id, 70);
+		super(id, 16);
 	}
 
 	@Override
@@ -50,94 +50,26 @@ public class TurnableCustomLog extends TurnableLog {
 	public int getTextureOffsetFromFacingSideAndMetadata(
 			Direction facing, Direction side, int metadata)
 	{
-		int column = 0;
+		int offset = 0;
 
 		switch (side) {
 			case DOWN:
 			case UP:
-				switch (facing) {
-					case NORTH:
-						column = 1;
-						break;
-					case SOUTH:
-						column = 3;
-						break;
-					case WEST:
-						column = 4;
-						break;
-					case EAST:
-						column = 2;
-						break;
-					default:
-						break;
-				}
-				if (side == Direction.DOWN) column += 4;
+				offset = -16;
 				break;
 			case NORTH:
-				switch (facing) {
-					case NORTH:
-					case SOUTH:
-						column = 0;
-						break;
-					case WEST:
-						column = 2;
-						break;
-					case EAST:
-						column = 4;
-						break;
-					default:
-						break;
-				}
-				break;
 			case SOUTH:
-				switch (facing) {
-					case NORTH:
-					case SOUTH:
-						column = 0;
-						break;
-					case WEST:
-						column = 4;
-						break;
-					case EAST:
-						column = 2;
-						break;
-					default:
-						break;
-				}
+				if (facing == Direction.WEST
+						|| facing == Direction.EAST) offset = -16;
 				break;
 			case WEST:
-				switch (facing) {
-					case NORTH:
-						column = 4;
-						break;
-					case SOUTH:
-						column = 2;
-						break;
-					case WEST:
-					case EAST:
-						column = 0;
-						break;
-					default:
-						break;
-				}
-				break;
 			case EAST:
-				switch (facing) {
-					case NORTH:
-						column = 2;
-						break;
-					case SOUTH:
-						column = 4;
-						break;
-					case WEST:
-					case EAST:
-						column = 0;
-						break;
-					default:
-						break;
-				}
+				if (facing == Direction.NORTH
+						|| facing == Direction.SOUTH) offset = -16;
 		}
-		return column + getDataFromMetadata(metadata) * 16;
+
+		final int species = getDataFromMetadata(metadata);
+		return offset + species;
 	}
 
 	@Override
