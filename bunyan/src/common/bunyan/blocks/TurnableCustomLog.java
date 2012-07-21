@@ -30,8 +30,8 @@ public class TurnableCustomLog extends TurnableLog {
 
 	@Override
 	public void addCreativeItems(ArrayList itemList) {
-		itemList.add(new ItemStack(blockID, 1, metaFir));
-		itemList.add(new ItemStack(blockID, 1, metaAcacia));
+//		itemList.add(new ItemStack(blockID, 1, metaFir));
+//		itemList.add(new ItemStack(blockID, 1, metaAcacia));
 	}
 
 	@Override

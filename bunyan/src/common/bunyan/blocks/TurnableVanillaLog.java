@@ -34,10 +34,10 @@ public class TurnableVanillaLog extends TurnableLog {
 
 	@Override
 	public void addCreativeItems(ArrayList itemList) {
-		itemList.add(new ItemStack(blockID, 1, metaOak));
-		itemList.add(new ItemStack(blockID, 1, metaPine));
-		itemList.add(new ItemStack(blockID, 1, metaBirch));
-		itemList.add(new ItemStack(blockID, 1, metaJungle));
+//		itemList.add(new ItemStack(blockID, 1, metaOak));
+//		itemList.add(new ItemStack(blockID, 1, metaPine));
+//		itemList.add(new ItemStack(blockID, 1, metaBirch));
+//		itemList.add(new ItemStack(blockID, 1, metaJungle));
 	}
 
 	@Override

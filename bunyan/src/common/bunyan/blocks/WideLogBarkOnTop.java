@@ -8,6 +8,8 @@
 
 package bunyan.blocks;
 
+import java.util.ArrayList;
+
 import net.minecraft.src.EntityLiving;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IBlockAccess;
@@ -20,6 +22,9 @@ public class WideLogBarkOnTop extends WideLog {
 
 	public WideLogBarkOnTop(int id) {
 		super(id);
+	}
+	
+	public void addCreativeItems(ArrayList itemList) {
 	}
 
 	@Override
