@@ -13,6 +13,7 @@ import java.util.Random;
 
 import net.minecraft.src.EntityLiving;
 import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.World;
@@ -22,9 +23,10 @@ import bunyan.api.TurnableLog;
 
 public class WideLog extends TurnableLog {
 
-	public static final int	metaRedwood	= 0;
-	public static final int	metaFir		= 1;
-	public static final int	metaOak		= 2;
+	public static final int			metaRedwood			= 0;
+	public static final int			metaFir				= 1;
+	public static final int			metaOak				= 2;
+	protected RotatedLogRenderer	rotatedLogRenderer	= null;
 
 	public WideLog(int id) {
 		super(id, 48);
@@ -178,7 +180,7 @@ public class WideLog extends TurnableLog {
 
 	@Override
 	public int idDropped(int metadata, Random random, int alwaysZero) {
-		return blockID;
+		return BunyanBlock.widewood.blockID;
 	}
 
 	@Override
@@ -211,24 +213,48 @@ public class WideLog extends TurnableLog {
 	public void onLogTurner(EntityPlayer player, World world, int x,
 			int y, int z, Direction side)
 	{
-		if (side == Direction.UP || side == Direction.DOWN) {
+		if (side == Direction.UP) {
 			final int metadata = DirectionalBlock
 					.getDataFromMetadata(world
 							.getBlockMetadata(x, y, z));
-			world.setBlockAndMetadataWithNotify(x, y, z,
-					BunyanBlock.wood.blockID, metadata);
+			world.setBlockAndMetadata(x, y, z,
+					BunyanBlock.widewoodBarkBottom.blockID, metadata);
+			BunyanBlock.widewoodBarkBottom.onBlockPlacedBy(world, x, y,
+					z, player);
+		} else if (side == Direction.DOWN) {
+			final int metadata = DirectionalBlock
+					.getDataFromMetadata(world
+							.getBlockMetadata(x, y, z));
+			world.setBlockAndMetadata(x, y, z,
+					BunyanBlock.widewoodBarkTop.blockID, metadata);
+			BunyanBlock.widewoodBarkTop.onBlockPlacedBy(world, x, y, z,
+					player);
 		} else {
 			Direction facing = Direction.NORTH;
 			switch (side) {
+				case SOUTH:
+					facing = side.leftSide();
+					break;
+				case WEST:
+					facing = side.rightSide();
+					break;
 				case NORTH:
 				case EAST:
 					facing = side.oppositeSide();
-					break;
 				default:
-					facing = side.rightSide();
 			}
 			DirectionalBlock.setFacing(world, x, y, z, facing, true);
 		}
+	}
+
+	@Override
+	public boolean render(IBlockAccess world, int x, int y, int z,
+			int modelID)
+	{
+		if (rotatedLogRenderer == null)
+			rotatedLogRenderer = new RotatedLogRenderer();
+		rotatedLogRenderer.blockAccess = world;
+		return rotatedLogRenderer.renderRotatedLog(this, x, y, z);
 	}
 
 }

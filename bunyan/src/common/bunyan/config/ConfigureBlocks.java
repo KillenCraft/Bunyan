@@ -17,6 +17,8 @@ import bunyan.blocks.CustomWood;
 import bunyan.blocks.TurnableCustomLog;
 import bunyan.blocks.TurnableVanillaLog;
 import bunyan.blocks.WideLog;
+import bunyan.blocks.WideLogBarkOnBottom;
+import bunyan.blocks.WideLogBarkOnTop;
 
 public class ConfigureBlocks {
 
@@ -25,6 +27,17 @@ public class ConfigureBlocks {
 				CustomLog.metaFir), "Fir Log");
 		Proxy.addName(new ItemStack(BunyanBlock.wood, 1,
 				CustomLog.metaAcacia), "Acacia Log");
+	}
+
+	private static void addDirectionalCustomLogNames() {
+		String name = Proxy.getObjectDisplayName(new ItemStack(
+				BunyanBlock.wood, 1, CustomLog.metaAcacia));
+		Proxy.addName(new ItemStack(BunyanBlock.turnableCustomWood, 1,
+				TurnableCustomLog.metaAcacia), name);
+		name = Proxy.getObjectDisplayName(new ItemStack(
+				BunyanBlock.wood, 1, CustomLog.metaFir));
+		Proxy.addName(new ItemStack(BunyanBlock.turnableCustomWood, 1,
+				TurnableCustomLog.metaFir), name);
 	}
 
 	private static void addDirectionalVanillaLogNames() {
@@ -44,16 +57,6 @@ public class ConfigureBlocks {
 				3));
 		Proxy.addName(new ItemStack(BunyanBlock.turnableVanillaWood, 1,
 				TurnableVanillaLog.metaJungle), name);
-	}
-
-	private static void addDirectionalCustomLogNames() {
-		String name = Proxy.getObjectDisplayName(new ItemStack(
-				BunyanBlock.wood, 1, CustomLog.metaAcacia));
-		Proxy.addName(new ItemStack(BunyanBlock.turnableCustomWood, 1,
-				TurnableCustomLog.metaAcacia), name);
-		name = Proxy.getObjectDisplayName(new ItemStack(BunyanBlock.wood, 1, CustomLog.metaFir));
-		Proxy.addName(new ItemStack(BunyanBlock.turnableCustomWood, 1,
-				TurnableCustomLog.metaFir), name);
 	}
 
 	public static void addNames() {
@@ -80,6 +83,12 @@ public class ConfigureBlocks {
 				WideLog.metaFir), "Quarter Huge Fir Log");
 		Proxy.addName(new ItemStack(BunyanBlock.widewood, 1,
 				WideLog.metaOak), "Quarter Huge Oak Log");
+		Proxy.addName(new ItemStack(BunyanBlock.widewoodBarkTop, 1,
+				WideLog.metaRedwood), "Quarter Huge Redwood Log");
+		Proxy.addName(new ItemStack(BunyanBlock.widewoodBarkTop, 1,
+				WideLog.metaFir), "Quarter Huge Fir Log");
+		Proxy.addName(new ItemStack(BunyanBlock.widewoodBarkTop, 1,
+				WideLog.metaOak), "Quarter Huge Oak Log");
 	}
 
 	public static void initialize() {
@@ -99,22 +108,34 @@ public class ConfigureBlocks {
 				.setBlockName("bunyan.plank");
 
 		final int turnableVanillaWoodID = Config
-				.getOrCreateBlockIdProperty("turnable.vanilla.wood.id",
-						164);
+				.getOrCreateBlockIdProperty("vanilla.wood.alt.id", 164);
 		BunyanBlock.turnableVanillaWood = new TurnableVanillaLog(
 				turnableVanillaWoodID)
-				.setBlockName("bunyan.turnable.vanilla.wood");
+				.setBlockName("bunyan.vanilla.wood");
 
-		final int turnableWoodID = Config
-				.getOrCreateBlockIdProperty("turnable.wood.id",
-						165);
+		final int turnableWoodID = Config.getOrCreateBlockIdProperty(
+				"turnable.wood.alt.id", 165);
 		BunyanBlock.turnableCustomWood = new TurnableCustomLog(
-				turnableWoodID)
-				.setBlockName("bunyan.turnable.wood");
+				turnableWoodID).setBlockName("bunyan.wood.alt");
+
+		final int widewoodBarkTopID = Config
+				.getOrCreateBlockIdProperty("widewood.alt0.id", 166);
+		BunyanBlock.widewoodBarkTop = new WideLogBarkOnTop(
+				widewoodBarkTopID).setBlockName("bunyan.widewood.alt0");
+
+		final int widewoodBarkBottomID = Config
+				.getOrCreateBlockIdProperty("widewood.alt1.id", 167);
+		BunyanBlock.widewoodBarkBottom = new WideLogBarkOnBottom(
+				widewoodBarkBottomID)
+				.setBlockName("bunyan.widewood.alt1");
 
 		Proxy.registerBlock(BunyanBlock.wood,
 				bunyan.items.MultiItemBlock.class);
 		Proxy.registerBlock(BunyanBlock.widewood,
+				bunyan.items.MultiItemBlock.class);
+		Proxy.registerBlock(BunyanBlock.widewoodBarkTop,
+				bunyan.items.MultiItemBlock.class);
+		Proxy.registerBlock(BunyanBlock.widewoodBarkBottom,
 				bunyan.items.MultiItemBlock.class);
 		Proxy.registerBlock(BunyanBlock.planks,
 				bunyan.items.MultiItemBlock.class);

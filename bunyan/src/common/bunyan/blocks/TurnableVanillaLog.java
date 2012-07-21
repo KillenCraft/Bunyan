@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import bunyan.api.Direction;
@@ -20,12 +21,13 @@ import bunyan.api.TurnableLog;
 
 public class TurnableVanillaLog extends TurnableLog {
 
-	public static final int		metaOak			= 0;
-	public static final int		metaPine		= 1;
-	public static final int		metaBirch		= 2;
-	public static final int		metaJungle		= 3;
+	public static final int		metaOak				= 0;
+	public static final int		metaPine			= 1;
+	public static final int		metaBirch			= 2;
+	public static final int		metaJungle			= 3;
 
-	private static final int	BARK_OFFSETS[]	= { -1, 95, 96, 132 };
+	private static final int	BARK_OFFSETS[]		= { -1, 95, 96, 132 };
+	private RotatedLogRenderer	rotatedLogRenderer	= null;
 
 	public TurnableVanillaLog(int id) {
 		super(id, 21);
@@ -91,6 +93,16 @@ public class TurnableVanillaLog extends TurnableLog {
 					metadata);
 		} else
 			DirectionalBlock.setFacing(world, x, y, z, side, true);
+	}
+
+	@Override
+	public boolean render(IBlockAccess world, int x, int y, int z,
+			int modelID)
+	{
+		if (rotatedLogRenderer == null)
+			rotatedLogRenderer = new RotatedLogRenderer();
+		rotatedLogRenderer.blockAccess = world;
+		return rotatedLogRenderer.renderRotatedLog(this, x, y, z);
 	}
 
 }

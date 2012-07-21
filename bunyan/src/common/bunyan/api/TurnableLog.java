@@ -10,6 +10,8 @@ package bunyan.api;
 
 import java.util.Random;
 
+import net.minecraft.src.Block;
+import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.World;
 
 /**
@@ -21,8 +23,25 @@ public abstract class TurnableLog extends DirectionalBlock implements
 		ITurnable
 {
 
-	private static int renderType = 0;
-	
+	private static int	renderType	= 0;
+
+	public static int getTypeOfRender() {
+		return renderType;
+	}
+
+	public static boolean RenderBlock(IBlockAccess world, int x, int y,
+			int z, Block block, int modelID)
+	{
+		if (TurnableLog.class.isInstance(block))
+			return ((TurnableLog) Block.blocksList[block.blockID])
+					.render(world, x, y, z, modelID);
+		return false;
+	}
+
+	public static void setTypeOfRender(int renderType) {
+		TurnableLog.renderType = renderType;
+	}
+
 	protected TurnableLog(int id, int index) {
 		super(id, index, wood.blockMaterial);
 		setStepSound(soundWoodFootstep);
@@ -43,10 +62,6 @@ public abstract class TurnableLog extends DirectionalBlock implements
 		return renderType;
 	}
 
-	public static void setRenderType(int renderType) {
-		TurnableLog.renderType = renderType;
-	}
-
 	@Override
 	public abstract int idDropped(int metadata, Random random,
 			int alwaysZero);
@@ -55,5 +70,8 @@ public abstract class TurnableLog extends DirectionalBlock implements
 	public boolean isWood(World world, int x, int y, int z) {
 		return true;
 	}
+
+	public abstract boolean render(IBlockAccess world, int x, int y,
+			int z, int modelID);
 
 }

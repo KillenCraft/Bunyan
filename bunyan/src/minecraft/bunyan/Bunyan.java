@@ -132,7 +132,7 @@ public enum Bunyan {
 		Config.onLoad();
 
 		renderID = Proxy.getUniqueBlockModelID(mod, true);
-		TurnableLog.setRenderType(renderID);
+		TurnableLog.setTypeOfRender(renderID);
 
 		woodOreHandler = new WoodOreHandler();
 		OreDictionary.registerOreHandler(woodOreHandler);
@@ -171,10 +171,7 @@ public enum Bunyan {
 			IBlockAccess world, int x, int y, int z, Block block,
 			int modelID)
 	{
-		if (rotatedLogRenderer == null)
-			rotatedLogRenderer = new RotatedLogRenderer();
-		rotatedLogRenderer.blockAccess = world;
-		return rotatedLogRenderer.renderRotatedLog(block, x, y, z);
+		return TurnableLog.RenderBlock(world, x, y, z, block, modelID);
 	}
 
 }

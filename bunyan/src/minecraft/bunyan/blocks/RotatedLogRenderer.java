@@ -123,5 +123,4 @@ public class RotatedLogRenderer extends RenderBlocks {
 
 		return true;
 	}
-
 }
