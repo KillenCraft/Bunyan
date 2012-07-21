@@ -163,6 +163,17 @@ public class CraftingRecipes {
 								Item.diamond });
 	}
 
+	private static void addLogTurnerRecipes() {
+		final ItemStack itemTurner = new ItemStack(BunyanItem.logTurner);
+		new ItemStack(Item.stick, 5);
+
+		Proxy.addRecipe(itemTurner, new Object[] { "ss", " s", "ss",
+				Character.valueOf('s'), Item.stick });
+
+		Proxy.addShapelessRecipe(new ItemStack(Item.stick, 5),
+				new Object[] { itemTurner });
+	}
+
 	private static void addNoteblockRecipes() {
 		final String rows[][] = {
 				{ "###", "#A#", "A#A", "A##", "##A", "#AA", "AA#",
@@ -369,13 +380,6 @@ public class CraftingRecipes {
 							Block.planks });
 	}
 
-	private static void addTurnerRecipes() {
-		final ItemStack output = new ItemStack(BunyanItem.logTurner);
-
-		Proxy.addRecipe(output, new Object[] { "ss", " s", "ss",
-				Character.valueOf('s'), Item.stick });
-	}
-
 	private static void addWorkbenchRecipes() {
 		final String rows[] = { "##", "A#", "#A", "AA" };
 		final ItemStack output = new ItemStack(Block.workbench);
@@ -413,7 +417,7 @@ public class CraftingRecipes {
 		addTrapDoorRecipes();
 		addWorkbenchRecipes();
 
-		addTurnerRecipes();
+		addLogTurnerRecipes();
 
 		addSmelting();
 	}
