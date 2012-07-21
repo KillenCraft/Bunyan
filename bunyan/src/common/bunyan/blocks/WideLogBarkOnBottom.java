@@ -45,11 +45,8 @@ public class WideLogBarkOnBottom extends WideLogBarkOnTop {
 	public boolean render(IBlockAccess world, int x, int y, int z,
 			int modelID)
 	{
-		if (rotatedLogRenderer == null)
-			rotatedLogRenderer = new RotatedWideLogRenderer();
-		rotatedLogRenderer.blockAccess = world;
-		return ((RotatedWideLogRenderer) rotatedLogRenderer)
-				.renderRotatedLogBarkBottom(this, x, y, z);
+		return RenderManager.renderRotatedWideLogBarkBottom(this,
+				world, x, y, z, modelID);
 	}
 
 }

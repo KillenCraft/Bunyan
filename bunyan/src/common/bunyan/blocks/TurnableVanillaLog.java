@@ -21,13 +21,12 @@ import bunyan.api.TurnableLog;
 
 public class TurnableVanillaLog extends TurnableLog {
 
-	public static final int		metaOak				= 0;
-	public static final int		metaPine			= 1;
-	public static final int		metaBirch			= 2;
-	public static final int		metaJungle			= 3;
+	public static final int		metaOak			= 0;
+	public static final int		metaPine		= 1;
+	public static final int		metaBirch		= 2;
+	public static final int		metaJungle		= 3;
 
-	private static final int	BARK_OFFSETS[]		= { -1, 95, 96, 132 };
-	private RotatedLogRenderer	rotatedLogRenderer	= null;
+	private static final int	BARK_OFFSETS[]	= { -1, 95, 96, 132 };
 
 	public TurnableVanillaLog(int id) {
 		super(id, 21);
@@ -99,10 +98,8 @@ public class TurnableVanillaLog extends TurnableLog {
 	public boolean render(IBlockAccess world, int x, int y, int z,
 			int modelID)
 	{
-		if (rotatedLogRenderer == null)
-			rotatedLogRenderer = new RotatedLogRenderer();
-		rotatedLogRenderer.blockAccess = world;
-		return rotatedLogRenderer.renderRotatedLog(this, x, y, z);
+		return RenderManager.renderRotatedLog(this, world, x, y, z,
+				modelID);
 	}
 
 }

@@ -15,7 +15,6 @@ import net.minecraft.src.MathHelper;
 import net.minecraft.src.World;
 import bunyan.api.Direction;
 import bunyan.api.DirectionalBlock;
-import bunyan.api.TurnableLog;
 
 public class WideLogBarkOnTop extends WideLog {
 
@@ -25,7 +24,7 @@ public class WideLogBarkOnTop extends WideLog {
 
 	@Override
 	public int getRenderType() {
-		return TurnableLog.getTypeOfRender();
+		return RenderManager.getRenderID();
 	}
 
 	@Override
@@ -98,11 +97,8 @@ public class WideLogBarkOnTop extends WideLog {
 	public boolean render(IBlockAccess world, int x, int y, int z,
 			int modelID)
 	{
-		if (rotatedLogRenderer == null)
-			rotatedLogRenderer = new RotatedWideLogRenderer();
-		rotatedLogRenderer.blockAccess = world;
-		return ((RotatedWideLogRenderer) rotatedLogRenderer)
-				.renderRotatedLogBarkTop(this, x, y, z);
+		return RenderManager.renderRotatedWideLogBarkTop(this, world,
+				x, y, z, modelID);
 	}
 
 }

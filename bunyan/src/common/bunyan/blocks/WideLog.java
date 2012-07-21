@@ -23,10 +23,9 @@ import bunyan.api.TurnableLog;
 
 public class WideLog extends TurnableLog {
 
-	public static final int			metaRedwood			= 0;
-	public static final int			metaFir				= 1;
-	public static final int			metaOak				= 2;
-	protected RotatedLogRenderer	rotatedLogRenderer	= null;
+	public static final int	metaRedwood	= 0;
+	public static final int	metaFir		= 1;
+	public static final int	metaOak		= 2;
 
 	public WideLog(int id) {
 		super(id, 48);
@@ -251,10 +250,8 @@ public class WideLog extends TurnableLog {
 	public boolean render(IBlockAccess world, int x, int y, int z,
 			int modelID)
 	{
-		if (rotatedLogRenderer == null)
-			rotatedLogRenderer = new RotatedLogRenderer();
-		rotatedLogRenderer.blockAccess = world;
-		return rotatedLogRenderer.renderRotatedLog(this, x, y, z);
+		return RenderManager.renderRotatedLog(this, world, x, y, z,
+				modelID);
 	}
 
 }

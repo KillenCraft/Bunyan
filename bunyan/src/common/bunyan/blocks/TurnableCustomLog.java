@@ -21,9 +21,8 @@ import bunyan.api.TurnableLog;
 
 public class TurnableCustomLog extends TurnableLog {
 
-	public static final int		metaFir				= 1;
-	public static final int		metaAcacia			= 2;
-	private RotatedLogRenderer	rotatedLogRenderer	= null;
+	public static final int	metaFir		= 1;
+	public static final int	metaAcacia	= 2;
 
 	public TurnableCustomLog(int id) {
 		super(id, 16);
@@ -97,10 +96,8 @@ public class TurnableCustomLog extends TurnableLog {
 	public boolean render(IBlockAccess world, int x, int y, int z,
 			int modelID)
 	{
-		if (rotatedLogRenderer == null)
-			rotatedLogRenderer = new RotatedLogRenderer();
-		rotatedLogRenderer.blockAccess = world;
-		return rotatedLogRenderer.renderRotatedLog(this, x, y, z);
+		return RenderManager.renderRotatedLog(this, world, x, y,
+				z, modelID);
 	}
 
 }
