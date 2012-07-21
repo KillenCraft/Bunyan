@@ -135,6 +135,8 @@ public enum Bunyan {
 				.valueOf(Block.grass.blockID));
 		TerrainGenManager.treesCanGrowOnIDs.add(Integer
 				.valueOf(Block.tilledField.blockID));
+		
+		KeyPressManager.registerKeys(mod);
 	}
 
 	/**

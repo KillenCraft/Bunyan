@@ -13,6 +13,7 @@ import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
+import bunyan.KeyPressManager;
 import bunyan.api.Direction;
 import bunyan.api.DirectionalBlock;
 import bunyan.api.ITurnable;
@@ -38,17 +39,20 @@ public class LogTurner extends Item {
 		if (id == 0 || id != Block.wood.blockID
 				&& !(Block.blocksList[id] instanceof ITurnable))
 			return false;
+		Direction face = Direction.fromValue(side);
+		if (KeyPressManager.isModeKeyPressed())
+			face = face.oppositeSide();
 		if (id == Block.wood.blockID) {
 			if (side != 0 && side != 1) {
 				final int metadata = world.getBlockMetadata(x, y, z);
 				world.setBlock(x, y, z,
 						BunyanBlock.turnableVanillaWood.blockID);
 				DirectionalBlock.setDataAndFacing(world, x, y, z,
-						metadata, Direction.fromValue(side), true);
+						metadata, face, true);
 			}
 		} else
 			((ITurnable) Block.blocksList[id]).onLogTurner(player,
-					world, x, y, z, Direction.fromValue(side));
+					world, x, y, z, face);
 		return true;
 	}
 

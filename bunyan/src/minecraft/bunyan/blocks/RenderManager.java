@@ -15,7 +15,8 @@ import net.minecraft.src.RenderBlocks;
 import bunyan.Proxy;
 import bunyan.api.TurnableLog;
 
-public class RenderManager {
+public enum RenderManager {
+	INSTANCE;
 
 	static RotatedLogRenderer		rotatedLogRenderer		= null;
 	static RotatedWideLogRenderer	rotatedWideLogRenderer	= null;
