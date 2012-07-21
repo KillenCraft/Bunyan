@@ -89,6 +89,12 @@ public class ConfigureBlocks {
 				WideLog.metaFir), "Quarter Huge Fir Log");
 		Proxy.addName(new ItemStack(BunyanBlock.widewoodBarkTop, 1,
 				WideLog.metaOak), "Quarter Huge Oak Log");
+		Proxy.addName(new ItemStack(BunyanBlock.widewoodBarkBottom, 1,
+				WideLog.metaRedwood), "Quarter Huge Redwood Log");
+		Proxy.addName(new ItemStack(BunyanBlock.widewoodBarkBottom, 1,
+				WideLog.metaFir), "Quarter Huge Fir Log");
+		Proxy.addName(new ItemStack(BunyanBlock.widewoodBarkBottom, 1,
+				WideLog.metaOak), "Quarter Huge Oak Log");
 	}
 
 	public static void initialize() {
