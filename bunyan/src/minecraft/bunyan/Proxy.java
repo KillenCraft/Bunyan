@@ -10,6 +10,7 @@ package bunyan;
 
 import java.io.File;
 
+import net.minecraft.src.BaseMod;
 import net.minecraft.src.Block;
 import net.minecraft.src.FurnaceRecipes;
 import net.minecraft.src.ItemStack;
@@ -17,7 +18,6 @@ import net.minecraft.src.ModLoader;
 import net.minecraft.src.forge.IBonemealHandler;
 import net.minecraft.src.forge.MinecraftForge;
 import net.minecraft.src.forge.MinecraftForgeClient;
-import net.minecraft.src.forge.NetworkMod;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.FMLRegistry;
 
@@ -75,7 +75,7 @@ public enum Proxy {
 		return (String) itemstack.getItemNameandInformation().get(0);
 	}
 
-	public static int getUniqueBlockModelID(NetworkMod mod,
+	public static int getUniqueBlockModelID(BaseMod mod,
 			boolean render3DinInventory)
 	{
 		return ModLoader

@@ -12,6 +12,7 @@ import java.util.Random;
 
 import net.minecraft.src.forge.NetworkMod;
 import bunyan.Bunyan;
+import bunyan.blocks.RenderManager;
 
 /**
  * This class appears only to communicate with the mod loader.
@@ -56,7 +57,7 @@ public class mod_Bunyan extends NetworkMod {
 	public void renderInvBlock(RenderBlocks renderer, Block block,
 			int metadata, int modelID)
 	{
-		Bunyan.onRenderInventoryBlock(renderer, block, metadata,
+		RenderManager.onRenderInventoryBlock(renderer, block, metadata,
 				modelID);
 	}
 
@@ -65,8 +66,8 @@ public class mod_Bunyan extends NetworkMod {
 			IBlockAccess world, int x, int y, int z, Block block,
 			int modelID)
 	{
-		return Bunyan.onRenderWorldBlock(renderer, world, x, y, z,
-				block, modelID);
+		return RenderManager.onRenderWorldBlock(renderer, world, x, y,
+				z, block, modelID);
 	}
 
 }

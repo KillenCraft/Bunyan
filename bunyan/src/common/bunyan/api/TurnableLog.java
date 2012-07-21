@@ -13,6 +13,7 @@ import java.util.Random;
 import net.minecraft.src.Block;
 import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.World;
+import bunyan.blocks.RenderManager;
 
 /**
  * TurnableLog allows mod authors to quickly implement turnable logs by
@@ -23,12 +24,6 @@ public abstract class TurnableLog extends DirectionalBlock implements
 		ITurnable
 {
 
-	private static int	renderType	= 0;
-
-	public static int getTypeOfRender() {
-		return renderType;
-	}
-
 	public static boolean RenderBlock(IBlockAccess world, int x, int y,
 			int z, Block block, int modelID)
 	{
@@ -36,10 +31,6 @@ public abstract class TurnableLog extends DirectionalBlock implements
 			return ((TurnableLog) Block.blocksList[block.blockID])
 					.render(world, x, y, z, modelID);
 		return false;
-	}
-
-	public static void setTypeOfRender(int renderType) {
-		TurnableLog.renderType = renderType;
 	}
 
 	protected TurnableLog(int id, int index) {
@@ -59,7 +50,7 @@ public abstract class TurnableLog extends DirectionalBlock implements
 
 	@Override
 	public int getRenderType() {
-		return renderType;
+		return RenderManager.getRenderID();
 	}
 
 	@Override

@@ -12,15 +12,12 @@ import java.util.Random;
 
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
-import net.minecraft.src.IBlockAccess;
-import net.minecraft.src.RenderBlocks;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 import net.minecraft.src.forge.IOreHandler;
 import net.minecraft.src.forge.NetworkMod;
 import net.minecraft.src.forge.oredict.OreDictionary;
-import bunyan.api.TurnableLog;
-import bunyan.blocks.RotatedLogRenderer;
+import bunyan.blocks.RenderManager;
 import bunyan.config.Config;
 import bunyan.trees.DeadTreeHuge;
 import bunyan.trees.GenFirTree;
@@ -34,14 +31,10 @@ import extrabiomes.api.TerrainGenManager;
 public enum Bunyan {
 	INSTANCE; // This enforces this object's singularity
 
-	private static final String	NAME				= "Bunyan";
-	private static final String	VERSION				= "1.3";
+	private static final String	NAME	= "Bunyan";
+	private static final String	VERSION	= "1.3";
 
 	private static IOreHandler	woodOreHandler;
-
-	private static int			renderID;
-
-	static RotatedLogRenderer	rotatedLogRenderer	= null;
 
 	public static boolean clientSideRequired() {
 		// Because this mod define custom blocks, the client side mod is
@@ -51,10 +44,6 @@ public enum Bunyan {
 
 	public static String getName() {
 		return NAME;
-	}
-
-	public static int getRenderID() {
-		return renderID;
 	}
 
 	public static String getVersion() {
@@ -131,8 +120,7 @@ public enum Bunyan {
 		// Delegate mod configuration to the Config object
 		Config.onLoad();
 
-		renderID = Proxy.getUniqueBlockModelID(mod, true);
-		TurnableLog.setTypeOfRender(renderID);
+		RenderManager.initialize(mod);
 
 		woodOreHandler = new WoodOreHandler();
 		OreDictionary.registerOreHandler(woodOreHandler);
@@ -157,21 +145,6 @@ public enum Bunyan {
 		// Handle post loading configuration tasks
 		Config.onModsLoaded();
 		if (modEE.isEnabled()) modEE.INSTANCE.activate();
-	}
-
-	public static void onRenderInventoryBlock(RenderBlocks renderer,
-			Block block, int metadata, int modelID)
-	{
-		if (rotatedLogRenderer == null)
-			rotatedLogRenderer = new RotatedLogRenderer();
-		rotatedLogRenderer.renderBlockAsItem(block, metadata, 1.0F);
-	}
-
-	public static boolean onRenderWorldBlock(RenderBlocks renderer,
-			IBlockAccess world, int x, int y, int z, Block block,
-			int modelID)
-	{
-		return TurnableLog.RenderBlock(world, x, y, z, block, modelID);
 	}
 
 }
