@@ -9,6 +9,7 @@
 package bunyan;
 
 import java.io.File;
+import java.util.logging.Logger;
 
 import net.minecraft.src.BaseMod;
 import net.minecraft.src.Block;
@@ -62,6 +63,10 @@ public enum Proxy {
 	{
 		FurnaceRecipes.smelting().addSmelting(itemIdIn, metaIn,
 				itemstackOut);
+	}
+
+	public static Logger getLogger() {
+		return FMLCommonHandler.instance().getFMLLogger();
 	}
 
 	/**
