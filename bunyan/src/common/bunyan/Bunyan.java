@@ -17,6 +17,7 @@ import net.minecraft.src.WorldGenerator;
 import net.minecraft.src.forge.IOreHandler;
 import net.minecraft.src.forge.NetworkMod;
 import net.minecraft.src.forge.oredict.OreDictionary;
+import bunyan.blocks.RenderManager;
 import bunyan.config.Config;
 import bunyan.trees.DeadTreeHuge;
 import bunyan.trees.GenFirTree;
@@ -119,6 +120,8 @@ public enum Bunyan {
 		// Delegate mod configuration to the Config object
 		Config.onLoad();
 
+		RenderManager.initialize(mod);
+
 		woodOreHandler = new WoodOreHandler();
 		OreDictionary.registerOreHandler(woodOreHandler);
 
@@ -132,7 +135,8 @@ public enum Bunyan {
 				.valueOf(Block.grass.blockID));
 		TerrainGenManager.treesCanGrowOnIDs.add(Integer
 				.valueOf(Block.tilledField.blockID));
-
+		
+		KeyPressManager.registerKeys(mod);
 	}
 
 	/**

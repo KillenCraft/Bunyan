@@ -11,12 +11,14 @@ package bunyan;
 import java.lang.reflect.Method;
 
 import net.minecraft.src.Block;
+import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.ModLoader;
 import bunyan.blocks.BunyanBlock;
 import bunyan.blocks.CustomLog;
 import bunyan.blocks.CustomWood;
 import bunyan.blocks.WideLog;
+import bunyan.items.BunyanItem;
 
 public enum modEE {
 	INSTANCE;
@@ -73,6 +75,7 @@ public enum modEE {
 	static private void setEMCValues() {
 		final int emcLog = getEMC(Block.wood.blockID);
 		final int emcPlanks = getEMC(Block.planks.blockID);
+		final int emcStick = getEMC(new ItemStack(Item.stick));
 
 		setEMC(BunyanBlock.wood.blockID, CustomLog.metaAcacia, emcLog);
 		setEMC(BunyanBlock.wood.blockID, CustomLog.metaFir, emcLog);
@@ -87,6 +90,8 @@ public enum modEE {
 				emcPlanks);
 		setEMC(BunyanBlock.planks.blockID, CustomWood.metaRedwood,
 				emcPlanks);
+
+		setEMC(BunyanItem.logTurner.shiftedIndex, emcStick * 5);
 	}
 
 	public void activate() {

@@ -12,8 +12,8 @@ import java.util.Random;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
-import bunyan.Direction;
-import bunyan.blocks.WideLog;
+import bunyan.api.Direction;
+import bunyan.api.DirectionalBlock;
 
 public abstract class TreeGenStraightNoBranchesWide extends
 		TreeGenStraightNoBranches
@@ -51,20 +51,6 @@ public abstract class TreeGenStraightNoBranchesWide extends
 				super.setLeafBlock(world, x + xOffset, y, z + zOffset);
 	}
 
-	protected void setMetadata(World world, int x, int y, int z,
-			int metadata)
-	{
-		if (doBlockNotify)
-			world.setBlockMetadataWithNotify(x, y, z, metadata);
-		else if (world.blockExists(x, y, z)
-				&& world.getChunkFromBlockCoords(x, z).field_50120_o)
-		{
-			if (world.setBlockMetadata(x, y, z, metadata))
-				world.markBlockNeedsUpdate(x, y, z);
-		} else
-			world.setBlockMetadata(x, y, z, metadata);
-	}
-
 	@Override
 	protected void setWoodBlock(World world, int x, int y, int z) {
 		final int id = world.getBlockId(x, y, z);
@@ -77,13 +63,11 @@ public abstract class TreeGenStraightNoBranchesWide extends
 
 			int dir = 0;
 			for (int zOffset = 0; zOffset > -2; zOffset--)
-				for (int xOffset = 0; xOffset > -2; xOffset--) {
+				for (int xOffset = 0; xOffset > -2; xOffset--)
 					setBlockAndMetadata(world, x + xOffset, y, z
-							+ zOffset, blockWood, metaWood);
-					setMetadata(world, x + xOffset, y, z + zOffset,
-							WideLog.metadataWithDirection(metaWood,
-									directions[dir++]));
-				}
+							+ zOffset, blockWood,
+							DirectionalBlock.getCompositeDataAndFacing(
+									metaWood, directions[dir++]));
 		}
 	}
 
