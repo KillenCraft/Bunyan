@@ -9,10 +9,13 @@
 package bunyan;
 
 import java.io.File;
+import java.util.logging.Logger;
 
+import net.minecraft.src.BaseMod;
 import net.minecraft.src.Block;
 import net.minecraft.src.FurnaceRecipes;
 import net.minecraft.src.ItemStack;
+import net.minecraft.src.ModLoader;
 import net.minecraft.src.forge.IBonemealHandler;
 import net.minecraft.src.forge.MinecraftForge;
 import net.minecraft.src.forge.MinecraftForgeClient;
@@ -62,11 +65,26 @@ public enum Proxy {
 				itemstackOut);
 	}
 
+	public static Logger getLogger() {
+		return FMLCommonHandler.instance().getFMLLogger();
+	}
+
 	/**
 	 * @return the root folder where game files are stored.
 	 */
 	public static File getMinecraftDir() {
 		return FMLCommonHandler.instance().getMinecraftRootDirectory();
+	}
+
+	public static String getObjectDisplayName(ItemStack itemstack) {
+		return (String) itemstack.getItemNameandInformation().get(0);
+	}
+
+	public static int getUniqueBlockModelID(BaseMod mod,
+			boolean render3DinInventory)
+	{
+		return ModLoader
+				.getUniqueBlockModelID(mod, render3DinInventory);
 	}
 
 	/**
@@ -116,8 +134,4 @@ public enum Proxy {
 		MinecraftForge.registerBonemealHandler(handler);
 	}
 
-	public static String getObjectDisplayName(ItemStack itemstack) {
-		return (String) itemstack.getItemNameandInformation().get(0);
-	}
-	
 }

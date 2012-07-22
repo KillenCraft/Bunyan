@@ -9,23 +9,26 @@
 package bunyan.blocks;
 
 import java.util.ArrayList;
+import java.util.Random;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.Entity;
+import net.minecraft.src.EntityLiving;
+import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.ItemStack;
+import net.minecraft.src.MathHelper;
 import net.minecraft.src.World;
-import bunyan.Direction;
+import bunyan.api.Direction;
+import bunyan.api.DirectionalBlock;
+import bunyan.api.TurnableLog;
 
-public class WideLog extends DirectionalBlock {
+public class WideLog extends TurnableLog {
 
 	public static final int	metaRedwood	= 0;
 	public static final int	metaFir		= 1;
 	public static final int	metaOak		= 2;
 
 	public WideLog(int id) {
-		super(id);
-		blockIndexInTexture = 48;
+		super(id, 48);
 	}
 
 	@Override
@@ -36,117 +39,219 @@ public class WideLog extends DirectionalBlock {
 	}
 
 	@Override
-	public float getExplosionResistance(Entity entity) {
-		return Block.wood.getExplosionResistance(entity);
+	public int getRenderType() {
+		// even though it is turnable, render like a standard block.
+		return 0;
 	}
 
 	@Override
-	public int getFireSpreadSpeed(World world, int x, int y, int z,
-			int metadata, int face)
+	public String getTextureFile() {
+		return "/bunyan/blocks/blocks.png";
+	}
+
+	@Override
+	public int getTextureOffsetFromFacingSideAndMetadata(
+			Direction facing, Direction side, int metadata)
 	{
-		return Block.wood.getFireSpreadSpeed(world, x, y, z, metadata,
-				face);
+		final int textureSet = getDataFromMetadata(metadata);
+		int row = 0;
+		int column = 0;
+
+		switch (side) {
+			case DOWN:
+			case UP:
+				switch (facing) {
+					case NORTH:
+						row = 1;
+						column = 1;
+						break;
+					case SOUTH:
+						row = 2;
+						column = 1;
+						break;
+					case WEST:
+						row = 2;
+						column = 0;
+						break;
+					case EAST:
+						row = 1;
+						column = 0;
+						break;
+					default:
+						break;
+				}
+				break;
+
+			case NORTH:
+				switch (facing) {
+					case NORTH:
+						row = 0;
+						column = 0;
+						break;
+					case SOUTH:
+						row = 3;
+						column = 0;
+						break;
+					case WEST:
+						row = 3;
+						column = 1;
+						break;
+					case EAST:
+						row = 0;
+						column = 1;
+						break;
+					default:
+						break;
+				}
+				break;
+
+			case SOUTH:
+				switch (facing) {
+					case NORTH:
+						row = 3;
+						column = 1;
+						break;
+					case SOUTH:
+						row = 0;
+						column = 1;
+						break;
+					case WEST:
+						row = 0;
+						column = 0;
+						break;
+					case EAST:
+						row = 3;
+						column = 0;
+						break;
+					default:
+						break;
+				}
+				break;
+
+			case WEST:
+				switch (facing) {
+					case NORTH:
+						row = 3;
+						column = 0;
+						break;
+					case SOUTH:
+						row = 3;
+						column = 1;
+						break;
+					case WEST:
+						row = 0;
+						column = 1;
+						break;
+					case EAST:
+						row = 0;
+						column = 0;
+						break;
+					default:
+						break;
+				}
+				break;
+
+			case EAST:
+				switch (facing) {
+					case NORTH:
+						row = 0;
+						column = 1;
+						break;
+					case SOUTH:
+						row = 0;
+						column = 0;
+						break;
+					case WEST:
+						row = 3;
+						column = 0;
+						break;
+					case EAST:
+						row = 3;
+						column = 1;
+						break;
+					default:
+						break;
+				}
+		}
+
+		return row * 16 + column + textureSet * 2;
 	}
 
 	@Override
-	public int getFlammability(IBlockAccess world, int x, int y, int z,
-			int metadata, int face)
+	public int idDropped(int metadata, Random random, int alwaysZero) {
+		return BunyanBlock.widewood.blockID;
+	}
+
+	@Override
+	public void onBlockPlacedBy(World world, int x, int y, int z,
+			EntityLiving entity)
 	{
-		return Block.wood.getFlammability(world, x, y, z, metadata,
-				face);
+		Direction facingBlock = Direction.NORTH;
+		if (entity != null) {
+			final int facingEntity = MathHelper
+					.floor_double(entity.rotationYaw * 4.0F / 360.0F + 0.5D) & 0x3;
+
+			switch (facingEntity) {
+				case 0:
+					facingBlock = Direction.SOUTH;
+					break;
+				case 1:
+					facingBlock = Direction.WEST;
+					break;
+				case 2:
+					facingBlock = Direction.EAST;
+					break;
+				case 3:
+					facingBlock = Direction.NORTH;
+			}
+			setFacing(world, x, y, z, facingBlock, true);
+		}
 	}
 
 	@Override
-	public float getHardness() {
-		return Block.wood.getHardness();
+	public void onLogTurner(EntityPlayer player, World world, int x,
+			int y, int z, Direction side)
+	{
+		if (side == Direction.UP) {
+			final int metadata = DirectionalBlock
+					.getDataFromMetadata(world
+							.getBlockMetadata(x, y, z));
+			world.setBlockAndMetadata(x, y, z,
+					BunyanBlock.widewoodBarkBottom.blockID, metadata);
+			BunyanBlock.widewoodBarkBottom.onBlockPlacedBy(world, x, y,
+					z, player);
+		} else if (side == Direction.DOWN) {
+			final int metadata = DirectionalBlock
+					.getDataFromMetadata(world
+							.getBlockMetadata(x, y, z));
+			world.setBlockAndMetadata(x, y, z,
+					BunyanBlock.widewoodBarkTop.blockID, metadata);
+			BunyanBlock.widewoodBarkTop.onBlockPlacedBy(world, x, y, z,
+					player);
+		} else {
+			Direction facing = Direction.NORTH;
+			switch (side) {
+				case SOUTH:
+					facing = side.leftSide();
+					break;
+				case WEST:
+					facing = side.rightSide();
+					break;
+				case NORTH:
+				case EAST:
+					facing = side.oppositeSide();
+				default:
+			}
+			DirectionalBlock.setFacing(world, x, y, z, facing, true);
+		}
 	}
 
 	@Override
-	public float getHardness(int meta) {
-		return Block.wood.getHardness(meta);
-	}
-
-	@Override
-	public void onBlockAdded(World world, int x, int y, int z) {
-		super.onBlockAdded(world, x, y, z);
-		setDefaultDirection(world, x, y, z);
-	}
-
-	private void setDefaultDirection(World world, int x, int y, int z) {
-		if (!world.isRemote) {
-			final int eastBlock = world.getBlockId(x, y, z - 1);
-			final int westBlock = world.getBlockId(x, y, z + 1);
-			final int northBlock = world.getBlockId(x - 1, y, z);
-			final int southBlock = world.getBlockId(x + 1, y, z);
-			Direction direction = Direction.SOUTH;
-
-			if (eastBlock != blockID && westBlock != blockID
-					&& northBlock != blockID && southBlock != blockID)
-			{
-
-				if (Block.opaqueCubeLookup[eastBlock]
-						&& !Block.opaqueCubeLookup[westBlock])
-					direction = Direction.SOUTH;
-
-				if (Block.opaqueCubeLookup[westBlock]
-						&& !Block.opaqueCubeLookup[eastBlock])
-					direction = Direction.NORTH;
-
-				if (Block.opaqueCubeLookup[northBlock]
-						&& !Block.opaqueCubeLookup[southBlock])
-					direction = Direction.EAST;
-
-				if (Block.opaqueCubeLookup[southBlock]
-						&& !Block.opaqueCubeLookup[northBlock])
-					direction = Direction.WEST;
-				setDirection(world, x, y, z, direction);
-			} else
-				setSmartDirection(world, x, y, z);
-		}
-	}
-
-	private void setSmartDirection(World world, int x, int y, int z) {
-		int block = world.getBlockId(x, y, z + 1);
-		Direction direction = Direction.SOUTH;
-		if (block == blockID) {
-			final Direction blockDirection = directionFromMetadata(world
-					.getBlockMetadata(x, y, z + 1));
-			direction = blockDirection == Direction.SOUTH ? Direction.NORTH
-					: blockDirection == Direction.NORTH ? Direction.SOUTH
-							: blockDirection == Direction.WEST ? Direction.EAST
-									: Direction.WEST;
-		}
-
-		block = world.getBlockId(x, y, z - 1);
-		if (block == blockID) {
-			final Direction blockDirection = directionFromMetadata(world
-					.getBlockMetadata(x, y, z - 1));
-			direction = blockDirection == Direction.SOUTH ? Direction.NORTH
-					: blockDirection == Direction.NORTH ? Direction.SOUTH
-							: blockDirection == Direction.WEST ? Direction.EAST
-									: Direction.WEST;
-		}
-
-		block = world.getBlockId(x - 1, y, z);
-		if (block == blockID) {
-			final Direction blockDirection = directionFromMetadata(world
-					.getBlockMetadata(x - 1, y, z));
-			direction = blockDirection == Direction.SOUTH ? Direction.WEST
-					: blockDirection == Direction.WEST ? Direction.SOUTH
-							: blockDirection == Direction.NORTH ? Direction.EAST
-									: Direction.NORTH;
-		}
-
-		block = world.getBlockId(x + 1, y, z);
-		if (block == blockID) {
-			final Direction blockDirection = directionFromMetadata(world
-					.getBlockMetadata(x + 1, y, z));
-			direction = blockDirection == Direction.SOUTH ? Direction.WEST
-					: blockDirection == Direction.WEST ? Direction.SOUTH
-							: blockDirection == Direction.NORTH ? Direction.EAST
-									: Direction.NORTH;
-		}
-		setDirection(world, x, y, z, direction);
+	public boolean render(IBlockAccess world, int x, int y, int z,
+			int modelID)
+	{
+		return RenderManager.renderRotatedLog(this, world, x, y, z,
+				modelID);
 	}
 
 }

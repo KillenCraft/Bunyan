@@ -12,7 +12,8 @@ import java.util.Random;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
-import bunyan.Direction;
+import bunyan.api.Direction;
+import bunyan.api.DirectionalBlock;
 import bunyan.blocks.BunyanBlock;
 import bunyan.blocks.WideLog;
 import extrabiomes.api.TerrainGenManager;
@@ -60,11 +61,7 @@ public class DeadTreeHuge extends TreeGenStraightNoBranchesWide {
 					if (yOffset < height[index]) {
 						setBlockAndMetadata(world, x + xOffset, y
 								+ yOffset, z + zOffset, blockWood,
-								metaWood);
-						setMetadata(world, x + xOffset, y + yOffset, z
-								+ zOffset,
-								WideLog.metadataWithDirection(metaWood,
-										directions[dir]));
+								DirectionalBlock.getCompositeDataAndFacing(metaWood, directions[dir]));
 					}
 					dir++;
 

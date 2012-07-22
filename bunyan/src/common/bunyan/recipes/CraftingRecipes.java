@@ -7,7 +7,8 @@ import net.minecraft.src.ItemStack;
 import bunyan.Proxy;
 import bunyan.blocks.BunyanBlock;
 import bunyan.blocks.CustomLog;
-import bunyan.blocks.DirectionalVanillaLog;
+import bunyan.blocks.TurnableCustomLog;
+import bunyan.blocks.TurnableVanillaLog;
 import bunyan.blocks.WideLog;
 import bunyan.items.BunyanItem;
 
@@ -162,6 +163,17 @@ public class CraftingRecipes {
 								Item.diamond });
 	}
 
+	private static void addLogTurnerRecipes() {
+		final ItemStack itemTurner = new ItemStack(BunyanItem.logTurner);
+		new ItemStack(Item.stick, 5);
+
+		Proxy.addRecipe(itemTurner, new Object[] { "ss", " s", "ss",
+				Character.valueOf('s'), Item.stick });
+
+		Proxy.addShapelessRecipe(new ItemStack(Item.stick, 5),
+				new Object[] { itemTurner });
+	}
+
 	private static void addNoteblockRecipes() {
 		final String rows[][] = {
 				{ "###", "#A#", "A#A", "A##", "##A", "#AA", "AA#",
@@ -217,29 +229,26 @@ public class CraftingRecipes {
 		Proxy.addRecipe(new ItemStack(Block.planks, 4), new Object[] {
 				"#",
 				Character.valueOf('#'),
-				new ItemStack(BunyanBlock.direcionalVanillaWood, 1,
-						DirectionalVanillaLog.metaOak) });
+				new ItemStack(BunyanBlock.turnableVanillaWood, 1,
+						TurnableVanillaLog.metaOak) });
 		Proxy.addRecipe(new ItemStack(Block.planks, 4, 1),
 				new Object[] {
 						"#",
 						Character.valueOf('#'),
-						new ItemStack(
-								BunyanBlock.direcionalVanillaWood, 1,
-								DirectionalVanillaLog.metaPine) });
+						new ItemStack(BunyanBlock.turnableVanillaWood,
+								1, TurnableVanillaLog.metaPine) });
 		Proxy.addRecipe(new ItemStack(Block.planks, 4, 2),
 				new Object[] {
 						"#",
 						Character.valueOf('#'),
-						new ItemStack(
-								BunyanBlock.direcionalVanillaWood, 1,
-								DirectionalVanillaLog.metaBirch) });
+						new ItemStack(BunyanBlock.turnableVanillaWood,
+								1, TurnableVanillaLog.metaBirch) });
 		Proxy.addRecipe(new ItemStack(Block.planks, 4, 3),
 				new Object[] {
 						"#",
 						Character.valueOf('#'),
-						new ItemStack(
-								BunyanBlock.direcionalVanillaWood, 1,
-								DirectionalVanillaLog.metaJungle) });
+						new ItemStack(BunyanBlock.turnableVanillaWood,
+								1, TurnableVanillaLog.metaJungle) });
 	}
 
 	private static void addPressurePlateRecipes() {
@@ -295,14 +304,18 @@ public class CraftingRecipes {
 				{ BunyanBlock.widewood.blockID, WideLog.metaFir },
 				{ BunyanBlock.widewood.blockID, WideLog.metaOak },
 				{ BunyanBlock.widewood.blockID, WideLog.metaRedwood },
-				{ BunyanBlock.direcionalVanillaWood.blockID,
-						DirectionalVanillaLog.metaOak },
-				{ BunyanBlock.direcionalVanillaWood.blockID,
-						DirectionalVanillaLog.metaPine },
-				{ BunyanBlock.direcionalVanillaWood.blockID,
-						DirectionalVanillaLog.metaBirch },
-				{ BunyanBlock.direcionalVanillaWood.blockID,
-						DirectionalVanillaLog.metaJungle } };
+				{ BunyanBlock.turnableVanillaWood.blockID,
+						TurnableVanillaLog.metaOak },
+				{ BunyanBlock.turnableVanillaWood.blockID,
+						TurnableVanillaLog.metaPine },
+				{ BunyanBlock.turnableVanillaWood.blockID,
+						TurnableVanillaLog.metaBirch },
+				{ BunyanBlock.turnableVanillaWood.blockID,
+						TurnableVanillaLog.metaJungle },
+				{ BunyanBlock.turnableCustomWood.blockID,
+						TurnableCustomLog.metaAcacia },
+				{ BunyanBlock.turnableCustomWood.blockID,
+						TurnableCustomLog.metaFir } };
 
 		for (final int blockIDMeta[] : blockIDMetas)
 			Proxy.addSmelting(blockIDMeta[0], blockIDMeta[1], output);
@@ -367,13 +380,6 @@ public class CraftingRecipes {
 							Block.planks });
 	}
 
-	private static void addTurnerRecipes() {
-		final ItemStack output = new ItemStack(BunyanItem.logTurner);
-
-		Proxy.addRecipe(output, new Object[] { "ss", " s", "ss",
-				Character.valueOf('s'), Item.stick });
-	}
-
 	private static void addWorkbenchRecipes() {
 		final String rows[] = { "##", "A#", "#A", "AA" };
 		final ItemStack output = new ItemStack(Block.workbench);
@@ -411,7 +417,7 @@ public class CraftingRecipes {
 		addTrapDoorRecipes();
 		addWorkbenchRecipes();
 
-		addTurnerRecipes();
+		addLogTurnerRecipes();
 
 		addSmelting();
 	}
