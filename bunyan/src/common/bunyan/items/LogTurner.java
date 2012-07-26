@@ -24,11 +24,22 @@ public class LogTurner extends Item {
 	public LogTurner(int par1) {
 		super(par1);
 		setIconIndex(0);
+		setMaxStackSize(1);
 	}
 
 	@Override
 	public String getTextureFile() {
 		return "/bunyan/items/items.png";
+	}
+
+	@Override
+	public boolean isDamageable() {
+		return false;
+	}
+
+	@Override
+	public boolean isItemTool(ItemStack par1ItemStack) {
+		return true;
 	}
 
 	@Override
