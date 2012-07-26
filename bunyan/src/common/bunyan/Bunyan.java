@@ -32,7 +32,7 @@ public enum Bunyan {
 	INSTANCE; // This enforces this object's singularity
 
 	private static final String	NAME	= "Bunyan";
-	private static final String	VERSION	= "1.4";
+	private static final String	VERSION	= "1.5";
 
 	private static IOreHandler	woodOreHandler;
 
