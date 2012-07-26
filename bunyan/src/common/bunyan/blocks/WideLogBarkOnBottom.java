@@ -41,12 +41,4 @@ public class WideLogBarkOnBottom extends WideLogBarkOnTop {
 		return row * 16 + column + textureSet * 2;
 	}
 
-	@Override
-	public boolean render(IBlockAccess world, int x, int y, int z,
-			int modelID)
-	{
-		return RenderManager.renderRotatedWideLogBarkBottom(this,
-				world, x, y, z, modelID);
-	}
-
 }

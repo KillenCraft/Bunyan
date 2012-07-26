@@ -98,12 +98,4 @@ public class WideLogBarkOnTop extends WideLog {
 					side.oppositeSide(), true);
 	}
 
-	@Override
-	public boolean render(IBlockAccess world, int x, int y, int z,
-			int modelID)
-	{
-		return RenderManager.renderRotatedWideLogBarkTop(this, world,
-				x, y, z, modelID);
-	}
-
 }

@@ -15,10 +15,12 @@ import net.minecraft.src.BaseMod;
 import net.minecraft.src.Block;
 import net.minecraft.src.FurnaceRecipes;
 import net.minecraft.src.ItemStack;
+import net.minecraft.src.KeyBinding;
 import net.minecraft.src.ModLoader;
 import net.minecraft.src.forge.IBonemealHandler;
 import net.minecraft.src.forge.MinecraftForge;
 import net.minecraft.src.forge.MinecraftForgeClient;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.FMLRegistry;
 
@@ -32,6 +34,17 @@ import cpw.mods.fml.common.registry.FMLRegistry;
  */
 public enum Proxy {
 	INSTANCE; // This enforces this object's singularity
+
+	public static void addLocalization(String key, String value) {
+		addLocalization(key, "en_US", value);
+	}
+
+	private static void addLocalization(String key, String lang,
+			String value)
+	{
+		FMLCommonHandler.instance().addStringLocalization(key, lang,
+				value);
+	}
 
 	/**
 	 * Used to set the name of a game object as know to a player. If
@@ -132,6 +145,13 @@ public enum Proxy {
 	public static void registerBonemealHandler(IBonemealHandler handler)
 	{
 		MinecraftForge.registerBonemealHandler(handler);
+	}
+
+	public static void registerKey(BaseMod mod, KeyBinding modeKey,
+			boolean allowRepeat)
+	{
+		FMLClientHandler.instance().registerKeyHandler(mod, modeKey,
+				allowRepeat);
 	}
 
 }

@@ -246,12 +246,4 @@ public class WideLog extends TurnableLog {
 		}
 	}
 
-	@Override
-	public boolean render(IBlockAccess world, int x, int y, int z,
-			int modelID)
-	{
-		return RenderManager.renderRotatedLog(this, world, x, y, z,
-				modelID);
-	}
-
 }

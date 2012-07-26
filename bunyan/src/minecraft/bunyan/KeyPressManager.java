@@ -18,7 +18,7 @@ public enum KeyPressManager {
 	INSTANCE;
 
 	private static KeyBinding	modeKey	= new KeyBinding(
-												"Mode Switch Key", 50);
+												"key.logTurner", 37);
 
 	public static boolean isModeKeyPressed() {
 		return isPressed(modeKey.keyCode);
@@ -31,7 +31,8 @@ public enum KeyPressManager {
 	}
 
 	public static void registerKeys(BaseMod baseMod) {
-		ModLoader.registerKey(baseMod, modeKey, true);
+		Proxy.registerKey(baseMod, modeKey, true);
+		Proxy.addLocalization("key.logTurner", "Log Turner Mode");
 	}
 
 }
