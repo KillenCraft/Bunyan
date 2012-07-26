@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import bunyan.api.Direction;
@@ -34,10 +33,10 @@ public class TurnableVanillaLog extends TurnableLog {
 
 	@Override
 	public void addCreativeItems(ArrayList itemList) {
-//		itemList.add(new ItemStack(blockID, 1, metaOak));
-//		itemList.add(new ItemStack(blockID, 1, metaPine));
-//		itemList.add(new ItemStack(blockID, 1, metaBirch));
-//		itemList.add(new ItemStack(blockID, 1, metaJungle));
+		// itemList.add(new ItemStack(blockID, 1, metaOak));
+		// itemList.add(new ItemStack(blockID, 1, metaPine));
+		// itemList.add(new ItemStack(blockID, 1, metaBirch));
+		// itemList.add(new ItemStack(blockID, 1, metaJungle));
 	}
 
 	@Override
@@ -92,14 +91,6 @@ public class TurnableVanillaLog extends TurnableLog {
 					metadata);
 		} else
 			DirectionalBlock.setFacing(world, x, y, z, side, true);
-	}
-
-	@Override
-	public boolean render(IBlockAccess world, int x, int y, int z,
-			int modelID)
-	{
-		return RenderManager.renderRotatedLog(this, world, x, y, z,
-				modelID);
 	}
 
 }
