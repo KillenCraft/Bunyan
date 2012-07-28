@@ -6,10 +6,11 @@
  * located in /MMPL-1.0.txt
  */
 
-package net.minecraft.src;
+package bunyan;
 
 import java.util.Random;
 
+import net.minecraft.src.World;
 import net.minecraft.src.forge.NetworkMod;
 import bunyan.Bunyan;
 
