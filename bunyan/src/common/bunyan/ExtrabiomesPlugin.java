@@ -58,7 +58,7 @@ public enum ExtrabiomesPlugin implements IPlugin {
 
 	@Override
 	public String getName() {
-		return Bunyan.getName();
+		return "Bunyan";
 	}
 
 	@Override

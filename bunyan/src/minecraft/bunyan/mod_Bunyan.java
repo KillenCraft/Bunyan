@@ -10,12 +10,14 @@ package bunyan;
 
 import java.util.Random;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;
+import net.minecraft.src.GuiScreen;
 import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.RenderBlocks;
 import net.minecraft.src.World;
 import net.minecraft.src.forge.NetworkMod;
-import bunyan.Bunyan;
+import vazkii.um.UpdateManagerFacade;
 import bunyan.blocks.RenderManager;
 
 /**
@@ -38,11 +40,6 @@ public class mod_Bunyan extends NetworkMod {
 	}
 
 	@Override
-	public String getName() {
-		return Bunyan.getName();
-	}
-
-	@Override
 	public String getVersion() {
 		return Bunyan.getVersion();
 	}
@@ -50,11 +47,20 @@ public class mod_Bunyan extends NetworkMod {
 	@Override
 	public void load() {
 		Bunyan.onLoad(this);
+		UpdateManagerFacade.INSTANCE.load(this);
 	}
 
 	@Override
 	public void modsLoaded() {
 		Bunyan.onModsLoaded();
+		UpdateManagerFacade.INSTANCE.modsLoaded();
+	}
+
+	@Override
+	public boolean onTickInGUI(float tick, Minecraft game, GuiScreen gui)
+	{
+		return UpdateManagerFacade.INSTANCE
+				.onTickInGUI(tick, game, gui);
 	}
 
 	@Override

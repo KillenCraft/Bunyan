@@ -33,7 +33,9 @@ import cpw.mods.fml.common.registry.FMLRegistry;
  * 
  */
 public enum Proxy {
-	INSTANCE; // This enforces this object's singularity
+	INSTANCE;
+
+	private static final String	DOWNLOAD_URL	= "https://raw.github.com/ScottKillen/Bunyan/master/bunyan/url-client-download.txt";
 
 	public static void addLocalization(String key, String value) {
 		addLocalization(key, "en_US", value);
@@ -87,6 +89,10 @@ public enum Proxy {
 	 */
 	public static File getMinecraftDir() {
 		return FMLCommonHandler.instance().getMinecraftRootDirectory();
+	}
+
+	public static String getModDownloadURL() {
+		return DOWNLOAD_URL;
 	}
 
 	public static String getObjectDisplayName(ItemStack itemstack) {

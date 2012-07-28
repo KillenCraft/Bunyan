@@ -24,6 +24,7 @@ import bunyan.trees.GenFirTree;
 import bunyan.trees.GenFirTreeHuge;
 import bunyan.trees.GenOakHuge;
 import bunyan.trees.GenRedwood;
+import bunyan.updatemanager.UpdateHandler;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.api.PluginManager;
 import extrabiomes.api.TerrainGenManager;
@@ -31,7 +32,6 @@ import extrabiomes.api.TerrainGenManager;
 public enum Bunyan {
 	INSTANCE; // This enforces this object's singularity
 
-	private static final String	NAME	= "Bunyan";
 	private static final String	VERSION	= "1.5";
 
 	private static IOreHandler	woodOreHandler;
@@ -40,10 +40,6 @@ public enum Bunyan {
 		// Because this mod define custom blocks, the client side mod is
 		// always required when the mod is present on the server.
 		return true;
-	}
-
-	public static String getName() {
-		return NAME;
 	}
 
 	public static String getVersion() {
@@ -117,6 +113,8 @@ public enum Bunyan {
 		Proxy.preloadTexture("/bunyan/blocks/blocks.png");
 		Proxy.preloadTexture("/bunyan/items/items.png");
 
+		new UpdateHandler(mod);
+		
 		// Delegate mod configuration to the Config object
 		Config.onLoad();
 
@@ -135,7 +133,7 @@ public enum Bunyan {
 				.valueOf(Block.grass.blockID));
 		TerrainGenManager.treesCanGrowOnIDs.add(Integer
 				.valueOf(Block.tilledField.blockID));
-		
+
 		KeyPressManager.registerKeys(mod);
 	}
 
