@@ -9,7 +9,6 @@
 package bunyan.updatemanager;
 
 import vazkii.um.UpdateManagerMod;
-import bunyan.Bunyan;
 import bunyan.Proxy;
 import cpw.mods.fml.common.modloader.BaseMod;
 

@@ -12,7 +12,6 @@ import java.util.Random;
 
 import net.minecraft.src.World;
 import net.minecraft.src.forge.NetworkMod;
-import bunyan.Bunyan;
 
 /**
  * This class appears only to communicate with the mod loader.
@@ -31,11 +30,6 @@ public class mod_Bunyan extends NetworkMod {
 			int chunkZ)
 	{
 		Bunyan.onGenerateSurface(world, random, chunkX, chunkZ);
-	}
-
-	@Override
-	public String getName() {
-		return Bunyan.getName();
 	}
 
 	@Override

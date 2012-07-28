@@ -68,6 +68,14 @@ public enum Proxy {
 		return FMLCommonHandler.instance().getMinecraftRootDirectory();
 	}
 
+	public static String getModDownloadURL() {
+		return "";
+	}
+
+	public static String getObjectDisplayName(ItemStack itemStack) {
+		return "";
+	}
+
 	public static void preloadTexture(String string) {
 		// NOOP on server
 	}
@@ -105,10 +113,6 @@ public enum Proxy {
 	public static void registerBonemealHandler(IBonemealHandler handler)
 	{
 		MinecraftForge.registerBonemealHandler(handler);
-	}
-
-	public static String getObjectDisplayName(ItemStack itemStack) {
-		return "";
 	}
 
 }
